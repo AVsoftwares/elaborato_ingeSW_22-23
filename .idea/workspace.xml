@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="707edb3d-da03-4660-8f00-bb35fe5e1485" name="Changes" comment="Inizio stesura prime classi">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/unibs/Dish.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/unibs/Ingredient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/unibs/Recipe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/unibs/RecipeBook.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/it/unibs/Restaurant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unibs/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unibs/MenuLaCarte.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unibs/ThematicMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/unibs/core/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/core/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +81,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679949302708</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Inizio stesura prime classi">
+      <created>1680292274772</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1680292274772</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
