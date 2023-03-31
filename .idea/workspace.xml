@@ -4,14 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="707edb3d-da03-4660-8f00-bb35fe5e1485" name="Changes" comment="prova primo commit">
+    <list default="true" id="707edb3d-da03-4660-8f00-bb35fe5e1485" name="Changes" comment="Inizio stesura prime classi">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unibs/Dish.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unibs/Ingredient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unibs/Recipe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unibs/RecipeBook.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/it/unibs/Restaurant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/unibs/core/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/unibs/core/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -37,23 +51,24 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
-    <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/robi/git/elaborato_ingeSW_22-23&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/robi/git/elaborato_ingeSW_22-23",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -63,9 +78,6 @@
       <option name="presentableId" value="Default" />
       <updated>1679946312519</updated>
       <workItem from="1679946313822" duration="786000" />
-      <workItem from="1680022269020" duration="234000" />
-      <workItem from="1680084233862" duration="37000" />
-      <workItem from="1680119922212" duration="581000" />
     </task>
     <task id="LOCAL-00001" summary="prova primo commit">
       <created>1679949302708</created>
@@ -93,6 +105,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="prova primo commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="prova primo commit" />
+    <MESSAGE value="Inizio stesura prime classi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inizio stesura prime classi" />
   </component>
 </project>
