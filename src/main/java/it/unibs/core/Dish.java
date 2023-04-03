@@ -1,4 +1,4 @@
-package it.unibs;
+package it.unibs.core;
 
 public class Dish {
     private String name;
