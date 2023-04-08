@@ -3,72 +3,83 @@ package it.unibs.core;
 import java.time.LocalDateTime;
 
 public class Dish {
+    public enum CourseType {
+        STARTER, FIRST_COURSE, SECOND_COURSE, DESSERT;
+    }
+
     private final String name;
     private int preparationTime;
-
-    private Recipe r;
+    private Recipe recipe;
+    private CourseType type;
     private LocalDateTime startDate;
     private LocalDateTime expireDate;
 
-    private String type; //antipasto, primo, secondo... meglio usare una Enum?
-    private int durationDays=0;
+    private int durationDays = 0;
 
-    //periodo validita come lo gestiamo? per stagioni con una enum?
-    //getters e setters?
-    public Dish(String name, Recipe r){
-
+    public Dish(String name, Recipe recipe, CourseType type) {
         this.name = name;
-        this.r = r;
+        this.recipe = recipe;
+        this.type = type;
     }
 
-    public void setPreparationTime(int minutes){
-        this.preparationTime =minutes;
+    public void setPreparationTime(int minutes) {
+        this.preparationTime = minutes;
     }
 
-    public int getPreparationTime(){
+    public int getPreparationTime() {
         return this.preparationTime;
     }
 
-    public void setType(String type) {
+    public void setType(CourseType type) {
         this.type = type;
+    }
+
+    public boolean isAvailable() {
+        LocalDateTime today = LocalDateTime.now();
+        return today.isAfter(startDate) && today.isBefore(expireDate);
     }
 
     public String getName() {
         return name;
     }
 
-    public String getType() {
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
+
+    public CourseType getType() {
         return type;
     }
 
-    public int getDishPortionWorkLoad(){
-        return r.getPortionWorkLoad();
+    public int getDishPortionWorkLoad() {
+        return recipe.getPortionWorkLoad();
     }
 
-    private void setStartDate(int year, int month, int day){
-        //piatto disponibile dalla mezzanotte
-        this.startDate = LocalDateTime.of(year, month, day, 0, 0);
-    }
-
-    private void setStartDate(int year, int month, int day, int hour, int min){
-        //piatto disponibile da orario indicato da gestore
+    private void setStartDate(int year, int month, int day, int hour, int min) {
         this.startDate = LocalDateTime.of(year, month, day, hour, min);
     }
 
-    private void setDurationDays(int days){
+    private void setStartDate(int year, int month, int day) {
+        this.setStartDate(year, month, day, 0, 0);
+    }
+
+    private void setDurationDays(int days) {
         //0 MAI valido
         //-1 SEMPRE valido
         this.durationDays = days;
     }
 
-    public void setExpireDate(LocalDateTime startDate, int durationDays){
-
-        if(durationDays != -1 || durationDays != 0) {
+    public void setExpireDate(LocalDateTime startDate, int durationDays) {
+        if (durationDays != -1 || durationDays != 0) {
             expireDate = startDate.plusDays(durationDays);
         }
     }
 
-    public LocalDateTime getExpireDate(){
+    public LocalDateTime getExpireDate() {
         return expireDate;
     }
 

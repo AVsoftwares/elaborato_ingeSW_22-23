@@ -1,44 +1,40 @@
 package it.unibs.core;
 
-
 import java.io.File;
-import java.util.List;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Map;
 
 public class Restaurant {
-    private int coversNumber = 0;
-    private int avgBeverageEach = 0;
-    private int avgExtraEach = 0;
-    private int individualWorkLoad = 0;
+    private int seats = 0;
+    /**
+     * Map che associa il nome della bevanda al corrispettivo ammontare di consumo tipico procapite
+     */
+    private Map<String, Integer> avgDrinkAmount;
+    /**
+     * Map che associa il nome del genere extra al corrispettivo ammontare di consumo tipico procapite
+     */
+    private Map<String, Float> avgExtraAmount;
+    private int individualWorkLoad;
+    private final String name;
+    private static final float SUSTAINABLE_WORKLOAD_MULTIPLIER = 1.2f;
 
-    private String restaurantName;
-
-    public Restaurant(String restaurantName) {
-        this.restaurantName = restaurantName;
+    public Restaurant(String name, int seats) {
+        this.name = name;
+        this.seats = seats;
     }
 
-    public void initializeDataConfig(File f) {
-        //Gestore inizializza da file i parametri avgBeverageEach, coversNumber, avgExtraEach..
-
+    public Restaurant(File file) throws IOException {
+        // TODO questa è solo un'idea
+        System.getProperties().load(new FileInputStream(file));
+        this.name = System.getProperty("name");
     }
 
-    //magari il metodo sopra e questo sotto lo mettiamo in una classe di utility tipo RestaurantUtility
-    private void setRestaurantMealWorkLoad(int IndividualWorkLoad, int coversNumber) {
-        //prodotto del
-        //carico di lavoro per persona per il numero complessivo di posti a sedere del ristorante
-        //accresciuto del 20%.
+    private float getSustainableWorkload() {
+        return (individualWorkLoad * seats) * SUSTAINABLE_WORKLOAD_MULTIPLIER;
     }
 
     public void showDataConfig() {
 
     }
-
-    //questi due metodi forse meglio spostarli sul Gestore?
-    public void makeMenu(List recipe) {
-
-    }
-
-    public void showMenus() {
-
-    }
-
 }

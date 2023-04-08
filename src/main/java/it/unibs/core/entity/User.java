@@ -1,4 +1,4 @@
-package it.unibs.core;
+package it.unibs.core.entity;
 
 public abstract class User {
     private String name;
