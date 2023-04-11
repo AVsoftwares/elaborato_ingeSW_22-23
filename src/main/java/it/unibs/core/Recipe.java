@@ -14,7 +14,7 @@ public class Recipe {
 
     public void setPortionWorkLoad(){}
 
-    public void getPortionWorkLoad(){}
+    public int getPortionWorkLoad(){}
 
 
 
