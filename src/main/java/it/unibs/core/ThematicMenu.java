@@ -23,11 +23,6 @@ public class ThematicMenu extends Menu {
         this.menuType = "Thematic";
     }
 
-    @Override
-    public String getMenuType() {
-        return this.menuType;
-    }
-
     private void setStartDate(int year, int month, int day) {
         //menu disponibile dalla mezzanotte
         this.startDate = LocalDateTime.of(year, month, day, 0, 0);
