@@ -12,7 +12,6 @@ persona. Possono coesistere più menu tematici, anche contemporaneamente validi.
 public class ThematicMenu extends Menu{
 
     private String menuName;
-    private LocalDateTime creationTimeStamp;
     private LocalDateTime startDate;
     private LocalDateTime expireDate;
     private int durationDays =0;
@@ -24,7 +23,6 @@ public class ThematicMenu extends Menu{
     public ThematicMenu(String name){
         super(name);
         this.menuType = "Thematic";
-        this.creationTimeStamp = LocalDateTime.now();
     }
 
     @Override
@@ -48,22 +46,21 @@ public class ThematicMenu extends Menu{
         this.durationDays = days;
     }
 
-    private void setExpireDate(LocalDateTime startDate, int durationDays){
+    @Override
+    public void setExpireDate(LocalDateTime startDate, int durationDays){
 
         if(durationDays != -1 || durationDays != 0) {
             expireDate = startDate.plusDays(durationDays);
         }
     }
-    @Override
+
     public void getValidity() {
-        if(durationDays == -1){
+        if (durationDays == -1) {
             System.out.println("Menu Tematico: " + menuName + " SEMPRE valido.");
-        }
-        else if (durationDays == 0){
+        } else if (durationDays == 0) {
             System.out.println("Menu Tematico" + menuName + "MAI valido.");
-        }
-        else{
-            System.out.println("Menu Tematico valido fino al "+ expireDate);
+        } else {
+            System.out.println("Menu Tematico valido fino al " + expireDate);
         }
     }
 

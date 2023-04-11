@@ -1,6 +1,6 @@
 package it.unibs.core;
 
-import java.time.LocalDate;
+import java.time.*;
 
 public abstract class Menu {
     //quanti piatti in un menu massimo
@@ -9,19 +9,20 @@ public abstract class Menu {
     public Dish[] dishList = new Dish[DishesNum];
     public String menuType= "Default";
     public String menuName;
+    public LocalDateTime creationTimeStamp;
 
     public Menu(String name){
         this.menuName = name;
+        this.creationTimeStamp = LocalDateTime.now();
     }
 
-    //setPeriodo Validità
-    public void setValidity(LocalDate date, int numDays){};
+    public void setExpireDate(LocalDateTime startDate, int durationDays){};
 
     public String getMenuType(){
-
         return menuType;
     };
 
-
-
+    public LocalDateTime getCreationTimeStamp(){
+        return creationTimeStamp;
+    }
 }

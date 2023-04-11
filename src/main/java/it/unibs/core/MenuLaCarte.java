@@ -1,11 +1,10 @@
 package it.unibs.core;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.*
 
 public class MenuLaCarte extends Menu{
-    public LocalDate validityPeriod;
-    private LocalDate creationDate;
+    public LocalDateTime validityPeriod;
+    private LocalDateTime creationDate;
     private int durationDays = 0;
 
     public MenuLaCarte(String name) {
