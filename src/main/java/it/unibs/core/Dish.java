@@ -1,15 +1,19 @@
 package it.unibs.core;
 
 public class Dish {
-    private String name;
+    private final String name;
     private int preparationTime;
+
+    private Recipe r;
 
     private String type; //antipasto, primo, secondo... meglio usare una Enum?
 
     //periodo validita come lo gestiamo? per stagioni con una enum?
     //getters e setters?
-    public Dish(String name){
+    public Dish(String name, Recipe r){
+
         this.name = name;
+        this.r = r;
     }
 
     public void setPreparationTime(int minutes){
@@ -30,5 +34,9 @@ public class Dish {
 
     public String getType() {
         return type;
+    }
+
+    public int getDishPortionWorkLoad(){
+        return r.getPortionWorkLoad();
     }
 }
