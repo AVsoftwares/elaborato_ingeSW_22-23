@@ -15,11 +15,8 @@ public class ThematicMenu extends Menu{
     private LocalDateTime startDate;
     private LocalDateTime expireDate;
     private int durationDays =0;
-    private int numDishes = 0;
 
     private int menuWorkLoad =0;
-    @Override
-
     public ThematicMenu(String name){
         super(name);
         this.menuType = "Thematic";
@@ -27,7 +24,7 @@ public class ThematicMenu extends Menu{
 
     @Override
     public String getMenuType() {
-       return this.getMenuType();
+       return this.menuType;
     }
 
     private void setStartDate(int year, int month, int day){
@@ -72,35 +69,19 @@ public class ThematicMenu extends Menu{
         return this.expireDate;
     }
 
+    @Override
     public void addDish(Dish d){
-        int pos=0;
-        //cercare la prima posizione disponibile
-        for(int i=0; i< dishList.length; i++){
-            if(dishList[i] == null){
-                pos = dishList[i];
-            }
-        }
-        //controllo che non ci siano piatti con lo stesso nome
-        for (int i=0; i<= numDishes-1; i++){
-            if(d.getName() == dishList[i].getName()){
-                System.out.println("Piatto omonimo già presente in "+ menuName);
-            }
-            else{
-                dishList[pos] = d;
-                numDishes++;
-            }
-        }
+        super.addDish(d);
     }
 
-    public void showMenu(){
-        for (int i=0; i<numDishes; i++){
-            System.out.println(dishList[i].getName());
-        }
+    @Override
+    public void showDishes(){
+        super.showDishes();
     }
 
     private void computePortionWorkLoad(){
         for (int i=0; i<numDishes; i++){
-            menuWorkLoad = menuWorkLoad+dishList[i].getDishPortionWorkLoad();
+            menuWorkLoad = menuWorkLoad + dishList[i].getDishPortionWorkLoad();
         }
     }
     public int getMenuWorkLoad(){
