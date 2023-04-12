@@ -1,5 +1,7 @@
 package it.unibs.core;
 
+import it.unibs.libUtility.ServizioFile;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -26,6 +28,8 @@ public class Restaurant {
 
     public Restaurant(File file) throws IOException {
         // TODO questa è solo un'idea
+
+        //oppure ServizioFile.caricaSingoloOggetto(File configData);?
         System.getProperties().load(new FileInputStream(file));
         this.name = System.getProperty("name");
     }

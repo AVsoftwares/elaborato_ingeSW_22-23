@@ -74,7 +74,7 @@ public class Dish {
     }
 
     public void setExpireDate(LocalDateTime startDate, int durationDays) {
-        if (durationDays != -1 || durationDays != 0) {
+        if (durationDays != -1 && durationDays != 0) {
             expireDate = startDate.plusDays(durationDays);
         }
     }
