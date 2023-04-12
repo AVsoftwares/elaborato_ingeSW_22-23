@@ -12,6 +12,7 @@ public class Ingredient {
     public void setUnitMeasurement(String unit){
         this.unitMeasurement = unit;
     }
+    //TODO: gestione unità misura
 
     public String getUnitMeasurement(String unit){
         return this.unitMeasurement;

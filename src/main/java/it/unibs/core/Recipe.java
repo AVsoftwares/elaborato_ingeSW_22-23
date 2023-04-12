@@ -55,4 +55,8 @@ public class Recipe {
         return this.ingredientAmount.containsKey(i);
     }
 
+    public String getName(){
+        return this.recipeName;
+    }
+
 }
