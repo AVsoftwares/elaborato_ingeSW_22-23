@@ -39,6 +39,5 @@ public class Restaurant {
     }
 
     public void showDataConfig() {
-
     }
 }

@@ -5,28 +5,54 @@ import java.util.Map;
 public class Recipe {
     private String recipeName;
     private int portions;
-    private int portionWokload;
+    private int portionWorkLoad;
     private int personWokload;
     private int preparationTime;
     private Map<Ingredient, Float> ingredientAmount;
 
-    public Recipe(Map<Ingredient, Float> ingredientAmount) {
+    public Recipe(Map<Ingredient, Float> ingredientAmount, int portNum) {
         this.ingredientAmount = ingredientAmount;
+        this.portions = portNum;
     }
 
-    public Ingredient[] getIngredients() {
-        return new Ingredient[]{};
+    public void showIngredients(){
+        for (i entry : ingredientAmount.entrySet()) {
+            System.out.println(ingredient.getKey() + ":" + entry.getValue().toString());
+        }
     }
 
     public float getIngredientAmount(Ingredient ingredient) {
         return ingredientAmount.getOrDefault(ingredient, 0f);
     }
 
-    public void setPortionWorkLoad() {
+    public void setPortionWorkLoad(int portionWL) {
+        this.portionWorkLoad = portionWL;
 
     }
 
     public int getPortionWorkLoad(){
-        return this.portionWokload;
+        return this.portionWorkLoad;
     }
+
+    public int getPortions(){
+        return this.portions;
+    }
+
+    public void addIngredient(Ingredient i, Float q){
+        this.ingredientAmount.put(i, q);
+    }
+
+    public void deleteIngredient(Ingredient i){
+        if (ingredientAmount.containsKey(i)){
+            ingredientAmount.remove(i);
+        }
+        else{
+            System.out.println("Ingrediente NON trovato!");
+        }
+    }
+
+    public boolean containIngredient(Ingredient i){
+        return this.ingredientAmount.containsKey(i);
+    }
+
 }
