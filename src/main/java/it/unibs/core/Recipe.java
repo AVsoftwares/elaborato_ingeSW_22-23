@@ -16,8 +16,8 @@ public class Recipe {
     }
 
     public void showIngredients(){
-        for (i entry : ingredientAmount.entrySet()) {
-            System.out.println(ingredient.getKey() + ":" + entry.getValue().toString());
+        for (var entry : ingredientAmount.entrySet()) {
+            System.out.println(entry.getKey() + ":" + entry.getValue());
         }
     }
 
