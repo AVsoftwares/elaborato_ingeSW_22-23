@@ -1,6 +1,9 @@
 package it.unibs.core;
 
-import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDate;
 
 /**
  * Menu tematico è stabilito dal gestore e costituito da un elenco di piatti destinati a essere
@@ -9,59 +12,23 @@ import java.time.LocalDateTime;
  * lavoro del menu tematico, deve essere minore o uguale ai 4/3 del carico di lavoro per
  * persona. Possono coesistere più menu tematici, anche contemporaneamente validi.
  */
+@Getter
+@Setter
 public class ThematicMenu extends Menu {
 
     private String menuName;
-    private LocalDateTime startDate;
-    private LocalDateTime expireDate;
-    private int durationDays = 0;
+    private LocalDate startDate;
+    private LocalDate expireDate;
 
     private int menuWorkLoad = 0;
 
     public ThematicMenu(String name) {
         super(name);
-        this.menuType = "Thematic";
+        this.menuType = MenuType.THEMATIC;
     }
 
     private void setStartDate(int year, int month, int day) {
-        //menu disponibile dalla mezzanotte
-        this.startDate = LocalDateTime.of(year, month, day, 0, 0);
-    }
-
-    private void setStartDate(int year, int month, int day, int hour, int min) {
-        //menu disponibile da orario indicato da gestore
-        this.startDate = LocalDateTime.of(year, month, day, hour, min);
-    }
-
-    private void setDurationDays(int days) {
-        //0 MAI valido
-        //-1 SEMPRE valido
-        this.durationDays = days;
-    }
-
-    @Override
-    public void setExpireDate(LocalDateTime startDate, int durationDays) {
-        if (durationDays != -1 && durationDays != 0) {
-            expireDate = startDate.plusDays(durationDays);
-        }
-    }
-
-    public void getValidity() {
-        if (durationDays == -1) {
-            System.out.println("Menu Tematico: " + menuName + " SEMPRE valido.");
-        } else if (durationDays == 0) {
-            System.out.println("Menu Tematico" + menuName + "MAI valido.");
-        } else {
-            System.out.println("Menu Tematico valido fino al " + expireDate);
-        }
-    }
-
-    public int getDurationDays() {
-        return this.durationDays;
-    }
-
-    public LocalDateTime getExpireDate() {
-        return this.expireDate;
+        this.startDate = LocalDate.of(year, month, day);
     }
 
     private void computePortionWorkLoad() {

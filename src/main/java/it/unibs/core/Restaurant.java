@@ -1,12 +1,15 @@
 package it.unibs.core;
 
-import it.unibs.libUtility.ServizioFile;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Map;
 
+@Getter
+@Setter
 public class Restaurant {
     private int seats = 0;
     /**
