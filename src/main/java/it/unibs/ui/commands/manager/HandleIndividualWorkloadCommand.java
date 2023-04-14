@@ -18,11 +18,11 @@ public class HandleIndividualWorkloadCommand implements Command {
         Scanner scanner = new Scanner(System.in);
 
         if (workload == 0) {
-            System.out.println(MESSAGE_VALUE_NOT_INITIALIZED);
-            System.out.print("Enter value: ");
+            System.out.println("Il valore non è ancora stato inizializzato.");
+            System.out.print("Inserisci il valore: ");
             restaurant.setIndividualWorkLoad(scanner.nextInt());
         } else {
-            System.out.println(MESSAGE_CURRENT_VALUE + workload);
+            System.out.println("Il valore attuale è: " + workload);
         }
     }
 }

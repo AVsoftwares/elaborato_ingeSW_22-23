@@ -1,16 +1,15 @@
 package it.unibs.ui;
 
 import it.unibs.ui.commands.manager.Command;
+import lombok.RequiredArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
+@RequiredArgsConstructor
 public class Menu {
     private final String title;
-    private final List<MenuEntry> entries;
     private final boolean isMainMenu;
+    private final List<MenuEntry> entries = new ArrayList<>();
     private static final String SEPARATOR = "=";
     private static final String EXIT_ENTRY = "0\tExit";
     private static final String BACK_ENTRY = "0\tBack";
@@ -18,18 +17,8 @@ public class Menu {
     private static final String ERROR_INVALID_INPUT = "ERROR: invalid input.";
     private static final String ERROR_INPUT_OUT_OF_RANGE = "ERROR: input out of range.";
 
-    public Menu(String title, List<MenuEntry> entries, boolean isMainMenu) {
-        this.title = title;
-        this.entries = entries;
-        this.isMainMenu = isMainMenu;
-    }
-
-    public Menu(String title, List<MenuEntry> entries) {
-        this(title, entries, false);
-    }
-
     public Menu(String title) {
-        this(title, new ArrayList<>());
+        this(title, false);
     }
 
     public void addEntry(String desc, Command command) {
@@ -73,17 +62,20 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println(INPUT_STRING);
+            System.out.print(INPUT_STRING);
 
             try {
-                choice = Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException e) {
-                System.err.println(ERROR_INVALID_INPUT);
+                choice = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println(ERROR_INVALID_INPUT);
+                scanner.nextLine();
                 continue;
             }
 
             if (choice < 0 || choice > entries.size()) {
-                System.err.println(ERROR_INPUT_OUT_OF_RANGE);
+                scanner.nextLine();
+                System.out.println(ERROR_INPUT_OUT_OF_RANGE);
                 continue;
             }
 
