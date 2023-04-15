@@ -1,11 +1,9 @@
 package it.unibs.core;
-
+import java.util.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Map;
-import java.util.Scanner;
 
 @Getter
 @Setter
@@ -16,16 +14,26 @@ public class Recipe {
     private int portionWorkload;
     private Float personWorkload;
     private int preparationTime;
-    private Map<Ingredient, Float> ingredientAmount;
+    private int ingredientNum =0;
+    private HashMap<Ingredient, Float> ingredientAmount = new HashMap<Ingredient, Float>();
+    pirvate String name;
 
-    public Recipe(Map<Ingredient, Float> ingredientAmount, int portNum) {
-        this.ingredientAmount = ingredientAmount;
+
+    public Recipe(String recipeName, int portNum) {
+        this.recipeName = recipeName;
         this.portions = portNum;
     }
 
     public void showIngredients() {
-        for (var entry : ingredientAmount.entrySet()) {
-            System.out.println(entry.getKey() + ":" + entry.getValue());
+        if(ingredientAmount.isEmpty()){
+            System.out.println("Non sono presenti ingredienti");
+        }
+        else{
+                System.out.println("Sono presenti " + ingredientNum + " ingredienti.");
+                for (ingredientAmount.Entry<Ingredient, Float> entry : ingredientAmount.entrySet()) {
+                    System.out.println(entry.getKey() + ":" + entry.getValue());
+                }
+            }
         }
     }
 
@@ -34,7 +42,13 @@ public class Recipe {
     }
 
     public void addIngredient(Ingredient i, Float q) {
-        this.ingredientAmount.put(i, q);
+        if(ingredientAmount.containsKey(i)){
+            System.out.println("Ingrediente GIA' presente!");
+            //qua magari si può chiedere di modificare la quantita dell'ingrediente gia inserito
+        }
+        else{
+            this.ingredientAmount.put(i, q);
+        }
     }
 
     public void deleteIngredient(Ingredient i) {
@@ -59,7 +73,7 @@ public class Recipe {
         while (!inputIngredient.equalsIgnoreCase("N")) {
             ingredientCount++;
             System.out.printf("Inserisci l'ingrediente %d: ", ingredientCount);
-            addIngredientToRecipe(recipe);
+            addIngredient(i, q);
             System.out.println("Vuoi inserire un altro ingrediente (Y/N)?: ");
             inputIngredient = scanner.nextLine();
 
@@ -71,8 +85,14 @@ public class Recipe {
 
         System.out.printf("La ricetta %s è stata inserita nel ricettario", recipe.getRecipeName());
     }
-
-    public void addIngredientToRecipe(Recipe recipe) {
-
+    
+    public void modifyIngredientQuantity(Ingredient i, float newQuantity){
+        if(!ingredientAmount.containsKey(i)){
+            System.out.println("Ingrediente NON presente!");
+            //qua magari si può chiedere di se lo si vuole inserire
+        }
+        else{
+            ingredientAmount.put(i, newQuantity);
+        }
     }
 }
