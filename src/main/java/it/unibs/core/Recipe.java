@@ -1,5 +1,7 @@
 package it.unibs.core;
 import java.util.*;
+
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +18,7 @@ public class Recipe {
     private int preparationTime;
     private int ingredientNum =0;
     private HashMap<Ingredient, Float> ingredientAmount = new HashMap<Ingredient, Float>();
-    pirvate String name;
+    private String name;
 
 
     public Recipe(String recipeName, int portNum) {
@@ -29,10 +31,8 @@ public class Recipe {
             System.out.println("Non sono presenti ingredienti");
         }
         else{
-                System.out.println("Sono presenti " + ingredientNum + " ingredienti.");
-                for (ingredientAmount.Entry<Ingredient, Float> entry : ingredientAmount.entrySet()) {
-                    System.out.println(entry.getKey() + ":" + entry.getValue());
-                }
+            System.out.println("Sono presenti " + ingredientNum + " ingredienti.");
+            ingredientAmount.forEach((k,v) -> System.out.println("Ingrediente: "+k+" Quantita:" + v));
             }
         }
     }
