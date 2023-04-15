@@ -34,11 +34,11 @@ public class Recipe {
             System.out.println("Sono presenti " + ingredientNum + " ingredienti.");
             ingredientAmount.forEach((k,v) -> System.out.println("Ingrediente: "+k+" Quantita:" + v));
             }
-        }
     }
 
+
     public float getIngredientAmount(Ingredient ingredient) {
-        return ingredientAmount.getOrDefault(ingredient, 0f);
+        return ingredientAmount.get(ingredient);
     }
 
     public void addIngredient(Ingredient i, Float q) {
@@ -63,7 +63,7 @@ public class Recipe {
         return this.ingredientAmount.containsKey(i);
     }
 
-    public void createNewRecipe() {
+  /*  public void createNewRecipe() {
         Recipe recipe = new Recipe();
         Scanner scanner = new Scanner(System.in);
         String inputIngredient = "";
@@ -93,6 +93,6 @@ public class Recipe {
         }
         else{
             ingredientAmount.put(i, newQuantity);
-        }
-    }
+            }
+        }*/
 }

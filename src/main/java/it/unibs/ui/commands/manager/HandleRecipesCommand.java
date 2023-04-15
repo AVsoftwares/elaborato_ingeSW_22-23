@@ -3,6 +3,7 @@ package it.unibs.ui.commands.manager;
 import java.util.Scanner;
 
 import it.unibs.core.Restaurant;
+import it.unibs.ui.Command;
 
 public class HandleRecipesCommand implements Command {
 
