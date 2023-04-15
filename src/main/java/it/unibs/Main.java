@@ -3,15 +3,21 @@ package it.unibs;
 import java.util.Scanner;
 
 import it.unibs.core.Restaurant;
+import it.unibs.core.businessLogic.Users.Manager;
 import it.unibs.ui.Menu;
 import it.unibs.ui.commands.manager.*;
 
 public class Main {
     public static void main(String[] args) {
         Restaurant restaurant = new Restaurant("Un bel ristorante");
-
+        Manager manager = new Manager("Mario", "123");
         Scanner scanner = new Scanner(System.in);
-        Menu managerMenu = new Menu("Manager Menu", scanner, true);
+        Menu homeMenu = new Menu("Login menu", scanner, true)
+        Menu managerMenu = new Menu("Manager Menu", scanner, false);
+
+        homeMenu.addEntry("Manager login", new HandleLogin);
+
+        System.out.println("Manager: " + manager.getUsername());
 
         managerMenu.addEntry("Gestisci carico di lavoro per persona.", new HandleIndividualWorkloadCommand(restaurant));
         managerMenu.addEntry("Gestisci numero dei posti a sedere.", new HandleSeatsCommand(restaurant));
