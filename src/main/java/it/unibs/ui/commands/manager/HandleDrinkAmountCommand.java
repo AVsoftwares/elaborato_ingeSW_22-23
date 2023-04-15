@@ -1,6 +1,7 @@
 package it.unibs.ui.commands.manager;
 
 import it.unibs.core.Restaurant;
+import it.unibs.ui.Command;
 import it.unibs.ui.Menu;
 
 import java.util.Scanner;
@@ -13,10 +14,10 @@ public class HandleDrinkAmountCommand implements Command {
     }
 
     @Override
-    public void onSelection() {
-        Menu menu = new Menu("Gestione consumo pro-capite di bevande");
+    public void onSelection(Scanner scanner) {
+        Menu menu = new Menu("Gestione consumo pro-capite di bevande", scanner);
 
-        menu.addEntry("Visualizza consumo bevanda", () -> {
+        menu.addEntry("Visualizza consumo bevanda", (s) -> {
             var mapAvgDrink = restaurant.getAvgDrinkAmount();
 
             if (mapAvgDrink.isEmpty()) {
@@ -26,19 +27,17 @@ public class HandleDrinkAmountCommand implements Command {
                 mapAvgDrink.keySet().forEach(System.out::println);
             }
         });
-        menu.addEntry("Aggiungi nuovo", () -> {
+        menu.addEntry("Aggiungi nuovo", (s) -> {
             var mapAvgDrink = restaurant.getAvgDrinkAmount();
 
-            var scanner = new Scanner(System.in);
-
             System.out.print("Inserisci il nome della bevanda: ");
-            var name = scanner.nextLine();
+            var name = s.nextLine();
 
             if (mapAvgDrink.containsKey(name)) {
                 System.out.println("La bevanda è già presente nell'elenco.");
             } else {
                 System.out.print("Inserisci il consumo pro-capite: ");
-                var avgAmount = scanner.nextInt();
+                var avgAmount = s.nextInt();
 
                 mapAvgDrink.put(name, avgAmount);
             }

@@ -1,6 +1,5 @@
 package it.unibs.ui;
 
-import it.unibs.ui.commands.manager.Command;
 import lombok.RequiredArgsConstructor;
 
 import java.util.*;
@@ -8,6 +7,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class Menu {
     private final String title;
+    private final Scanner scanner;
     private final boolean isMainMenu;
     private final List<MenuEntry> entries = new ArrayList<>();
     private static final String SEPARATOR = "=";
@@ -17,8 +17,8 @@ public class Menu {
     private static final String ERROR_INVALID_INPUT = "ERROR: invalid input.";
     private static final String ERROR_INPUT_OUT_OF_RANGE = "ERROR: input out of range.";
 
-    public Menu(String title) {
-        this(title, false);
+    public Menu(String title, Scanner scanner) {
+        this(title, scanner, false);
     }
 
     public void addEntry(String desc, Command command) {
@@ -38,7 +38,7 @@ public class Menu {
                 return;
             }
 
-            entries.get(choice - 1).getCommand().onSelection();
+            entries.get(choice - 1).getCommand().onSelection(scanner);
         }
     }
 
@@ -58,8 +58,6 @@ public class Menu {
 
     private int selectEntry() {
         int choice;
-
-        Scanner scanner = new Scanner(System.in);
 
         while (true) {
             System.out.print(INPUT_STRING);

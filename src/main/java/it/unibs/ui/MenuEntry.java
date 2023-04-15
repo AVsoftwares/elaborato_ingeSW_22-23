@@ -1,9 +1,10 @@
 package it.unibs.ui;
 
-import it.unibs.ui.commands.manager.Command;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class MenuEntry {
     private final String description;
     private final Command command;

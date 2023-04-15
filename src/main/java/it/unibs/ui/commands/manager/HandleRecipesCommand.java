@@ -1,5 +1,7 @@
 package it.unibs.ui.commands.manager;
 
+import java.util.Scanner;
+
 import it.unibs.core.Restaurant;
 
 public class HandleRecipesCommand implements Command {
@@ -11,7 +13,7 @@ public class HandleRecipesCommand implements Command {
     }
 
     @Override
-    public void onSelection() {
+    public void onSelection(Scanner scanner) {
 
     }
 }

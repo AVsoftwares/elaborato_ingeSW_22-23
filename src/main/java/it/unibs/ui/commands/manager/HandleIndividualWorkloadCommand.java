@@ -1,6 +1,7 @@
 package it.unibs.ui.commands.manager;
 
 import it.unibs.core.Restaurant;
+import it.unibs.ui.Command;
 
 import java.util.Scanner;
 
@@ -13,14 +14,13 @@ public class HandleIndividualWorkloadCommand implements Command {
     }
 
     @Override
-    public void onSelection() {
-        final var workload = restaurant.getIndividualWorkLoad();
-        Scanner scanner = new Scanner(System.in);
+    public void onSelection(Scanner scanner) {
+        final var workload = restaurant.getIndividualWorkload();
 
         if (workload == 0) {
             System.out.println("Il valore non è ancora stato inizializzato.");
             System.out.print("Inserisci il valore: ");
-            restaurant.setIndividualWorkLoad(scanner.nextInt());
+            restaurant.setIndividualWorkload(scanner.nextInt());
         } else {
             System.out.println("Il valore attuale è: " + workload);
         }

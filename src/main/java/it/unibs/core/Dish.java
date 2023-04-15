@@ -29,8 +29,4 @@ public class Dish {
         LocalDateTime today = LocalDateTime.now();
         return today.isAfter(startDate) && today.isBefore(expireDate);
     }
-
-    public int getDishPortionWorkLoad() {
-        return recipe.getPortionWorkLoad();
-    }
 }

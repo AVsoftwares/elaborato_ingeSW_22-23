@@ -20,25 +20,21 @@ public class ThematicMenu extends Menu {
     private LocalDate startDate;
     private LocalDate expireDate;
 
-    private int menuWorkLoad = 0;
+    private int menuWorkload = 0;
 
     public ThematicMenu(String name) {
         super(name);
         this.menuType = MenuType.THEMATIC;
     }
 
-    private void setStartDate(int year, int month, int day) {
-        this.startDate = LocalDate.of(year, month, day);
-    }
-
-    private void computePortionWorkLoad() {
+    private void computePortionWorkload() {
         for (Dish d : dishList) {
-            menuWorkLoad += d.getDishPortionWorkLoad();
+            menuWorkload += d.getRecipe().getPortionWorkload();
         }
     }
 
-    public int getMenuWorkLoad() {
-        computePortionWorkLoad();
-        return menuWorkLoad;
+    public int getMenuWorkload() {
+        computePortionWorkload();
+        return menuWorkload;
     }
 }

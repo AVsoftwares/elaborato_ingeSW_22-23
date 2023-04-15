@@ -13,8 +13,8 @@ import java.util.Scanner;
 public class Recipe {
     private String recipeName;
     private int portions;
-    private int portionWorkLoad;
-    private Float personWokload;
+    private int portionWorkload;
+    private Float personWorkload;
     private int preparationTime;
     private Map<Ingredient, Float> ingredientAmount;
 
@@ -67,7 +67,7 @@ public class Recipe {
         System.out.println("Quante porzioni puoi produrre con le dosi che hai inserito?: ");
         recipe.setPortions(scanner.nextInt());
         System.out.println("Qual'è il carico di lavoro per porzione di questa ricetta (numero decimale minore di uno)?:  ");
-        recipe.setPersonWokload(scanner.nextFloat());
+        recipe.setPersonWorkload(scanner.nextFloat());
 
         System.out.printf("La ricetta %s è stata inserita nel ricettario", recipe.getRecipeName());
     }
