@@ -13,8 +13,12 @@ public class HandleExtraAmountCommand implements Command {
         this.restaurant = restaurant;
     }
 
-    @Override
     public void onSelection(Scanner scanner) {
+
+    }
+
+    @Override
+    public void onSelection() {
 
     }
 }
