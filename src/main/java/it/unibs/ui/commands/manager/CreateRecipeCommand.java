@@ -28,6 +28,7 @@ public class CreateRecipeCommand implements Command {
             final var amount = InputManager.readFloat("Inserisci la quantità: ", 0, Float.MAX_VALUE);
 
             // TODO: validare l'unità di misura si accettano suggerimenti
+            //potremmo mettere le più usate in una enum e confrontare oppure fare scegliere da console dopo averle listate
             final var unit = InputManager.readString("Inserisci l'unità di misura: ");
 
             recipe.addIngredient(new Ingredient(name, amount, unit));
