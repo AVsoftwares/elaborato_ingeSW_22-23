@@ -2,9 +2,8 @@ package it.unibs.ui.commands.manager;
 
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
+import it.unibs.ui.InputManager;
 import it.unibs.ui.Menu;
-
-import java.util.Scanner;
 
 public class HandleExtraCommand implements Command {
 
@@ -15,10 +14,10 @@ public class HandleExtraCommand implements Command {
     }
 
     @Override
-    public void onSelection(Scanner scanner) {
-        Menu menu = new Menu("Gestione generi alimentari extra", scanner);
+    public void onSelection() {
+        Menu menu = new Menu("Gestione generi alimentari extra");
 
-        menu.addEntry("Visualizza lista", (s) -> {
+        menu.addEntry("Visualizza lista", () -> {
             var mapAvgExtra = restaurant.getAvgExtraAmount();
 
             if (mapAvgExtra.isEmpty()) {
@@ -28,18 +27,15 @@ public class HandleExtraCommand implements Command {
                 mapAvgExtra.keySet().forEach(System.out::println);
             }
         });
-        menu.addEntry("Aggiungi nuovo", (s) -> {
+        menu.addEntry("Aggiungi nuovo", () -> {
             var mapAvgExtra = restaurant.getAvgExtraAmount();
 
-            System.out.print("Inserisci il nome del genere alimentare: ");
-            var name = s.nextLine();
+            var name = InputManager.readString("Inserisci il nome del genere alimentare: ");
 
             if (mapAvgExtra.containsKey(name)) {
                 System.out.println("Il genere alimentare è già presente nell'elenco.");
             } else {
-                System.out.print("Inserisci il consumo pro-capite: ");
-                var avgAmount = s.nextInt();
-
+                var avgAmount = InputManager.readInt("Inserisci il consumo pro-capite: ");
                 mapAvgExtra.put(name, avgAmount);
             }
         });

@@ -2,9 +2,8 @@ package it.unibs.ui.commands.manager;
 
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
+import it.unibs.ui.InputManager;
 import it.unibs.ui.Menu;
-
-import java.util.Scanner;
 
 public class HandleDrinksCommand implements Command {
     private final Restaurant restaurant;
@@ -14,10 +13,10 @@ public class HandleDrinksCommand implements Command {
     }
 
     @Override
-    public void onSelection(Scanner scanner) {
-        Menu menu = new Menu("Gestione bevande", scanner);
+    public void onSelection() {
+        Menu menu = new Menu("Gestione bevande");
 
-        menu.addEntry("Visualizza lista", (s) -> {
+        menu.addEntry("Visualizza lista", () -> {
             var mapAvgDrink = restaurant.getAvgDrinkAmount();
 
             if (mapAvgDrink.isEmpty()) {
@@ -27,18 +26,15 @@ public class HandleDrinksCommand implements Command {
                 mapAvgDrink.keySet().forEach(System.out::println);
             }
         });
-        menu.addEntry("Aggiungi nuovo", (s) -> {
+        menu.addEntry("Aggiungi nuovo", () -> {
             var mapAvgDrink = restaurant.getAvgDrinkAmount();
 
-            System.out.print("Inserisci il nome della bevanda: ");
-            var name = s.nextLine();
+            var name = InputManager.readString("Inserisci il nome della bevanda: ");
 
             if (mapAvgDrink.containsKey(name)) {
                 System.out.println("La bevanda è già presente nell'elenco.");
             } else {
-                System.out.print("Inserisci il consumo pro-capite: ");
-                var avgAmount = s.nextInt();
-
+                var avgAmount = InputManager.readInt("Inserisci il consumo pro-capite: ");
                 mapAvgDrink.put(name, avgAmount);
             }
         });

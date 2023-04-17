@@ -9,14 +9,10 @@ import java.util.List;
 @Getter
 @Setter
 public class RecipeBook {
-    private int recipesNumber = 0;
     private String bookTitle;
-    private String restaurant;
+    private List<Recipe> recipes = new ArrayList<>();
 
-    List<Recipe> recipes = new ArrayList<>();
-
-    public RecipeBook(String restaurantName, String bookTitle) {
-        this.restaurant = restaurantName;
+    public RecipeBook(String bookTitle) {
         this.bookTitle = bookTitle;
     }
 

@@ -7,10 +7,12 @@ import lombok.Setter;
 @Setter
 public class Ingredient {
     private String name;
-    private int amount;
-    private String unitMeasurement;
+    private float amount;
+    private String unit;
 
-    public Ingredient(String name) {
+    public Ingredient(String name, float amount, String unit) {
         this.name = name;
+        this.amount = amount;
+        this.unit = unit;
     }
 }

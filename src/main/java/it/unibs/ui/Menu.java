@@ -7,18 +7,15 @@ import java.util.*;
 @RequiredArgsConstructor
 public class Menu {
     private final String title;
-    private final Scanner scanner;
     private final boolean isMainMenu;
     private final List<MenuEntry> entries = new ArrayList<>();
     private static final String SEPARATOR = "=";
     private static final String EXIT_ENTRY = "0\tExit";
     private static final String BACK_ENTRY = "0\tBack";
     private static final String INPUT_STRING = "Enter choice: ";
-    private static final String ERROR_INVALID_INPUT = "ERROR: invalid input.";
-    private static final String ERROR_INPUT_OUT_OF_RANGE = "ERROR: input out of range.";
 
-    public Menu(String title, Scanner scanner) {
-        this(title, scanner, false);
+    public Menu(String title) {
+        this(title, false);
     }
 
     public void addEntry(String desc, Command command) {
@@ -38,7 +35,7 @@ public class Menu {
                 return;
             }
 
-            entries.get(choice - 1).getCommand().onSelection(scanner);
+            entries.get(choice - 1).getCommand().onSelection();
         }
     }
 
@@ -57,27 +54,6 @@ public class Menu {
     }
 
     private int selectEntry() {
-        int choice;
-
-        while (true) {
-            System.out.print(INPUT_STRING);
-
-            try {
-                choice = scanner.nextInt();
-                scanner.nextLine();
-            } catch (InputMismatchException e) {
-                System.out.println(ERROR_INVALID_INPUT);
-                scanner.nextLine();
-                continue;
-            }
-
-            if (choice < 0 || choice > entries.size()) {
-                scanner.nextLine();
-                System.out.println(ERROR_INPUT_OUT_OF_RANGE);
-                continue;
-            }
-
-            return choice;
-        }
+        return InputManager.readInt(INPUT_STRING, 0, entries.size());
     }
 }

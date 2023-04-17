@@ -2,8 +2,7 @@ package it.unibs.ui.commands.manager;
 
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
-
-import java.util.Scanner;
+import it.unibs.ui.InputManager;
 
 public class HandleSeatsCommand implements Command {
 
@@ -14,13 +13,12 @@ public class HandleSeatsCommand implements Command {
     }
 
     @Override
-    public void onSelection(Scanner scanner) {
+    public void onSelection() {
         final var seats = restaurant.getSeats();
 
         if (seats == 0) {
             System.out.println("Il valore non è ancora stato inizializzato.");
-            System.out.print("Enter value: ");
-            restaurant.setSeats(scanner.nextInt());
+            restaurant.setSeats(InputManager.readInt());
         } else {
             System.out.println("Il valore attuale è: " + seats);
         }

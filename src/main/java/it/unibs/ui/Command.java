@@ -4,5 +4,5 @@ import java.util.Scanner;
 
 @FunctionalInterface
 public interface Command {
-    void onSelection(Scanner scanner);
+    void onSelection();
 }

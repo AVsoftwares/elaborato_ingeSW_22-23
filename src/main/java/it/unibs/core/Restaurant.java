@@ -15,6 +15,7 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class Restaurant {
     private int seats = 0;
+    private RecipeBook recipeBook = new RecipeBook("Default");
     /**
      * Map che associa il nome della bevanda al corrispettivo ammontare di consumo tipico procapite
      */
