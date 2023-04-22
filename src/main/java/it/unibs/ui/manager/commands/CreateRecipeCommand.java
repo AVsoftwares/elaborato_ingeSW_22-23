@@ -1,4 +1,4 @@
-package it.unibs.ui.commands.manager;
+package it.unibs.ui.manager.commands;
 
 import it.unibs.core.Ingredient;
 import it.unibs.core.Recipe;
@@ -19,7 +19,7 @@ public class CreateRecipeCommand implements Command {
         Recipe recipe = new Recipe();
         
         var recipeName = InputManager.readString("Inserisci il nome della ricetta: ");
-        recipe.setRecipeName(recipeName);
+        recipe.setName(recipeName);
 
         var exit = false;
         while (!exit) {
@@ -42,7 +42,7 @@ public class CreateRecipeCommand implements Command {
         recipe.setPersonWorkload(InputManager.readFloat("Qual è il carico di lavoro per porzione di questa ricetta?: ", 0, 1));
 
         restaurant.getRecipeBook().addRecipe(recipe);
-        System.out.printf("La ricetta \"%s\" è stata inserita nel ricettario%n", recipe.getRecipeName());
+        System.out.printf("La ricetta \"%s\" è stata inserita nel ricettario%n", recipe.getName());
     }
     
 }

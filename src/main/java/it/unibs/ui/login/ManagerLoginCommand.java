@@ -1,4 +1,4 @@
-package it.unibs.ui.commands.login;
+package it.unibs.ui.login;
 
 import it.unibs.ui.Command;
 

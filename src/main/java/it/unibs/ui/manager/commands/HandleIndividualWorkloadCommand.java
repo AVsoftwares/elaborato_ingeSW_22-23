@@ -1,10 +1,8 @@
-package it.unibs.ui.commands.manager;
+package it.unibs.ui.manager.commands;
 
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
-
-import java.util.Scanner;
 
 public class HandleIndividualWorkloadCommand implements Command {
 

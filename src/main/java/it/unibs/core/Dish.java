@@ -30,4 +30,8 @@ public class Dish {
         LocalDateTime today = LocalDateTime.now();
         return today.isAfter(startDate) && today.isBefore(expireDate);
     }
+
+    public int getWorkload() {
+        return recipe.getPortionWorkload();
+    }
 }

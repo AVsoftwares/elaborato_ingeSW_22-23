@@ -9,11 +9,11 @@ import java.util.List;
 @Getter
 @Setter
 public class RecipeBook {
-    private String bookTitle;
+    private String name;
     private List<Recipe> recipes = new ArrayList<>();
 
-    public RecipeBook(String bookTitle) {
-        this.bookTitle = bookTitle;
+    public RecipeBook(String name) {
+        this.name = name;
     }
 
     public void addRecipe(Recipe recipe) {

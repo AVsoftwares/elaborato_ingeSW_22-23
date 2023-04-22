@@ -1,6 +1,4 @@
 package it.unibs.core;
-import java.util.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Recipe {
-    private String recipeName;
+    private String name;
     private int portions;
     private int portionWorkload;
     private Float personWorkload;
