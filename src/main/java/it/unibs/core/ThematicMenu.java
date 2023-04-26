@@ -1,6 +1,6 @@
 package it.unibs.core;
 
-import java.time.MonthDay;
+import java.time.LocalDate;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,8 +16,8 @@ import lombok.Setter;
 @Setter
 public class ThematicMenu extends Menu {
 
-    private MonthDay startDate;
-    private MonthDay expireDate;
+    private LocalDate startDate;
+    private LocalDate expireDate;
 
     private int menuWorkload = 0;
 
