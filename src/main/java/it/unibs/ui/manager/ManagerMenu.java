@@ -10,7 +10,7 @@ import it.unibs.ui.manager.commands.HandleDrinksCommand;
 import it.unibs.ui.manager.commands.HandleExtraAmountCommand;
 import it.unibs.ui.manager.commands.HandleExtraCommand;
 import it.unibs.ui.manager.commands.HandleIndividualWorkloadCommand;
-import it.unibs.ui.manager.commands.HandleRecipesCommand;
+import it.unibs.ui.manager.commands.HandleDishesRecipesCommand;
 import it.unibs.ui.manager.commands.HandleSeatsCommand;
 import it.unibs.ui.manager.commands.ViewRecipesCommand;
 import it.unibs.ui.manager.commands.ViewThematicMenuCommand;
@@ -48,7 +48,7 @@ public class ManagerMenu extends Menu {
         addEntry(MSG_EXTRA, new HandleExtraCommand(restaurant));
         addEntry(MSG_DRINK_AMOUNT, new HandleDrinkAmountCommand(restaurant));
         addEntry(MSG_EXTRA_AMOUNT, new HandleExtraAmountCommand(restaurant));
-        addEntry(MSG_DISH_RECIPE, new HandleRecipesCommand(restaurant));
+        addEntry(MSG_DISH_RECIPE, new HandleDishesRecipesCommand(restaurant));
         addEntry(MSG_DISH, new HandleDishesCommand(restaurant));
         addEntry(MSG_MAKE_RECIPE, new CreateRecipeCommand(restaurant));
         addEntry(MSG_VIEW_RECIPE, new ViewRecipesCommand(restaurant));

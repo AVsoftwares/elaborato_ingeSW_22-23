@@ -10,12 +10,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Recipe {
-    private String name;
+    private List<Ingredient> ingredients = new ArrayList<>();
     private int portions;
     private int portionWorkload;
     private Float personWorkload;
     private int preparationTime;
-    private List<Ingredient> ingredients = new ArrayList<>();
 
     public Recipe(List<Ingredient> ingredients, int portions) {
         this.ingredients = ingredients;
@@ -60,5 +59,11 @@ public class Recipe {
 
     public boolean containsIngredient(Ingredient ingredient) {
         return ingredients.contains(ingredient);
+    }
+
+    @Override
+    public String toString() {
+        return "Ingredienti: " + ingredients.toString() + "\n\tPorzioni: " + portions + "\n\tCarico di lavoro per porzione: " + portionWorkload
+        + "\n\tCarico di lavoro per persona :" + personWorkload;
     }
 }

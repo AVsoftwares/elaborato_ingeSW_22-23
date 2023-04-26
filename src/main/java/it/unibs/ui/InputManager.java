@@ -1,12 +1,15 @@
 package it.unibs.ui;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class InputManager {
     
     private static final Scanner scanner = new Scanner(System.in);
-
+    
     private static final String INTEGER_INPUT_PROMPT = "Enter an integer: ";
     private static final String FLOAT_INPUT_PROMPT = "Enter a float: ";
     private static final String STRING_INPUT_PROMPT = "Enter a string: ";
@@ -21,6 +24,7 @@ public class InputManager {
     private static final String INVALID_INPUT_EXPECTED_FLOAT = "Invalid input: expected float";
     private static final String INVALID_INPUT_EXPECTED_STRING = "Invalid input: expected string";
     private static final String INVALID_INPUT_NO_MATCH = "Invalid input: no match";
+    private static final String INVALID_INPUT_DATE_CANNOT_BE_PARSED = "Invalid input: date cannot be parsed";
     private static final String INVALID_INPUT_EXPECTED_YES_NO = "Invalid input: expected (y)es or (n)o";
 
     private InputManager() {
@@ -127,6 +131,24 @@ public class InputManager {
                 return input;
             } else {
                 advanceScanner(INVALID_INPUT_NO_MATCH);
+            }
+        }
+    }
+
+    public static LocalDate readDate(String prompt, DateTimeFormatter formatter) {
+        assert (prompt != null) : ASSERT_NULL_PROMPT;
+
+        while (true) {
+            System.out.print(prompt);
+
+            if (scanner.hasNextLine()) {
+                try {
+                    return LocalDate.parse(scanner.nextLine(), formatter);
+                } catch (DateTimeParseException e) {
+                    System.out.println(INVALID_INPUT_DATE_CANNOT_BE_PARSED);
+                }
+            } else {
+                advanceScanner(INVALID_INPUT_EXPECTED_STRING);
             }
         }
     }

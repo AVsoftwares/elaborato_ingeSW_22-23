@@ -17,9 +17,6 @@ public class CreateRecipeCommand implements Command {
     @Override
     public void onSelection() {
         Recipe recipe = new Recipe();
-        
-        var recipeName = InputManager.readString("Inserisci il nome della ricetta: ");
-        recipe.setName(recipeName);
 
         var exit = false;
         while (!exit) {
@@ -41,8 +38,8 @@ public class CreateRecipeCommand implements Command {
 
         recipe.setPersonWorkload(InputManager.readFloat("Qual è il carico di lavoro per porzione di questa ricetta?: ", 0, 1));
 
-        restaurant.getRecipeBook().addRecipe(recipe);
-        System.out.printf("La ricetta \"%s\" è stata inserita nel ricettario%n", recipe.getName());
+        restaurant.addRecipe(recipe);
+        System.out.println("La ricetta è stata inserita nel ricettario");
     }
     
 }

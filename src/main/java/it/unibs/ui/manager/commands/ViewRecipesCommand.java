@@ -13,12 +13,10 @@ public class ViewRecipesCommand implements Command {
 
     @Override
     public void onSelection() {
-        var recipeBook = restaurant.getRecipeBook();
+        System.out.println("Attualmente sono presenti nel ricettario le seguenti ricette:");
 
-        System.out.println("Attualmente sono presenti nel ricettario \"" + recipeBook.getName() + "\" le seguenti ricette:");
-
-        recipeBook.getRecipes().forEach(r -> {
-            System.out.println("- " + r.getName());
+        restaurant.getRecipes().forEach(r -> {
+            System.out.println("- " + r.toString());
         });
     }
 

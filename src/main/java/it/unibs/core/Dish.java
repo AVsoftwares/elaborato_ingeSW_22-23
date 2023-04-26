@@ -13,10 +13,10 @@ public class Dish {
         STARTER, FIRST_COURSE, SECOND_COURSE, DESSERT;
     }
 
-    private final String name;
-    private int preparationTime;
+    private String name;
     private Recipe recipe;
     private CourseType type;
+    private int preparationTime;
     private LocalDate startDate;
     private LocalDate expireDate;
 
@@ -33,5 +33,11 @@ public class Dish {
 
     public int getWorkload() {
         return recipe.getPortionWorkload();
+    }
+
+    @Override
+    public String toString() {
+        return "Nome: " + name + "\n\tTipo: " + type.toString() + "\n\tTempo di preparazione: " + preparationTime
+        + "\n\tValido dal " + startDate.toString() + " al " + expireDate.toString();
     }
 }
