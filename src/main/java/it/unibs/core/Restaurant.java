@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import lombok.Getter;
@@ -15,7 +16,8 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public class Restaurant {
     private int seats = 0;
-    private RecipeBook recipeBook = new RecipeBook("Default");
+    private RecipeBook recipeBook;
+    private List<Menu> menus;
     /**
      * Map che associa il nome della bevanda al corrispettivo ammontare di consumo tipico procapite
      */
@@ -40,6 +42,9 @@ public class Restaurant {
         return (individualWorkload * seats) * SUSTAINABLE_WORKLOAD_MULTIPLIER;
     }
 
-    public void showDataConfig() {
+    public void addMenus(Menu... menus) {
+        for (Menu menu : menus) {
+            this.menus.add(menu);
+        }
     }
 }

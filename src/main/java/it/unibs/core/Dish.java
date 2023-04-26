@@ -1,9 +1,9 @@
 package it.unibs.core;
 
+import java.time.LocalDate;
+
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -17,8 +17,8 @@ public class Dish {
     private int preparationTime;
     private Recipe recipe;
     private CourseType type;
-    private LocalDateTime startDate;
-    private LocalDateTime expireDate;
+    private LocalDate startDate;
+    private LocalDate expireDate;
 
     public Dish(String name, Recipe recipe, CourseType type) {
         this.name = name;
@@ -27,7 +27,7 @@ public class Dish {
     }
 
     public boolean isAvailable() {
-        LocalDateTime today = LocalDateTime.now();
+        LocalDate today = LocalDate.now();
         return today.isAfter(startDate) && today.isBefore(expireDate);
     }
 

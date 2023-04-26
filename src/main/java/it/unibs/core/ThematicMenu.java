@@ -1,9 +1,9 @@
 package it.unibs.core;
 
+import java.time.MonthDay;
+
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDate;
 
 /**
  * Menu tematico è stabilito dal gestore e costituito da un elenco di piatti destinati a essere
@@ -16,19 +16,17 @@ import java.time.LocalDate;
 @Setter
 public class ThematicMenu extends Menu {
 
-    private String menuName;
-    private LocalDate startDate;
-    private LocalDate expireDate;
+    private MonthDay startDate;
+    private MonthDay expireDate;
 
     private int menuWorkload = 0;
 
     public ThematicMenu(String name) {
         super(name);
-        this.menuType = MenuType.THEMATIC;
     }
 
     private void computePortionWorkload() {
-        for (Dish d : dishList) {
+        for (Dish d : super.getDishes()) {
             menuWorkload += d.getRecipe().getPortionWorkload();
         }
     }
