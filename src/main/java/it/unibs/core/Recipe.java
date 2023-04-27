@@ -1,6 +1,8 @@
 package it.unibs.core;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,7 +34,6 @@ public class Recipe {
         }
     }
 
-
     public float getIngredientAmount(Ingredient ingredient) {
         if (ingredients.contains(ingredient)) {
             return ingredients.get(ingredients.indexOf(ingredient)).getAmount();
@@ -63,7 +64,10 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return "Ingredienti: " + ingredients.toString() + "\n\tPorzioni: " + portions + "\n\tCarico di lavoro per porzione: " + portionWorkload
-        + "\n\tCarico di lavoro per persona :" + personWorkload;
+        var ingredientsString = ingredients.stream().map(Object::toString).collect(Collectors.joining(", "));
+
+        return "Ingredienti: " + ingredientsString + "\n\tPorzioni: " + portions
+                + "\n\tCarico di lavoro per porzione: " + portionWorkload
+                + "\n\tCarico di lavoro per persona :" + personWorkload;
     }
 }

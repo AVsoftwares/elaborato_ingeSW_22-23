@@ -29,4 +29,9 @@ public class Menu {
             System.out.println(d.getName());
         }
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

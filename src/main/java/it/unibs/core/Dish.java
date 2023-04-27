@@ -1,6 +1,7 @@
 package it.unibs.core;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -37,7 +38,10 @@ public class Dish {
 
     @Override
     public String toString() {
+        var startDateString = startDate.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+        var expireDateString = expireDate.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+
         return "Nome: " + name + "\n\tTipo: " + type.toString() + "\n\tTempo di preparazione: " + preparationTime
-        + "\n\tValido dal " + startDate.toString() + " al " + expireDate.toString();
+        + "\n\tValido dal " + startDateString + " al " + expireDateString;
     }
 }

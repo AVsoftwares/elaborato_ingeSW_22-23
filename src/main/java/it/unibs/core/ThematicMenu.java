@@ -1,6 +1,7 @@
 package it.unibs.core;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -30,5 +31,13 @@ public class ThematicMenu extends Menu {
 
     public int getTotalWorkload() {
         return super.getDishes().stream().mapToInt(d -> d.getWorkload()).sum();
+    }
+
+    @Override
+    public String toString() {
+        final var startDateString = startDate.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+        final var expireDateString = expireDate.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+
+        return super.toString() + "\n\tValido dal " + startDateString + " al " + expireDateString;
     }
 }

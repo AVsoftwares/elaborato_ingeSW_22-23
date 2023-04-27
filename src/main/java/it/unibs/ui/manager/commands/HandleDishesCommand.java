@@ -7,16 +7,14 @@ import it.unibs.core.Dish;
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class HandleDishesCommand implements Command {
 
     private final Restaurant restaurant;
 
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yy");
-
-    public HandleDishesCommand(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
 
     @Override
     public void onSelection() {

@@ -4,15 +4,12 @@ import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
 import it.unibs.ui.Menu;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class HandleExtraAmountCommand implements Command {
 
     private final Restaurant restaurant;
-
-    public HandleExtraAmountCommand(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
-
     @Override
     public void onSelection() {
         Menu menu = new Menu("Gestione consumo pro-capite di alimenti extra");

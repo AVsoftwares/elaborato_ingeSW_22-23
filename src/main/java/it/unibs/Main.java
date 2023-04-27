@@ -1,15 +1,14 @@
 package it.unibs;
 
 import it.unibs.core.Restaurant;
-import it.unibs.ui.Menu;
-import it.unibs.ui.manager.ManagerMenu;
+import it.unibs.ui.login.LoginMenu;
 
 public class Main {
     public static void main(String[] args) {
         Restaurant restaurant = new Restaurant();
 
-        Menu managerMenu = new ManagerMenu("Manager Menu", restaurant, true);
+        LoginMenu loginMenu = new LoginMenu(restaurant);
 
-        managerMenu.run();
+        loginMenu.run();
     }
 }

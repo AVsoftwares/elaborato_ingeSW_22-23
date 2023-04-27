@@ -3,14 +3,12 @@ package it.unibs.ui.manager.commands;
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class HandleIndividualWorkloadCommand implements Command {
 
     private final Restaurant restaurant;
-
-    public HandleIndividualWorkloadCommand(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
 
     @Override
     public void onSelection() {

@@ -15,9 +15,10 @@ import it.unibs.ui.manager.commands.HandleSeatsCommand;
 import it.unibs.ui.manager.commands.ViewRecipesCommand;
 import it.unibs.ui.manager.commands.ViewThematicMenuCommand;
 
-public class ManagerMenu extends Menu {
+public final class ManagerMenu extends Menu {
     private final Restaurant restaurant;
 
+    private static final String MENU_NAME = "Manager Menu";
     private static final String MSG_WORKLOAD = "Gestisci carico di lavoro per persona.";
     private static final String MSG_SEATS = "Gestisci numero dei posti a sedere.";
     private static final String MSG_DRINKS = "Gestisci insieme delle bevande.";
@@ -30,17 +31,13 @@ public class ManagerMenu extends Menu {
     private static final String MSG_VIEW_RECIPE = "Visualizza le ricette disponibili.";
     private static final String MSG_MAKE_THEMATIC_MENU = "Crea un menu tematico.";
     private static final String MSG_VIEW_THEMATIC_MENU = "Visualizza i menu tematici disponibili.";
-
-    public ManagerMenu(String name, Restaurant restaurant, boolean isMainMenu) {
-        super(name, isMainMenu);
+    
+    public ManagerMenu(Restaurant restaurant) {
+        super(MENU_NAME, false);
         this.restaurant = restaurant;
         initMenuEntries();
     }
-
-    public ManagerMenu(String name, Restaurant restaurant) {
-        this(name, restaurant, false);
-    }
-
+    
     private void initMenuEntries() {
         addEntry(MSG_WORKLOAD, new HandleIndividualWorkloadCommand(restaurant));
         addEntry(MSG_SEATS, new HandleSeatsCommand(restaurant));

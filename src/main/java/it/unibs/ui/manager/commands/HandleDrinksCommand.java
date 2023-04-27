@@ -4,13 +4,11 @@ import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
 import it.unibs.ui.Menu;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public class HandleDrinksCommand implements Command {
     private final Restaurant restaurant;
-
-    public HandleDrinksCommand(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
 
     @Override
     public void onSelection() {
