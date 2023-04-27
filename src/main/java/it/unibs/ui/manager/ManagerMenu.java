@@ -9,9 +9,9 @@ import it.unibs.ui.manager.commands.HandleDrinkAmountCommand;
 import it.unibs.ui.manager.commands.HandleDrinksCommand;
 import it.unibs.ui.manager.commands.HandleExtraAmountCommand;
 import it.unibs.ui.manager.commands.HandleExtraCommand;
-import it.unibs.ui.manager.commands.HandleIndividualWorkloadCommand;
+import it.unibs.ui.manager.commands.InitIndividualWorkloadCommand;
 import it.unibs.ui.manager.commands.HandleDishesRecipesCommand;
-import it.unibs.ui.manager.commands.HandleSeatsCommand;
+import it.unibs.ui.manager.commands.InitSeatsCommand;
 import it.unibs.ui.manager.commands.ViewRecipesCommand;
 import it.unibs.ui.manager.commands.ViewThematicMenuCommand;
 
@@ -39,8 +39,8 @@ public final class ManagerMenu extends Menu {
     }
     
     private void initMenuEntries() {
-        addEntry(MSG_WORKLOAD, new HandleIndividualWorkloadCommand(restaurant));
-        addEntry(MSG_SEATS, new HandleSeatsCommand(restaurant));
+        addEntry(MSG_WORKLOAD, new InitIndividualWorkloadCommand(restaurant));
+        addEntry(MSG_SEATS, new InitSeatsCommand(restaurant));
         addEntry(MSG_DRINKS, new HandleDrinksCommand(restaurant));
         addEntry(MSG_EXTRA, new HandleExtraCommand(restaurant));
         addEntry(MSG_DRINK_AMOUNT, new HandleDrinkAmountCommand(restaurant));

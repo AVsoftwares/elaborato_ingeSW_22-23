@@ -1,5 +1,7 @@
 package it.unibs.ui.manager.commands;
 
+import java.util.Map;
+
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
@@ -10,14 +12,14 @@ import lombok.RequiredArgsConstructor;
 public class HandleExtraAmountCommand implements Command {
 
     private final Restaurant restaurant;
+
     @Override
     public void onSelection() {
         Menu menu = new Menu("Gestione consumo pro-capite di alimenti extra");
 
-        var mapAvgExtra = restaurant.getAvgExtraAmount();
+        Map<String, Integer> mapAvgExtra = restaurant.getAvgExtraAmount();
 
         menu.addEntry("Visualizza consumo alimenti extra", () -> {
-
             if (mapAvgExtra.isEmpty()) {
                 System.out.println("La lista è vuota.");
             } else {

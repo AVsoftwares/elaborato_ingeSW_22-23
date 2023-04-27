@@ -1,5 +1,7 @@
 package it.unibs.ui.manager.commands;
 
+import java.util.Map;
+
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
@@ -14,9 +16,9 @@ public class HandleDrinksCommand implements Command {
     public void onSelection() {
         Menu menu = new Menu("Gestione bevande");
 
-        menu.addEntry("Visualizza lista", () -> {
-            var mapAvgDrink = restaurant.getAvgDrinkAmount();
+        Map<String, Integer> mapAvgDrink = restaurant.getAvgDrinkAmount();
 
+        menu.addEntry("Visualizza lista", () -> {
             if (mapAvgDrink.isEmpty()) {
                 System.out.println("La lista è vuota.");
             } else {
@@ -25,8 +27,6 @@ public class HandleDrinksCommand implements Command {
             }
         });
         menu.addEntry("Aggiungi nuovo", () -> {
-            var mapAvgDrink = restaurant.getAvgDrinkAmount();
-
             var name = InputManager.readString("Inserisci il nome della bevanda: ");
 
             if (mapAvgDrink.containsKey(name)) {

@@ -2,7 +2,6 @@ package it.unibs.ui.manager.commands;
 
 import java.time.format.DateTimeFormatter;
 
-import it.unibs.core.Dish;
 import it.unibs.core.Restaurant;
 import it.unibs.core.ThematicMenu;
 import it.unibs.ui.Command;
@@ -31,17 +30,19 @@ public class CreateThematicMenuCommand implements Command {
             final var dishes = restaurant.getDishes();
 
             var menuWorkload = menu.getTotalWorkload();
-            for (Dish dish : dishes) {
+            for (int i = 0; i < dishes.size(); i++) {
+                var dish = dishes.get(i);
+
                 if (menuWorkload + dish.getWorkload() < (float) 4 / 3 * restaurant.getIndividualWorkload()) {
-                    System.out.println("(" + dishes.indexOf(dish) + 1 + "): " + dish.getName() + ",\t");
+                    System.out.println((i + 1) + "\t" + dish.getName());
                 }
             }
 
             System.out.println("Sono mostrati solo piatti il cui carico di lavoro è ammissibile per il menu tematico!");
-            final var index = InputManager.readInt("Seleziona dalla lista quale piatto vuoi inserire nel menu: ", 1,
-                    dishes.size());
-
-            menu.addDish(dishes.get(index - 1));
+            
+            menu.addDish(
+                    dishes.get(InputManager.readInt("Seleziona dalla lista quale piatto vuoi inserire nel menu: ", 1,
+                            dishes.size())));
 
             exit = !InputManager.readYesOrNo("Vuoi inserire un altro piatto? (y)es/(n)o: ");
         }

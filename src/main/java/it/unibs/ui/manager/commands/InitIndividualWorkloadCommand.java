@@ -6,19 +6,19 @@ import it.unibs.ui.InputManager;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class HandleSeatsCommand implements Command {
+public class InitIndividualWorkloadCommand implements Command {
 
     private final Restaurant restaurant;
 
     @Override
     public void onSelection() {
-        final var seats = restaurant.getSeats();
+        final var workload = restaurant.getIndividualWorkload();
 
-        if (seats == 0) {
+        if (workload == 0) {
             System.out.println("Il valore non è ancora stato inizializzato.");
-            restaurant.setSeats(InputManager.readInt());
+            restaurant.setIndividualWorkload(InputManager.readInt());
         } else {
-            System.out.println("Il valore attuale è: " + seats);
+            System.out.println("Il valore attuale è: " + workload);
         }
     }
 }

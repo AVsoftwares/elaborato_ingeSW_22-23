@@ -25,20 +25,19 @@ public class HandleDishesRecipesCommand implements Command {
         var exit = false;
         while (!exit) {
             System.out.println("Sono memorizzati i seguenti piatti: ");
+            for (int i = 0; i < dishes.size(); i++) {
+                System.out.println(i + "\t" + dishes.get(i));
+            }
 
-            dishes.forEach(d -> {
-                System.out.println("- " + d);
-            });
-
-            Dish dish = dishes.get(InputManager.readInt("Inserisci quale vuoi modificare: ", 1, dishes.size()));
+            final var dishIndex = InputManager.readInt("Inserisci quale vuoi modificare: ", 1, dishes.size());
 
             System.out.println("Sono memorizzate le seguenti ricette: ");
-            recipes.forEach(r -> {
-                System.out.println("- " + r);
-            });
+            for (int i = 0; i < recipes.size(); i++) {
+                System.out.println(i + "\t" + recipes.get(i));
+            }
 
             Recipe recipe = recipes.get(InputManager.readInt("Inserisci quale vuoi assegnare al piatto selezionato: ", 1, recipes.size()));
-            dish.setRecipe(recipe);
+            dishes.get(dishIndex).setRecipe(recipe);
 
             System.out.println("La nuova corrispondenza piatto-ricetta è stata memorizzata.");
 

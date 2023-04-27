@@ -1,7 +1,9 @@
 package it.unibs.ui.login;
 
 import it.unibs.core.Restaurant;
+import it.unibs.ui.Command;
 import it.unibs.ui.Menu;
+import it.unibs.ui.manager.ManagerMenu;
 
 public final class LoginMenu extends Menu {
 
@@ -19,8 +21,27 @@ public final class LoginMenu extends Menu {
     }
 
     private void initMenuEntries() {
-        addEntry(MSG_MANAGER_LOGIN, new ManagerLoginCommand(restaurant));
-        addEntry(MSG_BOOKING_OFFICER_LOGIN, new BookingOfficerLoginCommand(restaurant));
-        addEntry(MSG_WAREHOUSE_MAN_LOGIN, new WarehouseManLoginCommand(restaurant));
+        addEntry(MSG_MANAGER_LOGIN, new Command() {
+            @Override
+            public void onSelection() {
+                ManagerMenu menu = new ManagerMenu(restaurant);
+
+                menu.run();
+            }
+        });
+        addEntry(MSG_BOOKING_OFFICER_LOGIN, new Command() {
+            @Override
+            public void onSelection() {
+                // TODO Auto-generated method stub
+                throw new UnsupportedOperationException("Unimplemented method 'onSelection'");
+            }
+        });
+        addEntry(MSG_WAREHOUSE_MAN_LOGIN, new Command() {
+            @Override
+            public void onSelection() {
+                // TODO Auto-generated method stub
+                throw new UnsupportedOperationException("Unimplemented method 'onSelection'");
+            }
+        });
     }
 }
