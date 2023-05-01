@@ -3,6 +3,7 @@ package it.unibs.ui.login;
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
 import it.unibs.ui.Menu;
+import it.unibs.ui.bookingOfficer.BookingMenu;
 import it.unibs.ui.manager.ManagerMenu;
 
 public final class LoginMenu extends Menu {
@@ -32,8 +33,10 @@ public final class LoginMenu extends Menu {
         addEntry(MSG_BOOKING_OFFICER_LOGIN, new Command() {
             @Override
             public void onSelection() {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'onSelection'");
+
+                BookingMenu menu = new BookingMenu(restaurant);
+
+                menu.run();
             }
         });
         addEntry(MSG_WAREHOUSE_MAN_LOGIN, new Command() {
