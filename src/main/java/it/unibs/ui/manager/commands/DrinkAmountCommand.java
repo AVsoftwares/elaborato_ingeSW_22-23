@@ -9,16 +9,17 @@ import it.unibs.ui.Menu;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class HandleDrinksCommand implements Command {
+public class DrinkAmountCommand implements Command {
+    
     private final Restaurant restaurant;
 
     @Override
     public void onSelection() {
-        Menu menu = new Menu("Gestione bevande");
+        Menu menu = new Menu("Gestione consumo pro-capite di bevande");
 
         Map<String, Integer> mapAvgDrink = restaurant.getAvgDrinkAmount();
 
-        menu.addEntry("Visualizza lista", () -> {
+        menu.addEntry("Visualizza consumo bevanda", () -> {
             if (mapAvgDrink.isEmpty()) {
                 System.out.println("La lista è vuota.");
             } else {

@@ -7,7 +7,7 @@ import it.unibs.ui.Menu;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class HandleExtraCommand implements Command {
+public class ExtraCommand implements Command {
 
     private final Restaurant restaurant;
 
