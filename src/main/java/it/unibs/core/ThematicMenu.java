@@ -30,7 +30,7 @@ public class ThematicMenu extends Menu {
     }
 
     public int getTotalWorkload() {
-        return super.getDishes().stream().mapToInt(d -> d.getWorkload()).sum();
+        return super.getDishes().stream().mapToInt(Dish::getWorkload).sum();
     }
 
     @Override

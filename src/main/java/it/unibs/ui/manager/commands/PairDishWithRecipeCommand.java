@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
  * Gestisce le corrispondenze tra piatti e ricette
  */
 @RequiredArgsConstructor
-public class HandleDishesRecipesCommand implements Command {
+public class PairDishWithRecipeCommand implements Command {
 
     private final Restaurant restaurant;
 
