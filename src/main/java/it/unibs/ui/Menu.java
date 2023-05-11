@@ -20,10 +20,10 @@ public class Menu {
     }
 
     public void addEntry(String desc, Command command) {
-        entries.add(new MenuEntry(desc, command));
+        addEntry(new MenuEntry(desc, command));
     }
 
-    public void addEntries(MenuEntry entry) {
+    public void addEntry(MenuEntry entry) {
         entries.add(entry);
     }
 
