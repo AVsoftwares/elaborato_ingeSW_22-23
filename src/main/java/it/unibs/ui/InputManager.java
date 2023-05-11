@@ -7,16 +7,16 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class InputManager {
-    
+
     private static final Scanner scanner = new Scanner(System.in);
-    
+
     private static final String INTEGER_INPUT_PROMPT = "Enter an integer: ";
     private static final String FLOAT_INPUT_PROMPT = "Enter a float: ";
     private static final String STRING_INPUT_PROMPT = "Enter a string: ";
-    
+
     private static final String YES_NO_REGEX = "(\\s*)(?:y|yes|n|no)(\\s*)";
     private static final String YES_REGEX = "(\\s*)(?:y|yes)(\\s*)";
-    
+
     private static final String ASSERT_NULL_PROMPT = "Prompt cannot be null";
     private static final String ASSERT_MIN_LESS_THAN_MAX = "min must be less than max";
     private static final String INVALID_INPUT_OUT_OF_RANGE = "Invalid input: out of range";

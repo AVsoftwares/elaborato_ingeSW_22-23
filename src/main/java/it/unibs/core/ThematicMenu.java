@@ -33,6 +33,14 @@ public class ThematicMenu extends Menu {
         return super.getDishes().stream().mapToInt(Dish::getWorkload).sum();
     }
 
+    public boolean isAvailable() {
+        return isAvailableAtDate(LocalDate.now());
+    }
+
+    public boolean isAvailableAtDate(LocalDate date) {
+        return date.isAfter(startDate) && date.isBefore(expireDate);
+    }
+
     @Override
     public String toString() {
         final var startDateString = startDate.format(DateTimeFormatter.ofPattern("dd/MM/yy"));

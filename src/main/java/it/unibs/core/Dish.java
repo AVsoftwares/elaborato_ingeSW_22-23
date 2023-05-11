@@ -28,8 +28,11 @@ public class Dish {
     }
 
     public boolean isAvailable() {
-        LocalDate today = LocalDate.now();
-        return today.isAfter(startDate) && today.isBefore(expireDate);
+        return isAvailableAtDate(LocalDate.now());
+    }
+
+    public boolean isAvailableAtDate(LocalDate date) {
+        return date.isAfter(startDate) && date.isBefore(expireDate);
     }
 
     public int getWorkload() {

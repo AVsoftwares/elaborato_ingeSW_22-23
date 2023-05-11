@@ -2,8 +2,8 @@ package it.unibs.ui.login;
 
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Menu;
-import it.unibs.ui.bookingOfficer.BookingMenu;
 import it.unibs.ui.manager.ManagerMenu;
+import it.unibs.ui.reservationOfficer.ReservationOfficerMenu;
 
 public final class LoginMenu extends Menu {
 
@@ -24,7 +24,7 @@ public final class LoginMenu extends Menu {
             menu.run();
         });
         addEntry(MSG_BOOKING_OFFICER_LOGIN, () -> {
-            BookingMenu menu = new BookingMenu(restaurant);
+            ReservationOfficerMenu menu = new ReservationOfficerMenu(restaurant);
 
             menu.run();
         });

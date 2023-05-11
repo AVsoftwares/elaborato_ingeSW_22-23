@@ -1,7 +1,6 @@
 package it.unibs.ui;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
@@ -24,8 +23,8 @@ public class Menu {
         entries.add(new MenuEntry(desc, command));
     }
 
-    public void addEntries(MenuEntry... entries) {
-        this.entries.addAll(Arrays.asList(entries));
+    public void addEntries(MenuEntry entry) {
+        entries.add(entry);
     }
 
     public void run() {
