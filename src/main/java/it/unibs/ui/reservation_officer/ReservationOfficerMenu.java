@@ -1,8 +1,8 @@
-package it.unibs.ui.reservationOfficer;
+package it.unibs.ui.reservation_officer;
 
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Menu;
-import it.unibs.ui.reservationOfficer.commands.ReservationCommand;
+import it.unibs.ui.reservation_officer.commands.ReservationCommand;
 
 /**
  * Addetto alle prenotazioni
