@@ -6,6 +6,9 @@ import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Classe usata per l'istanziazione di menu.
+ */
 @RequiredArgsConstructor
 public class Menu {
     private final String title;
@@ -16,18 +19,35 @@ public class Menu {
     private static final String BACK_ENTRY = "0\tBack";
     private static final String INPUT_STRING = "Enter choice: ";
 
+    /**
+     * @param title titolo del menu
+     */
     public Menu(String title) {
         this(title, false);
     }
 
+
+    /**
+     * @param desc breve descrizione del comando associato alla entry
+     * @param command comando associato alla entry
+     */
     public void addEntry(String desc, Command command) {
         entries.add(new MenuEntry(desc, command));
     }
 
+
+    /**
+     * @param entries lista di entries da aggiungere
+     */
     public void addEntries(MenuEntry... entries) {
         this.entries.addAll(Arrays.asList(entries));
     }
 
+    /**
+     * Metodo di visualizzazione all'utente del menu ed ottenimento della relativak
+     * scelta
+     *
+     */
     public void run() {
         while (true) {
             print();
