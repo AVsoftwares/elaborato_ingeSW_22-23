@@ -14,6 +14,9 @@ public class ThematicMenuCommand implements Command {
 
     private final Restaurant restaurant;
 
+    /**
+     * @see Command
+     */
     @Override
     public void onSelection() {
         Menu menu = new Menu("Gestione menu tematici");

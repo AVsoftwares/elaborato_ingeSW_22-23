@@ -27,11 +27,19 @@ public class Dish {
         this.type = type;
     }
 
+    /**
+     *
+     * @return true se piatto disponibile al momento della verifica
+     */
     public boolean isAvailable() {
         LocalDate today = LocalDate.now();
         return today.isAfter(startDate) && today.isBefore(expireDate);
     }
 
+    /**
+     *
+     * @return carico di lavoro per porzione del piatto
+     */
     public int getWorkload() {
         return recipe.getPortionWorkload();
     }

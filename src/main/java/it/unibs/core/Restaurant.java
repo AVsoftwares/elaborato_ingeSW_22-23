@@ -40,18 +40,30 @@ public class Restaurant {
         //this.name = System.getProperty("name");
     }
 
+    /**
+     * @return carico di lavoro sostenibile dal ristorante
+     */
     private float getSustainableWorkload() {
         return (individualWorkload * seats) * SUSTAINABLE_WORKLOAD_MULTIPLIER;
     }
 
+    /**
+     * @param recipes aggiunta della ricetta alle ricette disponibili del ristorante
+     */
     public void addRecipe(Recipe... recipes) {
         Collections.addAll(this.recipes, recipes);
     }
 
+    /**
+     * @param menus aggiunta del menu ai menu disponibili del ristorante
+     */
     public void addMenu(Menu... menus) {
         Collections.addAll(this.menus, menus);
     }
 
+    /**
+     * @param dishes aggiunta del piatto ai piatti disponibili del ristorante
+     */
     public void addDish(Dish... dishes) {
         Collections.addAll(this.dishes, dishes);
     }

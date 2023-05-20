@@ -11,11 +11,17 @@ public final class LoginMenu extends Menu {
     private static final String MSG_BOOKING_OFFICER_LOGIN = "Addetto alle prenotazioni";
     private static final String MSG_WAREHOUSE_MAN_LOGIN = "Magazziniere";
 
+    /**
+     * @param restaurant
+     */
     public LoginMenu(Restaurant restaurant) {
         super(MENU_NAME, true);
         initMenuEntries(restaurant);
     }
 
+    /**
+     * @param restaurant
+     */
     private void initMenuEntries(Restaurant restaurant) {
         addEntry(MSG_MANAGER_LOGIN, () -> {
             ManagerMenu menu = new ManagerMenu(restaurant);

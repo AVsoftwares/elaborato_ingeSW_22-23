@@ -16,6 +16,10 @@ public class Menu {
         this.name = name;
     }
 
+    /**
+     *
+     * @param d piatto da aggiungere al menu
+     */
     public void addDish(Dish d) {
         if (dishes.contains(d)) {
             System.out.println("Piatto omonimo già presente in " + name);

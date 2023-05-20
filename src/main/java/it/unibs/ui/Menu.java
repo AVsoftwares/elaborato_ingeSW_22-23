@@ -20,7 +20,7 @@ public class Menu {
     private static final String INPUT_STRING = "Enter choice: ";
 
     /**
-     * @param title titolo del menu
+     * @param title titolo da visualizzare del menu
      */
     public Menu(String title) {
         this(title, false);
@@ -28,8 +28,9 @@ public class Menu {
 
 
     /**
-     * @param desc breve descrizione del comando associato alla entry
+     * @param desc breve descrizione testuale del comando associato alla entry
      * @param command comando associato alla entry
+     * @see command
      */
     public void addEntry(String desc, Command command) {
         entries.add(new MenuEntry(desc, command));
@@ -44,8 +45,7 @@ public class Menu {
     }
 
     /**
-     * Metodo di visualizzazione all'utente del menu ed ottenimento della relativak
-     * scelta
+     * Metodo di visualizzazione del menu all'utente ed ottenimento della relativa scelta
      *
      */
     public void run() {

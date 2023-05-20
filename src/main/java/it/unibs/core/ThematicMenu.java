@@ -25,10 +25,17 @@ public class ThematicMenu extends Menu {
     private LocalDate startDate;
     private LocalDate expireDate;
 
+    /**
+     * @param name nome del menu tematico
+     */
+
     public ThematicMenu(String name) {
         super(name);
     }
 
+    /**
+     * @return carico totale di lavoro relativo al menu tematico
+     */
     public int getTotalWorkload() {
         return super.getDishes().stream().mapToInt(Dish::getWorkload).sum();
     }

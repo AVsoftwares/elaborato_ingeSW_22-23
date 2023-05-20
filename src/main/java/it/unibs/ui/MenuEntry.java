@@ -14,7 +14,7 @@ public class MenuEntry {
     private final String description;
     private final Command command;
     /**
-     * @param description breve descrizione del comando associato alla entry
+     * @param description breve descrizione testuale del comando associato alla entry
      * @param command comando associato alla entry
      * @see Command
      */

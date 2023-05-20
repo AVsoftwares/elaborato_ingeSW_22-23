@@ -18,11 +18,20 @@ public class Recipe {
     private Float personWorkload;
     private int preparationTime;
 
+    /**
+     *
+     * @param ingredients lista di ingredienti componenti la ricetta
+     * @param portions numero di porzioni ottenibili dalla ricetta
+     */
     public Recipe(List<Ingredient> ingredients, int portions) {
         this.ingredients = ingredients;
         this.portions = portions;
     }
 
+    /**
+     * Mostra a video la lista di ingredienti componenti la ricetta con relative quantità se presenti, altrimenti
+     * msg di assenza ingredienti.
+     */
     public void showIngredients() {
         if (ingredients.isEmpty()) {
             System.out.println("Non sono presenti ingredienti");
@@ -34,6 +43,10 @@ public class Recipe {
         }
     }
 
+    /**
+     * @param ingredient ingrediente di cui si vuol conoscere la quantità per la ricetta
+     * @return quantitò dell'ingrediente per la ricetta
+     */
     public float getIngredientAmount(Ingredient ingredient) {
         if (ingredients.contains(ingredient)) {
             return ingredients.get(ingredients.indexOf(ingredient)).getAmount();
@@ -42,6 +55,10 @@ public class Recipe {
         }
     }
 
+    /**
+     *
+     * @param ingredient ingrediente da aggiungere alla ricetta
+     */
     public void addIngredient(Ingredient ingredient) {
         if (ingredients.contains(ingredient)) {
             System.out.println("Ingrediente già presente.");
@@ -50,6 +67,10 @@ public class Recipe {
         }
     }
 
+    /**
+     *
+     * @param ingredient ingrediente da rimuovere dalla ricetta
+     */
     public void deleteIngredient(Ingredient ingredient) {
         if (ingredients.contains(ingredient)) {
             ingredients.remove(ingredient);
@@ -58,6 +79,11 @@ public class Recipe {
         }
     }
 
+    /**
+     *
+     * @param ingredient
+     * @return true se ingrediente presente in ricetta
+     */
     public boolean containsIngredient(Ingredient ingredient) {
         return ingredients.contains(ingredient);
     }

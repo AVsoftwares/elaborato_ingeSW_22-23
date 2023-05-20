@@ -26,7 +26,10 @@ public final class ManagerMenu extends Menu {
     private static final String MSG_DISH = "Gestisci denominazione e periodo di validità di ciascun piatto.";
     private static final String MSG_RECIPES = "Gestisci le ricette disponibili.";
     private static final String MSG_THEMATIC_MENU = "Gestisci i menu tematici disponibili.";
-    
+
+    /**
+     * @param restaurant
+     */
     public ManagerMenu(Restaurant restaurant) {
         super(MENU_NAME, false);
         initMenuEntries(restaurant);
