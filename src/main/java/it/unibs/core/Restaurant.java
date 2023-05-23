@@ -48,14 +48,14 @@ public class Restaurant {
     }
 
     /**
-     * @param recipes aggiunta della ricetta alle ricette disponibili del ristorante
+     * @param recipes aggiunta della ricetta al ricettario del ristorante
      */
     public void addRecipe(Recipe... recipes) {
         Collections.addAll(this.recipes, recipes);
     }
 
     /**
-     * @param menus aggiunta del menu ai menu disponibili del ristorante
+     * @param menus aggiunta del menu tematico ai menu tematici disponibili del ristorante
      */
     public void addMenu(Menu... menus) {
         Collections.addAll(this.menus, menus);

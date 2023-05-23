@@ -7,7 +7,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 
 /**
- * Classe usata per l'istanziazione di menu.
+ * Classe usata per la creazione di un menu da visualizzare a video.
  */
 @RequiredArgsConstructor
 public class Menu {

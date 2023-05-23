@@ -13,6 +13,9 @@ import it.unibs.ui.manager.commands.SeatsCommand;
 import it.unibs.ui.manager.commands.RecipesCommand;
 import it.unibs.ui.manager.commands.ThematicMenuCommand;
 
+/**
+ * Classe che rappresenta il menu relativo all'utente Gestore.
+ */
 public final class ManagerMenu extends Menu {
 
     private static final String MENU_NAME = "Manager Menu";
