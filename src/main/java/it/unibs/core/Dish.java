@@ -32,8 +32,11 @@ public class Dish {
      * @return true se piatto disponibile al momento della verifica
      */
     public boolean isAvailable() {
-        LocalDate today = LocalDate.now();
-        return today.isAfter(startDate) && today.isBefore(expireDate);
+        return isAvailableAtDate(LocalDate.now());
+    }
+
+    public boolean isAvailableAtDate(LocalDate date) {
+        return date.isAfter(startDate) && date.isBefore(expireDate);
     }
 
     /**

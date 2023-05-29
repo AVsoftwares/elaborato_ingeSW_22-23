@@ -1,14 +1,10 @@
 package it.unibs.ui;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * Classe usata per la creazione di un menu da visualizzare a video.
- */
 @RequiredArgsConstructor
 public class Menu {
     private final String title;
@@ -19,35 +15,18 @@ public class Menu {
     private static final String BACK_ENTRY = "0\tBack";
     private static final String INPUT_STRING = "Enter choice: ";
 
-    /**
-     * @param title titolo da visualizzare del menu
-     */
     public Menu(String title) {
         this(title, false);
     }
 
-
-    /**
-     * @param desc breve descrizione testuale del comando associato alla entry
-     * @param command comando associato alla entry
-     * @see command
-     */
     public void addEntry(String desc, Command command) {
-        entries.add(new MenuEntry(desc, command));
+        addEntry(new MenuEntry(desc, command));
     }
 
-
-    /**
-     * @param entries lista di entries da aggiungere
-     */
-    public void addEntries(MenuEntry... entries) {
-        this.entries.addAll(Arrays.asList(entries));
+    public void addEntry(MenuEntry entry) {
+        entries.add(entry);
     }
 
-    /**
-     * Metodo di visualizzazione del menu all'utente ed ottenimento della relativa scelta
-     *
-     */
     public void run() {
         while (true) {
             print();
