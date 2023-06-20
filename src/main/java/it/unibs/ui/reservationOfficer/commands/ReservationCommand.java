@@ -1,4 +1,4 @@
-package it.unibs.ui.reservation_officer.commands;
+package it.unibs.ui.reservationOfficer.commands;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
