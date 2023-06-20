@@ -3,7 +3,7 @@ package it.unibs.ui.login;
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Menu;
 import it.unibs.ui.manager.ManagerMenu;
-import it.unibs.ui.reservation_officer.ReservationOfficerMenu;
+import it.unibs.ui.reservationOfficer.ReservationOfficerMenu;
 
 public final class LoginMenu extends Menu {
 
