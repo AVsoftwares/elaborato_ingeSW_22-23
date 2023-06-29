@@ -15,11 +15,11 @@ public class ExtraAmountCommand implements Command {
 
     @Override
     public void onSelection() {
-        Menu menu = new Menu("Gestione consumo pro-capite di alimenti extra");
+        final Menu menu = new Menu("Gestione consumo pro-capite di alimenti extra");
 
-        Map<String, Integer> mapAvgExtra = restaurant.getAvgExtraAmount();
+        final Map<String, Float> mapAvgExtra = restaurant.getAvgExtraAmount();
 
-        menu.addEntry("Visualizza consumo alimenti extra", () -> {
+        menu.addEntry("Visualizza consumo pro-capite di alimenti extra", () -> {
             if (mapAvgExtra.isEmpty()) {
                 System.out.println("La lista è vuota.");
             } else {
@@ -27,14 +27,13 @@ public class ExtraAmountCommand implements Command {
                 mapAvgExtra.keySet().forEach(System.out::println);
             }
         });
-        menu.addEntry("Aggiungi nuovo", () -> {
-            var name = InputManager.readString("Inserisci il nome dell'alimento extra: ");
+        menu.addEntry("Inizializza il consumo pro-capite di alimenti extra", () -> {
+            final String name = InputManager.readString("Inserisci il nome dell'alimento extra: ");
 
             if (mapAvgExtra.containsKey(name)) {
-                System.out.println("L'alimento extra è già presente nell'elenco.");
+                mapAvgExtra.put(name, InputManager.readFloat("Consumo pro-capite: "));
             } else {
-                var avgAmount = InputManager.readInt("Inserisci il consumo pro-capite: ");
-                mapAvgExtra.put(name, avgAmount);
+                System.out.println("Non è presente nessun alimento extra \"" + name + "\".");
             }
         });
 

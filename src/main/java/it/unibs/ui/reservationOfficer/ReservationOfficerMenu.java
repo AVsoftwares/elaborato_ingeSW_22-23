@@ -31,7 +31,7 @@ public class ReservationOfficerMenu extends Menu {
     private static final String MSG_BOOKING = "Raccogli una prenotazione";
 
     public ReservationOfficerMenu(Restaurant restaurant) {
-        super(MENU_NAME, false);
+        super(MENU_NAME);
         initMenuEntries(restaurant);
     }
 

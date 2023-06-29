@@ -1,13 +1,13 @@
 package it.unibs.ui.manager.commands;
 
-import java.util.List;
-
 import it.unibs.core.Dish;
 import it.unibs.core.Recipe;
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
 
 /**
  * Gestisce le corrispondenze tra piatti e ricette
@@ -20,28 +20,41 @@ public class PairDishWithRecipeCommand implements Command {
     @Override
     public void onSelection() {
         List<Dish> dishes = restaurant.getDishes();
-        List<Recipe> recipes = restaurant.getRecipes();
+        if (dishes.isEmpty()) {
+            System.out.println("Non sono presenti piatti, impossibile procedere.");
+            return;
+        }
+        if (dishes.stream().noneMatch(d -> d.getRecipe() == null)) {
+            System.out.println("Tutti i piatti sono associati ad una ricetta.");
+            return;
+        }
 
-        var exit = false;
-        while (!exit) {
-            System.out.println("Sono memorizzati i seguenti piatti: ");
-            for (int i = 0; i < dishes.size(); i++) {
-                System.out.println(i + "\t" + dishes.get(i));
+        List<Recipe> recipes = restaurant.getRecipes();
+        if (recipes.isEmpty()) {
+            System.out.println("Non sono presenti ricette, impossibile procedere.");
+            return;
+        }
+
+        do {
+            final List<Dish> dishesWithoutRecipe = dishes.stream().filter(d -> d.getRecipe() == null).toList();
+            System.out.println("I seguenti piatti non hanno una ricetta associata: ");
+            for (int i = 0; i < dishesWithoutRecipe.size(); i++) {
+                System.out.println(i + 1 + "\t" + dishesWithoutRecipe.get(i));
             }
 
-            final var dishIndex = InputManager.readInt("Inserisci quale vuoi modificare: ", 1, dishes.size());
+            final int dishIndex = dishes.indexOf(dishesWithoutRecipe.get(
+                    InputManager.readInt(
+                            "Inserisci quale vuoi modificare: ", 1, dishesWithoutRecipe.size()) - 1));
 
             System.out.println("Sono memorizzate le seguenti ricette: ");
             for (int i = 0; i < recipes.size(); i++) {
-                System.out.println(i + "\t" + recipes.get(i));
+                System.out.println(i + 1 + "\t" + recipes.get(i));
             }
 
-            Recipe recipe = recipes.get(InputManager.readInt("Inserisci quale vuoi assegnare al piatto selezionato: ", 1, recipes.size()));
+            Recipe recipe = recipes.get(
+                    InputManager.readInt(
+                            "Inserisci quale vuoi assegnare al piatto selezionato: ", 1, recipes.size()) - 1);
             dishes.get(dishIndex).setRecipe(recipe);
-
-            System.out.println("La nuova corrispondenza piatto-ricetta è stata memorizzata.");
-
-            exit = !InputManager.readYesOrNo("Vuoi modificare un altro piatto? (y)es/(n)o: ");
-        }
+        } while (InputManager.readYesOrNo("Vuoi modificare un altro piatto? (y)es/(n)o: "));
     }
 }

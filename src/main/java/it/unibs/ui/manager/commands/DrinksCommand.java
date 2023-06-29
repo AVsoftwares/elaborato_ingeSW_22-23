@@ -16,9 +16,9 @@ public class DrinksCommand implements Command {
     public void onSelection() {
         Menu menu = new Menu("Gestione bevande");
 
-        Map<String, Integer> mapAvgDrink = restaurant.getAvgDrinkAmount();
+        Map<String, Float> mapAvgDrink = restaurant.getAvgDrinkAmount();
 
-        menu.addEntry("Visualizza lista", () -> {
+        menu.addEntry("Visualizza bevande", () -> {
             if (mapAvgDrink.isEmpty()) {
                 System.out.println("La lista è vuota.");
             } else {
@@ -26,14 +26,13 @@ public class DrinksCommand implements Command {
                 mapAvgDrink.keySet().forEach(System.out::println);
             }
         });
-        menu.addEntry("Aggiungi nuovo", () -> {
-            var name = InputManager.readString("Inserisci il nome della bevanda: ");
+        menu.addEntry("Aggiungi bevanda", () -> {
+            var name = InputManager.readString("Nome: ");
 
             if (mapAvgDrink.containsKey(name)) {
                 System.out.println("La bevanda è già presente nell'elenco.");
             } else {
-                var avgAmount = InputManager.readInt("Inserisci il consumo pro-capite: ");
-                mapAvgDrink.put(name, avgAmount);
+                mapAvgDrink.put(name, null);
             }
         });
 

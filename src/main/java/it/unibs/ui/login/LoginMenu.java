@@ -4,6 +4,7 @@ import it.unibs.core.Restaurant;
 import it.unibs.ui.Menu;
 import it.unibs.ui.manager.ManagerMenu;
 import it.unibs.ui.reservationOfficer.ReservationOfficerMenu;
+import it.unibs.ui.storekeeper.StorekeeperMenu;
 
 public final class LoginMenu extends Menu {
 
@@ -24,19 +25,8 @@ public final class LoginMenu extends Menu {
      * @param restaurant
      */
     private void initMenuEntries(Restaurant restaurant) {
-        addEntry(MSG_MANAGER_LOGIN, () -> {
-            ManagerMenu menu = new ManagerMenu(restaurant);
-
-            menu.run();
-        });
-        addEntry(MSG_BOOKING_OFFICER_LOGIN, () -> {
-            ReservationOfficerMenu menu = new ReservationOfficerMenu(restaurant);
-
-            menu.run();
-        });
-        addEntry(MSG_WAREHOUSE_MAN_LOGIN, () -> {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'onSelection'");
-        });
+        addEntry(MSG_MANAGER_LOGIN, () -> new ManagerMenu(restaurant).run());
+        addEntry(MSG_BOOKING_OFFICER_LOGIN, () -> new ReservationOfficerMenu(restaurant).run());
+        addEntry(MSG_WAREHOUSE_MAN_LOGIN, () -> new StorekeeperMenu(restaurant).run());
     }
 }

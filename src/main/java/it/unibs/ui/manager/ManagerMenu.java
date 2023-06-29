@@ -2,16 +2,7 @@ package it.unibs.ui.manager;
 
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Menu;
-import it.unibs.ui.manager.commands.DishesCommand;
-import it.unibs.ui.manager.commands.DrinkAmountCommand;
-import it.unibs.ui.manager.commands.DrinksCommand;
-import it.unibs.ui.manager.commands.ExtraAmountCommand;
-import it.unibs.ui.manager.commands.ExtraCommand;
-import it.unibs.ui.manager.commands.IndividualWorkloadCommand;
-import it.unibs.ui.manager.commands.PairDishWithRecipeCommand;
-import it.unibs.ui.manager.commands.SeatsCommand;
-import it.unibs.ui.manager.commands.RecipesCommand;
-import it.unibs.ui.manager.commands.ThematicMenuCommand;
+import it.unibs.ui.manager.commands.*;
 
 /**
  * Classe che rappresenta il menu relativo all'utente Gestore.
@@ -34,7 +25,7 @@ public final class ManagerMenu extends Menu {
      * @param restaurant
      */
     public ManagerMenu(Restaurant restaurant) {
-        super(MENU_NAME, false);
+        super(MENU_NAME);
         initMenuEntries(restaurant);
     }
     

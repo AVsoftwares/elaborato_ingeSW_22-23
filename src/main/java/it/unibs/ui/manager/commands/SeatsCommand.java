@@ -16,7 +16,7 @@ public class SeatsCommand implements Command {
 
         if (seats == 0) {
             System.out.println("Il valore non è ancora stato inizializzato.");
-            restaurant.setSeats(InputManager.readInt());
+            restaurant.setSeats(InputManager.readInt("Inserisci il numero di posti a sedere del ristorante: "));
         } else {
             System.out.println("Il valore attuale è: " + seats);
         }

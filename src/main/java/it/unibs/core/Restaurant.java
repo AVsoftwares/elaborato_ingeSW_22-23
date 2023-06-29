@@ -3,10 +3,7 @@ package it.unibs.core;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import lombok.Getter;
@@ -19,16 +16,16 @@ import lombok.Setter;
 public class Restaurant {
     private final List<Recipe> recipes;
     private final List<Dish> dishes;
-    private final List<ThematicMenu> menus;
+    private final List<ThematicMenu> thematicMenus;
     private final List<Reservation> reservations;
     /**
-     * Map che associa il nome della bevanda al corrispettivo ammontare di consumo tipico procapite
+     * Map che associa il nome della bevanda al corrispettivo ammontare di consumo tipico procapite in litri
      */
-    private final Map<String, Integer> avgDrinkAmount;
+    private final Map<String, Float> avgDrinkAmount;
     /**
-     * Map che associa il nome del genere extra al corrispettivo ammontare di consumo tipico procapite
+     * Map che associa il nome del genere extra al corrispettivo ammontare di consumo tipico procapite in ettogrammi
      */
-    private final Map<String, Integer> avgExtraAmount;
+    private final Map<String, Float> avgExtraAmount;
     private int seats;
     private int individualWorkload;
 
@@ -37,7 +34,7 @@ public class Restaurant {
     public Restaurant() {
         this.recipes = new ArrayList<>();
         this.dishes = new ArrayList<>();
-        this.menus = new ArrayList<>();
+        this.thematicMenus = new ArrayList<>();
         this.reservations = new ArrayList<>();
         this.avgDrinkAmount = new HashMap<>();
         this.avgExtraAmount = new HashMap<>();
@@ -73,11 +70,11 @@ public class Restaurant {
     }
 
     public void addMenu(ThematicMenu menu) {
-        menus.add(menu);
+        thematicMenus.add(menu);
     }
 
-    public void addDish(Dish dish) {
-        dishes.add(dish);
+    public boolean addDish(Dish dish) {
+        return dishes.add(dish);
     }
 
     public void addBooking(Reservation reservation) {
@@ -89,7 +86,7 @@ public class Restaurant {
     }
 
     public List<ThematicMenu> getAvailableMenusAtDate(LocalDate date) {
-        return menus.stream().filter(m -> m.isAvailableAtDate(date)).collect(Collectors.toList());
+        return thematicMenus.stream().filter(m -> m.isAvailableAtDate(date)).collect(Collectors.toList());
     }
 
     public List<Dish> getAvailableDishes() {

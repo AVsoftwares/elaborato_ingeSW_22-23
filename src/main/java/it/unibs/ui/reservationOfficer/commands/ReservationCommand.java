@@ -17,11 +17,10 @@ import lombok.RequiredArgsConstructor;
 public class ReservationCommand implements Command {
 
     private final Restaurant restaurant;
-
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yy");
 
     public void onSelection() {
-        final LocalDate date = InputManager.readDate("Inserisci la data che vuoi prenotare (dd/MM/yy): ",
+        final LocalDate date = InputManager.readDate("Data della prenotazione (dd/MM/yy): ",
                 DATE_FORMATTER);
 
         if (!Reservation.isValid(date)) {

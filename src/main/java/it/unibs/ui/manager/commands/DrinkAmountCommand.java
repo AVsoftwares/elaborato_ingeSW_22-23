@@ -17,24 +17,24 @@ public class DrinkAmountCommand implements Command {
     public void onSelection() {
         Menu menu = new Menu("Gestione consumo pro-capite di bevande");
 
-        Map<String, Integer> mapAvgDrink = restaurant.getAvgDrinkAmount();
+        Map<String, Float> mapAvgDrink = restaurant.getAvgDrinkAmount();
 
-        menu.addEntry("Visualizza consumo bevanda", () -> {
+        menu.addEntry("Visualizza consumo pro-capite di bevande", () -> {
             if (mapAvgDrink.isEmpty()) {
-                System.out.println("La lista è vuota.");
+                System.out.println("Non è presente nessuna bevanda.");
             } else {
-                System.out.println("Le bevande attualmente disponibili sono:");
-                mapAvgDrink.keySet().forEach(System.out::println);
+                mapAvgDrink.forEach((key, value) -> {
+                    System.out.println("- " + key + " consumo pro-capite " + value + " litri");
+                });
             }
         });
-        menu.addEntry("Aggiungi nuovo", () -> {
-            var name = InputManager.readString("Inserisci il nome della bevanda: ");
+        menu.addEntry("Inizializza il consumo pro-capite di bevanda", () -> {
+            var name = InputManager.readString("Nome: ");
 
             if (mapAvgDrink.containsKey(name)) {
-                System.out.println("La bevanda è già presente nell'elenco.");
+                mapAvgDrink.put(name, InputManager.readFloat("Consumo pro-capite: "));
             } else {
-                var avgAmount = InputManager.readInt("Inserisci il consumo pro-capite: ");
-                mapAvgDrink.put(name, avgAmount);
+                System.out.println("Non è presente nessuna bevanda \"" + name + "\".");
             }
         });
 

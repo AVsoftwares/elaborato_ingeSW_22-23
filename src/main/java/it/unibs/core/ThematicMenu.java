@@ -10,15 +10,17 @@ import lombok.Setter;
 @Setter
 public class ThematicMenu extends Menu {
 
-    private LocalDate startDate;
-    private LocalDate expireDate;
+    private final LocalDate startDate;
+    private final LocalDate expireDate;
 
     /**
      * @param name nome del menu tematico
      */
 
-    public ThematicMenu(String name) {
+    public ThematicMenu(String name, LocalDate startDate, LocalDate expireDate) {
         super(name);
+        this.startDate = startDate;
+        this.expireDate = expireDate;
     }
 
     /**

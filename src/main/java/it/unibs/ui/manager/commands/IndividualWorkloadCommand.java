@@ -16,7 +16,7 @@ public class IndividualWorkloadCommand implements Command {
 
         if (workload == 0) {
             System.out.println("Il valore non è ancora stato inizializzato.");
-            restaurant.setIndividualWorkload(InputManager.readInt());
+            restaurant.setIndividualWorkload(InputManager.readInt("Inserisci il carico di lavoro per persona: "));
         } else {
             System.out.println("Il valore attuale è: " + workload);
         }

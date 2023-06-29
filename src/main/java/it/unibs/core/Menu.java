@@ -1,10 +1,10 @@
 package it.unibs.core;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,20 +17,18 @@ public class Menu {
     }
 
     /**
-     *
-     * @param d piatto da aggiungere al menu
+     * @param dish piatto da aggiungere al menu
      */
-    public void addDish(Dish d) {
-        if (dishes.contains(d)) {
-            System.out.println("Piatto omonimo già presente in " + name);
-        } else {
-            dishes.add(d);
+    public boolean addDish(Dish dish) {
+        if (dishes.contains(dish)) {
+            return false;
         }
+        return dishes.add(dish);
     }
 
     public void showDishes() {
-        for (Dish d : dishes) {
-            System.out.println(d.getName());
+        for (Dish dish : dishes) {
+            System.out.println(dish.getName());
         }
     }
 

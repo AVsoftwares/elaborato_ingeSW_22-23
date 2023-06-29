@@ -7,8 +7,6 @@ public class Main {
     public static void main(String[] args) {
         Restaurant restaurant = new Restaurant();
 
-        LoginMenu loginMenu = new LoginMenu(restaurant);
-
-        loginMenu.run();
+        new LoginMenu(restaurant).run();
     }
 }

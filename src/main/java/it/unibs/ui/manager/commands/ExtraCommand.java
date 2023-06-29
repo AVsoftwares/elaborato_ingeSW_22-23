@@ -14,10 +14,9 @@ public class ExtraCommand implements Command {
     @Override
     public void onSelection() {
         Menu menu = new Menu("Gestione generi alimentari extra");
+        var mapAvgExtra = restaurant.getAvgExtraAmount();
 
-        menu.addEntry("Visualizza lista", () -> {
-            var mapAvgExtra = restaurant.getAvgExtraAmount();
-
+        menu.addEntry("Visualizza generi alimentari extra", () -> {
             if (mapAvgExtra.isEmpty()) {
                 System.out.println("La lista è vuota.");
             } else {
@@ -25,16 +24,13 @@ public class ExtraCommand implements Command {
                 mapAvgExtra.keySet().forEach(System.out::println);
             }
         });
-        menu.addEntry("Aggiungi nuovo", () -> {
-            var mapAvgExtra = restaurant.getAvgExtraAmount();
-
-            var name = InputManager.readString("Inserisci il nome del genere alimentare: ");
+        menu.addEntry("Aggiungi genere alimentare", () -> {
+            var name = InputManager.readString("Nome: ");
 
             if (mapAvgExtra.containsKey(name)) {
                 System.out.println("Il genere alimentare è già presente nell'elenco.");
             } else {
-                var avgAmount = InputManager.readInt("Inserisci il consumo pro-capite: ");
-                mapAvgExtra.put(name, avgAmount);
+                mapAvgExtra.put(name, null);
             }
         });
 

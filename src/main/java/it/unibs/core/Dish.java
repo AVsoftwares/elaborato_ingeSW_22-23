@@ -2,6 +2,7 @@ package it.unibs.core;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,17 +15,17 @@ public class Dish {
         STARTER, FIRST_COURSE, SECOND_COURSE, DESSERT;
     }
 
-    private String name;
+    private final String name;
     private Recipe recipe;
     private CourseType type;
     private int preparationTime;
     private LocalDate startDate;
     private LocalDate expireDate;
 
-    public Dish(String name, Recipe recipe, CourseType type) {
+    public Dish(String name, LocalDate startDate, LocalDate expireDate) throws IllegalArgumentException {
         this.name = name;
-        this.recipe = recipe;
-        this.type = type;
+        this.startDate = startDate;
+        this.expireDate = expireDate;
     }
 
     /**
@@ -45,6 +46,19 @@ public class Dish {
      */
     public int getWorkload() {
         return recipe.getPortionWorkload();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dish dish = (Dish) o;
+        return name.equalsIgnoreCase(dish.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     @Override
