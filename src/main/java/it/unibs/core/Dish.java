@@ -22,7 +22,7 @@ public class Dish {
     private LocalDate startDate;
     private LocalDate expireDate;
 
-    public Dish(String name, LocalDate startDate, LocalDate expireDate) throws IllegalArgumentException {
+    public Dish(String name, LocalDate startDate, LocalDate expireDate) {
         this.name = name;
         this.startDate = startDate;
         this.expireDate = expireDate;
