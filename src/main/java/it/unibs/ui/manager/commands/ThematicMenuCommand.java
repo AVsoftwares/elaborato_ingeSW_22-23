@@ -1,6 +1,7 @@
 package it.unibs.ui.manager.commands;
 
 import it.unibs.core.Dish;
+import it.unibs.core.Period;
 import it.unibs.core.Restaurant;
 import it.unibs.core.ThematicMenu;
 import it.unibs.ui.Command;
@@ -35,10 +36,17 @@ public class ThematicMenuCommand implements Command {
             }
         });
         menu.addEntry("Aggiungi nuovo", () -> {
-            final String name = InputManager.readString("Inserisci il nome del menu tematico: ");
-            final LocalDate startDate = InputManager.readDate("Inserisci la data di inizio validità (dd/MM/yy): ",
+            final List<Dish> dishes = restaurant.getDishes();
+
+            if (dishes.isEmpty()) {
+                System.out.println("Nessun piatto disponibile, impossibile continuare.");
+                return;
+            }
+
+            final String name = InputManager.readString("Nome del menu tematico: ");
+            final LocalDate startDate = InputManager.readDate("Data di inizio validità (dd/MM/yy): ",
                     DateTimeFormatter.ofPattern("dd/MM/yy"));
-            final LocalDate expireDate = InputManager.readDate("Inserisci la data di fine validità (dd/MM/yy): ",
+            final LocalDate expireDate = InputManager.readDate("Data di fine validità (dd/MM/yy): ",
                     DateTimeFormatter.ofPattern("dd/MM/yy"));
 
             if (startDate.isAfter(expireDate)) {
@@ -46,28 +54,25 @@ public class ThematicMenuCommand implements Command {
                 return;
             }
 
-            final ThematicMenu thematicMenu = new ThematicMenu(name, startDate, expireDate);
-            final List<Dish> dishes = restaurant.getDishes();
+            final ThematicMenu thematicMenu = new ThematicMenu(name, new Period(startDate, expireDate), restaurant.getIndividualWorkload());
 
             do {
-                System.out.println("I piatti disponibili sono:");
                 for (int i = 0; i < dishes.size(); i++) {
-                    System.out.println(i + 1 + "\t" + dishes.get(i));
+                    System.out.println(i + "\t" + dishes.get(i));
                 }
 
                 final Dish dish = dishes.get(
-                        InputManager.readInt(
-                                "Seleziona dalla lista quale piatto vuoi inserire nel menu: ", 1,
-                                dishes.size()) - 1);
+                        InputManager.readInt("Piatto da inserire nel menu: ", 0, dishes.size()));
 
-                final int menuWorkload = thematicMenu.getTotalWorkload();
-                if (menuWorkload + dish.getWorkload() >= (float) 4 / 3 * restaurant.getIndividualWorkload()) {
+                if (thematicMenu.isDishCompatible(dish)) {
                     System.out.println("Il piatto scelto ha un carico di lavoro incompatibile con il menu.");
                     continue;
                 }
 
-                if (!thematicMenu.addDish(dish)) {
-                    System.out.println("Il piatto scelto è già presente nel menu.");
+                if (thematicMenu.addDish(dish)) {
+                    System.out.println("Piatto aggiunto al menu.");
+                } else {
+                    System.out.println("Piatto già presente nel menu.");
                 }
 
             } while (InputManager.readYesOrNo("Vuoi inserire un altro piatto? (y)es/(n)o: "));

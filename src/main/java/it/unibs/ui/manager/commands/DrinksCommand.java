@@ -1,12 +1,12 @@
 package it.unibs.ui.manager.commands;
 
-import java.util.Map;
-
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
 import it.unibs.ui.Menu;
 import lombok.RequiredArgsConstructor;
+
+import java.util.Map;
 
 @RequiredArgsConstructor
 public class DrinksCommand implements Command {

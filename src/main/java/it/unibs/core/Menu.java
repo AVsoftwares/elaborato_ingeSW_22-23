@@ -26,12 +26,6 @@ public class Menu {
         return dishes.add(dish);
     }
 
-    public void showDishes() {
-        for (Dish dish : dishes) {
-            System.out.println(dish.getName());
-        }
-    }
-
     @Override
     public String toString() {
         return name;

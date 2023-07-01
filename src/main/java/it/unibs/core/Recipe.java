@@ -1,12 +1,12 @@
 package it.unibs.core;
 
-import java.util.Map;
-import java.util.stream.Collectors;
-
 import it.unibs.core.unit.Quantity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -19,9 +19,8 @@ public class Recipe {
     private int preparationTime;
 
     /**
-     *
      * @param ingredients lista di ingredienti componenti la ricetta
-     * @param portions numero di porzioni ottenibili dalla ricetta
+     * @param portions    numero di porzioni ottenibili dalla ricetta
      */
     public Recipe(Map<Ingredient, Quantity> ingredients, int portions) {
         this.ingredients = ingredients;
@@ -29,16 +28,14 @@ public class Recipe {
     }
 
     /**
-     *
      * @param ingredient ingrediente da aggiungere alla ricetta
-     * @param amount quantità dell'ingrediente necessaria per la ricetta
+     * @param amount     quantità dell'ingrediente necessaria per la ricetta
      */
     public void addIngredient(Ingredient ingredient, Quantity amount) {
         ingredients.put(ingredient, amount);
     }
 
     /**
-     *
      * @param ingredient ingrediente da rimuovere dalla ricetta
      */
     public void removeIngredient(Ingredient ingredient) {
@@ -46,9 +43,8 @@ public class Recipe {
     }
 
     /**
-     *
-     * @param ingredient
-     * @return true se ingrediente presente in ricetta
+     * @param ingredient ingrediente da controllare se presente nella ricetta
+     * @return true se ingrediente presente in ricetta, false altrimenti
      */
     public boolean containsIngredient(Ingredient ingredient) {
         return ingredients.containsKey(ingredient);

@@ -1,14 +1,11 @@
 package it.unibs.core;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 
 public class Reservation {
     private final LocalDate date;
     private final int seats;
-
     private final HashMap<ThematicMenu, Integer> thematicMenuBookings;
     private final HashMap<Dish, Integer> dishBookings;
 
@@ -33,26 +30,6 @@ public class Reservation {
         } else {
             dishBookings.put(dish, 1);
         }
-    }
-
-    /**
-     * Valida la prenotazione.
-     * Una prenotazione è valida se la sua data è feriale, antecedente
-     * alla data odierna e pervenuta con almeno un giorno feriale di anticipo.
-     *
-     * @return true se la data è valida, false altrimenti
-     */
-    public static boolean isValid(LocalDate date) {
-        // TODO test
-        final var today = LocalDate.now();
-
-        if (date.isBefore(today)) {
-            return false;
-        }
-
-        DayOfWeek dayOfWeek = date.getDayOfWeek();
-        return (dayOfWeek == DayOfWeek.SATURDAY && ChronoUnit.DAYS.between(today, date) >= 6)
-                || (dayOfWeek == DayOfWeek.SUNDAY && ChronoUnit.DAYS.between(today, date) >= 1);
     }
 
     /**

@@ -1,6 +1,5 @@
 package it.unibs.core;
 
-import it.unibs.core.unit.Quantity;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -3,17 +3,23 @@ package it.unibs.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.RequiredArgsConstructor;
-
-@RequiredArgsConstructor
 public class Menu {
-    private final String title;
-    private final boolean isMainMenu;
-    private final List<MenuEntry> entries = new ArrayList<>();
     private static final String SEPARATOR = "=";
     private static final String EXIT_ENTRY = "0\tExit";
     private static final String BACK_ENTRY = "0\tBack";
     private static final String INPUT_STRING = "Enter choice: ";
+    private final boolean isMainMenu;
+    private final List<MenuEntry> entries = new ArrayList<>();
+    private String title;
+
+    public Menu(String title, boolean isMainMenu) {
+        this.title = title;
+        this.isMainMenu = isMainMenu;
+    }
+
+    public Menu() {
+        this("", false);
+    }
 
     public Menu(String title) {
         this(title, false);
@@ -56,5 +62,13 @@ public class Menu {
 
     private int selectEntry() {
         return InputManager.readInt(INPUT_STRING, 0, entries.size());
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

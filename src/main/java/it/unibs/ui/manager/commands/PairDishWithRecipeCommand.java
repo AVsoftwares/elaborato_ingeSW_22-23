@@ -39,12 +39,12 @@ public class PairDishWithRecipeCommand implements Command {
             final List<Dish> dishesWithoutRecipe = dishes.stream().filter(d -> d.getRecipe() == null).toList();
             System.out.println("I seguenti piatti non hanno una ricetta associata: ");
             for (int i = 0; i < dishesWithoutRecipe.size(); i++) {
-                System.out.println(i + 1 + "\t" + dishesWithoutRecipe.get(i));
+                System.out.println(i + "\t" + dishesWithoutRecipe.get(i));
             }
 
             final int dishIndex = dishes.indexOf(dishesWithoutRecipe.get(
                     InputManager.readInt(
-                            "Inserisci quale vuoi modificare: ", 1, dishesWithoutRecipe.size()) - 1));
+                            "Inserisci quale vuoi modificare: ", 0, dishesWithoutRecipe.size())));
 
             System.out.println("Sono memorizzate le seguenti ricette: ");
             for (int i = 0; i < recipes.size(); i++) {
@@ -53,7 +53,7 @@ public class PairDishWithRecipeCommand implements Command {
 
             Recipe recipe = recipes.get(
                     InputManager.readInt(
-                            "Inserisci quale vuoi assegnare al piatto selezionato: ", 1, recipes.size()) - 1);
+                            "Inserisci quale vuoi assegnare al piatto selezionato: ", 0, recipes.size()));
             dishes.get(dishIndex).setRecipe(recipe);
         } while (InputManager.readYesOrNo("Vuoi modificare un altro piatto? (y)es/(n)o: "));
     }

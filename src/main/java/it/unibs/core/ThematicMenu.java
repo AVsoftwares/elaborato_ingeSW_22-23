@@ -1,26 +1,25 @@
 package it.unibs.core;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
-public class ThematicMenu extends Menu {
+public class ThematicMenu extends Menu implements Expire {
 
-    private final LocalDate startDate;
-    private final LocalDate expireDate;
+    private final Period period;
+    private final int maxIndividualWorkload;
 
     /**
      * @param name nome del menu tematico
      */
 
-    public ThematicMenu(String name, LocalDate startDate, LocalDate expireDate) {
+    public ThematicMenu(String name, Period period, int maxIndividualWorkload) {
         super(name);
-        this.startDate = startDate;
-        this.expireDate = expireDate;
+        this.period = period;
+        this.maxIndividualWorkload = maxIndividualWorkload;
     }
 
     /**
@@ -30,19 +29,27 @@ public class ThematicMenu extends Menu {
         return super.getDishes().stream().mapToInt(Dish::getWorkload).sum();
     }
 
-    public boolean isAvailable() {
-        return isAvailableAtDate(LocalDate.now());
+    public boolean isDishCompatible(Dish dish) {
+        return getTotalWorkload() + dish.getWorkload() < (float) 4 / 3 * maxIndividualWorkload;
     }
 
-    public boolean isAvailableAtDate(LocalDate date) {
-        return date.isAfter(startDate) && date.isBefore(expireDate);
+    @Override
+    public boolean isExpired() {
+        return isExpiredAtDate(LocalDate.now());
+    }
+
+    @Override
+    public boolean isExpiredAtDate(LocalDate date) {
+        return period.isBefore(date);
+    }
+
+    @Override
+    public boolean addDish(Dish dish) {
+        return super.addDish(dish);
     }
 
     @Override
     public String toString() {
-        final var startDateString = startDate.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
-        final var expireDateString = expireDate.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
-
-        return super.toString() + "\n\tValido dal " + startDateString + " al " + expireDateString;
+        return super.toString() + period;
     }
 }

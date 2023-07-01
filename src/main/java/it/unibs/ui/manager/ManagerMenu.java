@@ -28,7 +28,7 @@ public final class ManagerMenu extends Menu {
         super(MENU_NAME);
         initMenuEntries(restaurant);
     }
-    
+
     private void initMenuEntries(Restaurant restaurant) {
         addEntry(MSG_WORKLOAD, new IndividualWorkloadCommand(restaurant));
         addEntry(MSG_SEATS, new SeatsCommand(restaurant));

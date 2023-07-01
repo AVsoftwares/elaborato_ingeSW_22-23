@@ -1,6 +1,7 @@
 package it.unibs.ui.manager.commands;
 
 import it.unibs.core.Dish;
+import it.unibs.core.Period;
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
@@ -35,7 +36,12 @@ public class DishesCommand implements Command {
                 final LocalDate expireDate = InputManager.readDate("Data di fine validità (dd/MM/yy): ",
                         DATE_FORMATTER);
 
-                dishes.add(new Dish(name, startDate, expireDate));
+                if (startDate.isAfter(expireDate)) {
+                    System.out.println("La data di scadenza inserita è precedente alla data di inizio validità, impossibile continuare.");
+                    return;
+                }
+
+                dishes.add(new Dish(name, new Period(startDate, expireDate)));
             } while (InputManager.readYesOrNo("Vuoi inserire un altro piatto?  (y)es/(n)o: "));
         });
         menu.addEntry("Visualizza piatti", () -> {

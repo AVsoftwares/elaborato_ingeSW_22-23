@@ -1,47 +1,40 @@
 package it.unibs.core;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Objects;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDate;
+import java.util.Objects;
 
 @Getter
 @Setter
 
-public class Dish {
-    public enum CourseType {
-        STARTER, FIRST_COURSE, SECOND_COURSE, DESSERT;
-    }
-
+public class Dish implements Expire {
     private final String name;
     private Recipe recipe;
     private CourseType type;
     private int preparationTime;
-    private LocalDate startDate;
-    private LocalDate expireDate;
+    private Period period;
 
-    public Dish(String name, LocalDate startDate, LocalDate expireDate) {
+    public Dish(String name, Period period) {
         this.name = name;
-        this.startDate = startDate;
-        this.expireDate = expireDate;
+        this.period = period;
     }
 
     /**
-     *
      * @return true se piatto disponibile al momento della verifica
      */
-    public boolean isAvailable() {
-        return isAvailableAtDate(LocalDate.now());
+    @Override
+    public boolean isExpired() {
+        return isExpiredAtDate(LocalDate.now());
     }
 
-    public boolean isAvailableAtDate(LocalDate date) {
-        return date.isAfter(startDate) && date.isBefore(expireDate);
+    @Override
+    public boolean isExpiredAtDate(LocalDate date) {
+        return period.isBefore(date);
     }
 
     /**
-     *
      * @return carico di lavoro per porzione del piatto
      */
     public int getWorkload() {
@@ -63,10 +56,10 @@ public class Dish {
 
     @Override
     public String toString() {
-        var startDateString = startDate.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
-        var expireDateString = expireDate.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+        return name;
+    }
 
-        return "Nome: " + name + "\n\tTipo: " + type.toString() + "\n\tTempo di preparazione: " + preparationTime
-        + "\n\tValido dal " + startDateString + " al " + expireDateString;
+    public enum CourseType {
+        STARTER, FIRST_COURSE, SECOND_COURSE, DESSERT;
     }
 }
