@@ -13,7 +13,7 @@ public class DrinksCommand implements Command {
     private final Restaurant restaurant;
 
     @Override
-    public void onSelection() {
+    public void execute() {
         Menu menu = new Menu("Gestione bevande");
 
         Map<String, Float> mapAvgDrink = restaurant.getAvgDrinkAmount();

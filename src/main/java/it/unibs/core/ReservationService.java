@@ -3,14 +3,11 @@ package it.unibs.core;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ReservationManager {
-    private final List<Reservation> reservations;
-
-    public ReservationManager(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
+public class ReservationService {
+    private final List<Reservation> reservations = new ArrayList<>();
 
     public List<Reservation> getReservations() {
         removeExpiredReservations();
@@ -40,11 +37,17 @@ public class ReservationManager {
         }
 
         DayOfWeek dayOfWeek = date.getDayOfWeek();
-        return (dayOfWeek == DayOfWeek.SATURDAY && ChronoUnit.DAYS.between(today, date) >= 6)
-                || (dayOfWeek == DayOfWeek.SUNDAY && ChronoUnit.DAYS.between(today, date) >= 1);
+        return (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY && ChronoUnit.DAYS.between(today, date) >= 1);
     }
 
     private void removeExpiredReservations() {
         reservations.removeIf(Reservation::isExpired);
+    }
+
+    public float getWorkload(LocalDate date) {
+        return (float) reservations.stream()
+                .filter(reservation -> reservation.getDate().isEqual(date))
+                .mapToDouble(Reservation::getWorkload)
+                .sum();
     }
 }

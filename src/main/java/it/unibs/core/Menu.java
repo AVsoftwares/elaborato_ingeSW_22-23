@@ -3,17 +3,17 @@ package it.unibs.core;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
 public class Menu {
-    private List<Dish> dishes = new ArrayList<>();
+    private List<Dish> dishes;
     private String name;
 
-    public Menu(String name) {
+    public Menu(String name, List<Dish> dishes) {
         this.name = name;
+        this.dishes = dishes;
     }
 
     /**

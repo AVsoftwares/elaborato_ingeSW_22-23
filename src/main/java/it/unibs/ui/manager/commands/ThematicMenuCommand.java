@@ -10,8 +10,10 @@ import it.unibs.ui.Menu;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @RequiredArgsConstructor
 public class ThematicMenuCommand implements Command {
@@ -22,7 +24,7 @@ public class ThematicMenuCommand implements Command {
      * @see Command
      */
     @Override
-    public void onSelection() {
+    public void execute() {
         final Menu menu = new Menu("Gestione menu tematici");
 
         menu.addEntry("Visualizza menu tematici", () -> {
@@ -35,51 +37,58 @@ public class ThematicMenuCommand implements Command {
                 thematicMenus.forEach(System.out::println);
             }
         });
-        menu.addEntry("Aggiungi nuovo", () -> {
-            final List<Dish> dishes = restaurant.getDishes();
+        menu.addEntry("Crea nuovo menu tematico", () -> {
+            final Set<Dish> dishes = restaurant.getDishes();
 
             if (dishes.isEmpty()) {
                 System.out.println("Nessun piatto disponibile, impossibile continuare.");
                 return;
             }
 
-            final String name = InputManager.readString("Nome del menu tematico: ");
-            final LocalDate startDate = InputManager.readDate("Data di inizio validità (dd/MM/yy): ",
-                    DateTimeFormatter.ofPattern("dd/MM/yy"));
-            final LocalDate expireDate = InputManager.readDate("Data di fine validità (dd/MM/yy): ",
-                    DateTimeFormatter.ofPattern("dd/MM/yy"));
+            final String name = InputManager.readString("Nome: ");
+            final LocalDate startDate = InputManager.readDate("Data di inizio validità: ",
+                    InputManager.DEFAULT_DATE_FORMATTER_PATTERN);
+            final LocalDate expireDate = InputManager.readDate("Data di fine validità: ",
+                    InputManager.DEFAULT_DATE_FORMATTER_PATTERN);
 
             if (startDate.isAfter(expireDate)) {
                 System.out.println("La data di scadenza inserita è precedente alla data di inizio validità, impossibile continuare.");
                 return;
             }
 
-            final ThematicMenu thematicMenu = new ThematicMenu(name, new Period(startDate, expireDate), restaurant.getIndividualWorkload());
-
+            final List<Dish> menuDishes = new ArrayList<>();
             do {
-                for (int i = 0; i < dishes.size(); i++) {
-                    System.out.println(i + "\t" + dishes.get(i));
-                }
+                final String dishName = InputManager.readString("Nome del piatto da inserire nel menu: ");
+                final Optional<Dish> optionalDish = restaurant.getDish(dishName);
 
-                final Dish dish = dishes.get(
-                        InputManager.readInt("Piatto da inserire nel menu: ", 0, dishes.size()));
-
-                if (thematicMenu.isDishCompatible(dish)) {
-                    System.out.println("Il piatto scelto ha un carico di lavoro incompatibile con il menu.");
+                if (optionalDish.isEmpty()) {
+                    System.out.println("Nessun piatto " + dishName);
                     continue;
                 }
 
-                if (thematicMenu.addDish(dish)) {
+                final Dish dish = optionalDish.get();
+
+                if (isDishCompatible(dish, menuDishes)) {
+                    menuDishes.add(dish);
                     System.out.println("Piatto aggiunto al menu.");
                 } else {
-                    System.out.println("Piatto già presente nel menu.");
+                    System.out.println("Il piatto scelto ha un carico di lavoro incompatibile con il menu.");
                 }
-
             } while (InputManager.readYesOrNo("Vuoi inserire un altro piatto? (y)es/(n)o: "));
 
-            restaurant.addMenu(thematicMenu);
+            restaurant.addMenu(
+                    new ThematicMenu(
+                            name,
+                            new Period(startDate, expireDate),
+                            menuDishes));
         });
 
         menu.run();
+    }
+
+    public boolean isDishCompatible(Dish dish, List<Dish> dishes) {
+        return dishes.stream()
+                .mapToDouble(Dish::getWorkload)
+                .sum() + dish.getWorkload() < (float) 4 / 3 * restaurant.getIndividualWorkload();
     }
 }

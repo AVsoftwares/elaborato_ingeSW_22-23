@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class Ingredient extends Product {
     public Ingredient(String name) {
-        super(name);
+        super(name, null, null);
     }
 
     @Override

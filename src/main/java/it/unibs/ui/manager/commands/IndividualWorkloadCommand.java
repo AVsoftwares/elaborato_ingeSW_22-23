@@ -11,12 +11,14 @@ public class IndividualWorkloadCommand implements Command {
     private final Restaurant restaurant;
 
     @Override
-    public void onSelection() {
+    public void execute() {
         final var workload = restaurant.getIndividualWorkload();
 
         if (workload == 0) {
             System.out.println("Il valore non è ancora stato inizializzato.");
-            restaurant.setIndividualWorkload(InputManager.readInt("Inserisci il carico di lavoro per persona: "));
+
+            final int individualWorkload = InputManager.readInt("Inserisci il carico di lavoro per persona: ", 0, Integer.MAX_VALUE);
+            restaurant.setIndividualWorkload(individualWorkload);
         } else {
             System.out.println("Il valore attuale è: " + workload);
         }

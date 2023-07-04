@@ -14,7 +14,7 @@ public class ExtraAmountCommand implements Command {
     private final Restaurant restaurant;
 
     @Override
-    public void onSelection() {
+    public void execute() {
         final Menu menu = new Menu("Gestione consumo pro-capite di alimenti extra");
 
         final Map<String, Float> mapAvgExtra = restaurant.getAvgExtraAmount();

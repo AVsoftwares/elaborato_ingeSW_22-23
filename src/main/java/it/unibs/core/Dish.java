@@ -10,6 +10,9 @@ import java.util.Objects;
 @Setter
 
 public class Dish implements Expire {
+    /**
+     * Nome univoco che identifica il piatto
+     */
     private final String name;
     private Recipe recipe;
     private CourseType type;
@@ -37,7 +40,7 @@ public class Dish implements Expire {
     /**
      * @return carico di lavoro per porzione del piatto
      */
-    public int getWorkload() {
+    public float getWorkload() {
         return recipe.getPortionWorkload();
     }
 
@@ -60,6 +63,6 @@ public class Dish implements Expire {
     }
 
     public enum CourseType {
-        STARTER, FIRST_COURSE, SECOND_COURSE, DESSERT;
+        STARTER, FIRST_COURSE, SECOND_COURSE, DESSERT
     }
 }

@@ -9,9 +9,6 @@ public class Period {
     private final LocalDate endDate;
 
     public Period(LocalDate startDate, LocalDate endDate) {
-        if (startDate.isAfter(endDate)) {
-            throw new IllegalArgumentException();
-        }
         this.startDate = startDate;
         this.endDate = endDate;
     }

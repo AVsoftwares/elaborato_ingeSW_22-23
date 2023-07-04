@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 
 public class InputManager {
 
+    public static final String DEFAULT_DATE_FORMATTER_PATTERN = "dd/MM/yy";
     private static final Scanner scanner = new Scanner(System.in);
-
     private static final String INTEGER_INPUT_PROMPT = "Enter an integer: ";
     private static final String FLOAT_INPUT_PROMPT = "Enter a float: ";
     private static final String STRING_INPUT_PROMPT = "Enter a string: ";
@@ -135,15 +135,15 @@ public class InputManager {
         }
     }
 
-    public static LocalDate readDate(String prompt, DateTimeFormatter formatter) {
+    public static LocalDate readDate(String prompt, String pattern) {
         assert (prompt != null) : ASSERT_NULL_PROMPT;
 
         while (true) {
-            System.out.print(prompt);
+            System.out.print(prompt + "(" + pattern + ") ");
 
             if (scanner.hasNextLine()) {
                 try {
-                    return LocalDate.parse(scanner.nextLine(), formatter);
+                    return LocalDate.parse(scanner.nextLine(), DateTimeFormatter.ofPattern(pattern));
                 } catch (DateTimeParseException e) {
                     System.out.println(INVALID_INPUT_DATE_CANNOT_BE_PARSED);
                 }
@@ -157,7 +157,7 @@ public class InputManager {
         assert (prompt != null) : ASSERT_NULL_PROMPT;
 
         while (true) {
-            System.out.print(prompt);
+            System.out.print(prompt + "(y)es/(n)o ");
 
             if (scanner.hasNext(YES_NO_REGEX)) {
                 return scanner.nextLine().matches(YES_REGEX);

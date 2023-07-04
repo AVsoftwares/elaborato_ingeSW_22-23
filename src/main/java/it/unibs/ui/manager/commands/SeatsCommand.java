@@ -11,7 +11,7 @@ public class SeatsCommand implements Command {
     private final Restaurant restaurant;
 
     @Override
-    public void onSelection() {
+    public void execute() {
         final var seats = restaurant.getSeats();
 
         if (seats == 0) {

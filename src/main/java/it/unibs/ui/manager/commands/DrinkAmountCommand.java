@@ -14,7 +14,7 @@ public class DrinkAmountCommand implements Command {
     private final Restaurant restaurant;
 
     @Override
-    public void onSelection() {
+    public void execute() {
         Menu menu = new Menu("Gestione consumo pro-capite di bevande");
 
         Map<String, Float> mapAvgDrink = restaurant.getAvgDrinkAmount();

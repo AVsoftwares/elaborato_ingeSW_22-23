@@ -4,33 +4,28 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
 public class ThematicMenu extends Menu implements Expire {
 
     private final Period period;
-    private final int maxIndividualWorkload;
 
     /**
      * @param name nome del menu tematico
      */
 
-    public ThematicMenu(String name, Period period, int maxIndividualWorkload) {
-        super(name);
+    public ThematicMenu(String name, Period period, List<Dish> dishes) {
+        super(name, dishes);
         this.period = period;
-        this.maxIndividualWorkload = maxIndividualWorkload;
     }
 
     /**
      * @return carico totale di lavoro relativo al menu tematico
      */
-    public int getTotalWorkload() {
-        return super.getDishes().stream().mapToInt(Dish::getWorkload).sum();
-    }
-
-    public boolean isDishCompatible(Dish dish) {
-        return getTotalWorkload() + dish.getWorkload() < (float) 4 / 3 * maxIndividualWorkload;
+    public float getTotalWorkload() {
+        return (float) super.getDishes().stream().mapToDouble(Dish::getWorkload).sum();
     }
 
     @Override

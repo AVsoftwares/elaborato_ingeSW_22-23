@@ -12,7 +12,7 @@ public class ExtraCommand implements Command {
     private final Restaurant restaurant;
 
     @Override
-    public void onSelection() {
+    public void execute() {
         Menu menu = new Menu("Gestione generi alimentari extra");
         var mapAvgExtra = restaurant.getAvgExtraAmount();
 

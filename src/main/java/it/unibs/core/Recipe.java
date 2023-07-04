@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class Recipe {
     private Map<Ingredient, Quantity> ingredients;
     private int portions;
-    private int portionWorkload;
+    private float portionWorkload;
     private float personWorkload;
     private int preparationTime;
 
@@ -31,7 +31,7 @@ public class Recipe {
      * @param ingredient ingrediente da aggiungere alla ricetta
      * @param amount     quantità dell'ingrediente necessaria per la ricetta
      */
-    public void addIngredient(Ingredient ingredient, Quantity amount) {
+    public void addIngredient(Ingredient ingredient, it.unibs.core.unit.Quantity amount) {
         ingredients.put(ingredient, amount);
     }
 

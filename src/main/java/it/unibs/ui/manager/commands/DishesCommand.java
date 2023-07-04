@@ -9,18 +9,17 @@ import it.unibs.ui.Menu;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Set;
 
 @RequiredArgsConstructor
 public class DishesCommand implements Command {
 
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yy");
     private final Restaurant restaurant;
 
     @Override
-    public void onSelection() {
-        List<Dish> dishes = restaurant.getDishes();
+    public void execute() {
+        Set<Dish> dishes = restaurant.getDishes();
 
         Menu menu = new Menu("Gestione piatti");
         menu.addEntry("Aggiungi piatti", () -> {
@@ -31,27 +30,23 @@ public class DishesCommand implements Command {
 
             do {
                 final String name = InputManager.readString("Nome: ");
-                final LocalDate startDate = InputManager.readDate("Data di inizio validità (dd/MM/yy): ",
-                        DATE_FORMATTER);
-                final LocalDate expireDate = InputManager.readDate("Data di fine validità (dd/MM/yy): ",
-                        DATE_FORMATTER);
+                final LocalDate startDate = InputManager.readDate("Data di inizio validità: ",
+                        InputManager.DEFAULT_DATE_FORMATTER_PATTERN);
+                final LocalDate expireDate = InputManager.readDate("Data di fine validità: ",
+                        InputManager.DEFAULT_DATE_FORMATTER_PATTERN);
 
-                if (startDate.isAfter(expireDate)) {
+                if (startDate.isBefore(expireDate)) {
+                    dishes.add(new Dish(name, new Period(startDate, expireDate)));
+                } else {
                     System.out.println("La data di scadenza inserita è precedente alla data di inizio validità, impossibile continuare.");
-                    return;
                 }
-
-                dishes.add(new Dish(name, new Period(startDate, expireDate)));
             } while (InputManager.readYesOrNo("Vuoi inserire un altro piatto?  (y)es/(n)o: "));
         });
         menu.addEntry("Visualizza piatti", () -> {
             if (dishes.isEmpty()) {
                 System.out.println("Non sono memorizzati piatti.");
-                return;
-            }
-
-            for (int i = 0; i < dishes.size(); i++) {
-                System.out.println(i + "\t" + dishes.get(i).getName());
+            } else {
+                dishes.forEach(System.out::println);
             }
         });
         menu.run();
