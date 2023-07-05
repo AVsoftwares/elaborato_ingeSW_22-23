@@ -45,7 +45,7 @@ public class ThematicMenuCommand implements Command {
                 return;
             }
 
-            final String name = InputManager.readString("Nome: ");
+            final String name = InputManager.readString("Nome del menu tematico: ");
             final LocalDate startDate = InputManager.readDate("Data di inizio validità: ",
                     InputManager.DEFAULT_DATE_FORMATTER_PATTERN);
             final LocalDate expireDate = InputManager.readDate("Data di fine validità: ",
@@ -76,11 +76,10 @@ public class ThematicMenuCommand implements Command {
                 }
             } while (InputManager.readYesOrNo("Vuoi inserire un altro piatto? (y)es/(n)o: "));
 
-            restaurant.addMenu(
-                    new ThematicMenu(
-                            name,
-                            new Period(startDate, expireDate),
-                            menuDishes));
+            restaurant.addMenu(new ThematicMenu(
+                    name,
+                    new Period(startDate, expireDate),
+                    menuDishes));
         });
 
         menu.run();

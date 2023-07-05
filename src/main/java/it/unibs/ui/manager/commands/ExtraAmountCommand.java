@@ -20,16 +20,18 @@ public class ExtraAmountCommand implements Command {
         final Map<String, Float> mapAvgExtra = restaurant.getAvgExtraAmount();
 
         menu.addEntry("Visualizza consumo pro-capite di alimenti extra", () -> {
-            if (mapAvgExtra.isEmpty()) {
-                System.out.println("La lista è vuota.");
+            final var extraWithConsumption = mapAvgExtra.entrySet().stream()
+                    .filter(e -> e.getValue() != null)
+                    .toList();
+
+            if (extraWithConsumption.isEmpty()) {
+                System.out.println("Non è presente nessun alimento extra con consumo pro-capite associato.");
             } else {
-                mapAvgExtra.entrySet().stream()
-                        .filter(e -> e.getValue() != null)
-                        .forEach(System.out::println);
+                extraWithConsumption.forEach(System.out::println);
             }
         });
         menu.addEntry("Inizializza il consumo pro-capite di alimenti extra", () -> {
-            final String name = InputManager.readString("Nome dell'alimento extra: ");
+            final String name = InputManager.readString("Nome dell'alimento extra: ").toLowerCase();
 
             if (mapAvgExtra.containsKey(name)) {
                 mapAvgExtra.put(name, InputManager.readFloat("Consumo pro-capite: "));

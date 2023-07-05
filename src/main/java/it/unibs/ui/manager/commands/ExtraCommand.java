@@ -25,7 +25,7 @@ public class ExtraCommand implements Command {
             }
         });
         menu.addEntry("Aggiungi genere alimentare", () -> {
-            var name = InputManager.readString("Nome: ");
+            var name = InputManager.readString("Nome: ").toLowerCase();
 
             if (mapAvgExtra.containsKey(name)) {
                 System.out.println("Il genere alimentare è già presente nell'elenco.");

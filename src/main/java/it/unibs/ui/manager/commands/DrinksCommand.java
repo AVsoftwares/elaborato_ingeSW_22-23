@@ -27,7 +27,7 @@ public class DrinksCommand implements Command {
             }
         });
         menu.addEntry("Aggiungi bevanda", () -> {
-            var name = InputManager.readString("Nome: ");
+            var name = InputManager.readString("Nome: ").toLowerCase();
 
             if (mapAvgDrink.containsKey(name)) {
                 System.out.println("La bevanda è già presente nell'elenco.");
