@@ -11,7 +11,7 @@ public class Product implements Expire {
     private final LocalDate expiration;
     private Quantity quantity;
 
-    public Product(String name, LocalDate expiration, it.unibs.core.unit.Quantity quantity) {
+    public Product(String name, LocalDate expiration, Quantity quantity) {
         this.name = name;
         this.expiration = expiration;
         this.quantity = quantity;
@@ -65,6 +65,6 @@ public class Product implements Expire {
 
     @Override
     public String toString() {
-        return name + " " + quantity + " scadenza " + expiration.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
+        return name + " " + quantity + " " + expiration.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
     }
 }

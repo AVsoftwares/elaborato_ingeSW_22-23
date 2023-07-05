@@ -36,22 +36,34 @@ public class Quantity {
         return Optional.empty();
     }
 
-    public void add(float value) {
+    public Quantity add(float value) {
         amount += value;
+        return this;
     }
 
-    public void add(Quantity value) {
+    public Quantity add(Quantity value) {
         value.convertTo(this);
-        add(value.getAmount());
+        return add(value.getAmount());
     }
 
-    public void multiply(float value) {
+    public Quantity subtract(float value) {
+        amount -= value;
+        return this;
+    }
+
+    public Quantity subtract(Quantity value) {
+        value.convertTo(this);
+        return subtract(value.getAmount());
+    }
+
+    public Quantity multiply(float value) {
         amount *= value;
+        return this;
     }
 
-    public void multiply(Quantity value) {
+    public Quantity multiply(Quantity value) {
         value.convertTo(this);
-        multiply(value.getAmount());
+        return multiply(value.getAmount());
     }
 
     public float getAmount() {

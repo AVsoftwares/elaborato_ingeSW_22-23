@@ -80,7 +80,7 @@ public class Restaurant {
     }
 
     public Optional<Dish> getDish(String name) {
-        for (Dish dish: dishes) {
+        for (Dish dish : dishes) {
             if (dish.getName().equalsIgnoreCase(name)) {
                 return Optional.of(dish);
             }

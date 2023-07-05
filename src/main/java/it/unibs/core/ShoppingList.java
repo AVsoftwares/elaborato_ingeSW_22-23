@@ -3,51 +3,71 @@ package it.unibs.core;
 import it.unibs.core.unit.Quantity;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ShoppingList {
-    private final Map<Product, Quantity> products = new HashMap<>();
-
+    private final Map<String, Quantity> products = new HashMap<>();
     private final StoreRegister storeRegister;
     private final ReservationService reservationService;
 
     public ShoppingList(StoreRegister storeRegister, ReservationService reservationService) {
         this.storeRegister = storeRegister;
         this.reservationService = reservationService;
-        computeShoppingList();
     }
 
     private void computeShoppingList() {
-        for (Reservation r : reservationService.getReservations()) {
-            final Map<Dish, Integer> dishBookings = r.getDishBookings();
-            final Map<ThematicMenu, Integer> thematicMenuBookings = r.getThematicMenuBookings();
+        for (Reservation reservation : reservationService.getReservations()) {
+            final Map<Dish, Integer> dishBookings = reservation.getDishBookings();
+            final Map<ThematicMenu, Integer> thematicMenuBookings = reservation.getThematicMenuBookings();
 
-            for (Map.Entry<Dish, Integer> dishes : dishBookings.entrySet()) {
-                final Map<Ingredient, Quantity> ingredients = dishes.getKey().getRecipe().getIngredients();
+            dishBookings.forEach((dish, bookingsCount) -> {
+                final Map<Ingredient, Quantity> ingredients = dish.getRecipe().getIngredients();
 
-                ingredients.forEach((ingredient, quantity) -> quantity.multiply(dishes.getValue()));
+                ingredients.forEach((ingredient, quantity) -> {
+                    final String ingredientName = ingredient.getName();
+                    final Quantity totalQuantity = quantity.multiply(bookingsCount);
 
-                // TODO devo metterli solo se non presenti, se presenti incrementare quantità
-                products.putAll(ingredients);
-            }
+                    if (products.containsKey(ingredientName)) {
+                        products.put(ingredientName, totalQuantity.add(products.get(ingredientName)));
+                    } else {
+                        products.put(ingredientName, totalQuantity);
+                    }
+                });
+            });
 
-            for (Map.Entry<ThematicMenu, Integer> menus : thematicMenuBookings.entrySet()) {
-                final List<Dish> dishes = menus.getKey().getDishes();
-
-                for (Dish dish : dishes) {
+            thematicMenuBookings.forEach((menu, bookingsCount) -> {
+                for (Dish dish : menu.getDishes()) {
                     final Map<Ingredient, Quantity> ingredients = dish.getRecipe().getIngredients();
-                    ingredients.forEach((key, value) -> value.multiply(menus.getValue()));
 
-                    // TODO devo metterli solo se non presenti, se presenti incrementare quantità
-                    products.putAll(ingredients);
+                    ingredients.forEach((ingredient, quantity) -> {
+                        final String ingredientName = ingredient.getName();
+                        final Quantity totalQuantity = quantity.multiply(bookingsCount);
+
+                        if (products.containsKey(ingredientName)) {
+                            products.put(ingredientName, totalQuantity.add(products.get(ingredientName)));
+                        } else {
+                            products.put(ingredientName, totalQuantity);
+                        }
+                    });
                 }
+            });
+        }
+
+        for (Product product : storeRegister.getProducts()) {
+            final String name = product.getName();
+
+            if (products.containsKey(name)) {
+                products.put(name, products.get(name).subtract(product.getQuantity()));
             }
         }
-        // TODO differenza con prodotti in StoreRegister, per sapere quanto devo acquistare
     }
 
-    public Map<Product, Quantity> getProducts() {
+    public Map<String, Quantity> getProducts() {
+        computeShoppingList();
         return products;
+    }
+
+    public boolean contains(String productName) {
+        return products.containsKey(productName);
     }
 }
