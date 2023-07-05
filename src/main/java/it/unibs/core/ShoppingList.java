@@ -2,6 +2,7 @@ package it.unibs.core;
 
 import it.unibs.core.unit.Quantity;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ public class ShoppingList {
     }
 
     private void computeShoppingList() {
-        for (Reservation reservation : reservationService.getReservations()) {
+        for (Reservation reservation : reservationService.getReservations(LocalDate.now())) {
             final Map<Dish, Integer> dishBookings = reservation.getDishes();
             final Map<ThematicMenu, Integer> thematicMenuBookings = reservation.getThematicMenus();
 

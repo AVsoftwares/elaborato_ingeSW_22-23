@@ -14,6 +14,13 @@ public class ReservationService {
         return reservations;
     }
 
+    public List<Reservation> getReservations(LocalDate date) {
+        removeExpiredReservations();
+        return reservations.stream()
+                .filter(reservation -> reservation.getDate().isEqual(date))
+                .toList();
+    }
+
     public boolean addReservation(Reservation reservation) {
         if (isDateReservable(reservation.getDate())) {
             return reservations.add(reservation);
