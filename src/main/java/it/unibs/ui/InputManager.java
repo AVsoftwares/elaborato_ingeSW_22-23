@@ -60,7 +60,7 @@ public class InputManager {
             if (input >= min && input <= max) {
                 return input;
             } else {
-                advanceScanner(INVALID_INPUT_OUT_OF_RANGE);
+                System.out.println(INVALID_INPUT_OUT_OF_RANGE);
             }
         }
     }
@@ -95,7 +95,7 @@ public class InputManager {
             if (input >= min && input <= max) {
                 return input;
             } else {
-                advanceScanner(INVALID_INPUT_OUT_OF_RANGE);
+                System.out.println(INVALID_INPUT_OUT_OF_RANGE);
             }
         }
     }
