@@ -1,13 +1,8 @@
 package it.unibs.core;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 import java.util.List;
 
-@Getter
-@Setter
 public class ThematicMenu extends Menu implements Expire {
 
     private final Period period;
@@ -39,8 +34,8 @@ public class ThematicMenu extends Menu implements Expire {
     }
 
     @Override
-    public boolean addDish(Dish dish) {
-        return super.addDish(dish);
+    public boolean add(Dish dish) {
+        return super.add(dish);
     }
 
     @Override

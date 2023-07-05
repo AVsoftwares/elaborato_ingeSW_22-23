@@ -7,15 +7,17 @@ import it.unibs.core.unit.Quantity;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
 import it.unibs.ui.Menu;
-import lombok.RequiredArgsConstructor;
 
 import java.util.HashMap;
 import java.util.Optional;
 
-@RequiredArgsConstructor
 public class RecipesCommand implements Command {
 
     private final Restaurant restaurant;
+
+    public RecipesCommand(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
 
     @Override
     public void execute() {
@@ -42,7 +44,7 @@ public class RecipesCommand implements Command {
             final int portions = InputManager.readInt("Numero di porzioni che possono essere preparate con le dosi inserite: ", 1, Integer.MAX_VALUE);
             final float portionWorkload = InputManager.readFloat("Carico di lavoro per porzione: ", 0, 1);
 
-            restaurant.addRecipe(new Recipe(ingredients, portions, portionWorkload));
+            restaurant.getRecipes().add(new Recipe(ingredients, portions, portionWorkload));
         });
 
         menu.run();

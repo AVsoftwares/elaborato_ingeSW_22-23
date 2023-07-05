@@ -1,13 +1,7 @@
 package it.unibs.core;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 import java.util.Objects;
-
-@Getter
-@Setter
 
 public class Dish implements Expire {
     /**
@@ -15,13 +9,31 @@ public class Dish implements Expire {
      */
     private final String name;
     private Recipe recipe;
-    private CourseType type;
     private int preparationTime;
     private Period period;
 
     public Dish(String name, Period period) {
         this.name = name;
         this.period = period;
+    }
+
+    /**
+     * @return carico di lavoro per porzione del piatto
+     */
+    public float getWorkload() {
+        return recipe.getPortionWorkload();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
     /**
@@ -37,19 +49,12 @@ public class Dish implements Expire {
         return period.isBefore(date);
     }
 
-    /**
-     * @return carico di lavoro per porzione del piatto
-     */
-    public float getWorkload() {
-        return recipe.getPortionWorkload();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Dish dish = (Dish) o;
-        return name.equalsIgnoreCase(dish.getName());
+        return name.equalsIgnoreCase(dish.name);
     }
 
     @Override
@@ -60,9 +65,5 @@ public class Dish implements Expire {
     @Override
     public String toString() {
         return name;
-    }
-
-    public enum CourseType {
-        STARTER, FIRST_COURSE, SECOND_COURSE, DESSERT
     }
 }

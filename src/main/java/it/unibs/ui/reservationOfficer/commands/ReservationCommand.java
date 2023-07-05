@@ -28,10 +28,8 @@ public class ReservationCommand implements Command {
             return;
         }
 
-
         final List<ThematicMenu> availableMenus = restaurant.getAvailableMenus(date);
         final List<Dish> availableDishes = restaurant.getAvailableDishes(date);
-
 
         if (availableDishes.isEmpty() && availableMenus.isEmpty()) {
             System.out.println("Non sono disponibili né piatti né menu per il giorno selezionato, impossibile continuare.");
@@ -61,7 +59,7 @@ public class ReservationCommand implements Command {
                 }
                 final int choice = InputManager.readInt("Menu tematico: ", 0, availableMenus.size());
 
-                reservation.addThematicMenu(availableMenus.get(choice));
+                reservation.add(availableMenus.get(choice));
             });
             menu.addEntry("Piatti singoli", () -> {
                 if (availableDishes.isEmpty()) {
@@ -74,14 +72,14 @@ public class ReservationCommand implements Command {
                 }
                 final int choice = InputManager.readInt("Piatto: ", 0, availableDishes.size());
 
-                reservation.addDish(availableDishes.get(choice));
+                reservation.add(availableDishes.get(choice));
             });
 
             menu.run();
         }
 
         if (canSustainWorkload()) {
-            if (!reservationService.addReservation(reservation)) {
+            if (!reservationService.add(reservation)) {
                 System.out.println("La prenotazione non è valida, impossibile continuare.");
             }
         } else {

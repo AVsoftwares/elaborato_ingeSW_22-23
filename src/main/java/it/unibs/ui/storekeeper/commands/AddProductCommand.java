@@ -5,15 +5,17 @@ import it.unibs.core.StoreRegister;
 import it.unibs.core.unit.Quantity;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
-@RequiredArgsConstructor
 public class AddProductCommand implements Command {
 
     private final StoreRegister storeRegister;
+
+    public AddProductCommand(StoreRegister storeRegister) {
+        this.storeRegister = storeRegister;
+    }
 
     @Override
     public void execute() {

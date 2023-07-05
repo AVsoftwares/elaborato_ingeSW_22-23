@@ -1,14 +1,11 @@
 package it.unibs.core;
 
 import it.unibs.core.unit.Quantity;
-import lombok.Getter;
-import lombok.Setter;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Getter
-@Setter
 public class Recipe {
     private final Map<Ingredient, Quantity> ingredients;
     private final int portions;
@@ -47,6 +44,14 @@ public class Recipe {
      */
     public boolean contains(Ingredient ingredient) {
         return ingredients.containsKey(ingredient);
+    }
+
+    public Map<Ingredient, Quantity> getIngredients() {
+        return Collections.unmodifiableMap(ingredients);
+    }
+
+    public float getPortionWorkload() {
+        return portionWorkload;
     }
 
     @Override

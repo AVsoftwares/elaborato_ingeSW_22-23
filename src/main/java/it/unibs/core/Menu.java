@@ -1,13 +1,9 @@
 package it.unibs.core;
 
-import lombok.Getter;
-import lombok.Setter;
-
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-@Getter
-@Setter
 public class Menu {
     /**
      * Identifica univocamente il menu
@@ -23,11 +19,15 @@ public class Menu {
     /**
      * @param dish piatto da aggiungere al menu
      */
-    public boolean addDish(Dish dish) {
+    public boolean add(Dish dish) {
         if (dishes.contains(dish)) {
             return false;
         }
         return dishes.add(dish);
+    }
+
+    public List<Dish> getDishes() {
+        return Collections.unmodifiableList(dishes);
     }
 
     @Override

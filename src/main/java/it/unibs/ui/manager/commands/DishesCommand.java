@@ -6,15 +6,17 @@ import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
 import it.unibs.ui.Menu;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.Set;
 
-@RequiredArgsConstructor
 public class DishesCommand implements Command {
 
     private final Restaurant restaurant;
+
+    public DishesCommand(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
 
     @Override
     public void execute() {

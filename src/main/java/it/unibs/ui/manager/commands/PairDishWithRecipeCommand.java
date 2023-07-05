@@ -5,7 +5,6 @@ import it.unibs.core.Recipe;
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
-import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,10 +13,13 @@ import java.util.Set;
 /**
  * Gestisce le corrispondenze tra piatti e ricette
  */
-@RequiredArgsConstructor
 public class PairDishWithRecipeCommand implements Command {
 
     private final Restaurant restaurant;
+
+    public PairDishWithRecipeCommand(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
 
     @Override
     public void execute() {

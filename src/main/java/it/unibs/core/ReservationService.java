@@ -21,7 +21,7 @@ public class ReservationService {
                 .toList();
     }
 
-    public boolean addReservation(Reservation reservation) {
+    public boolean add(Reservation reservation) {
         if (isDateReservable(reservation.getDate())) {
             return reservations.add(reservation);
         }

@@ -14,7 +14,7 @@ public class Reservation {
         this.seats = seats;
     }
 
-    public void addThematicMenu(ThematicMenu menu) {
+    public void add(ThematicMenu menu) {
         if (thematicMenus.containsKey(menu)) {
             thematicMenus.put(menu, thematicMenus.get(menu) + 1);
         } else {
@@ -22,7 +22,7 @@ public class Reservation {
         }
     }
 
-    public void addDish(Dish dish) {
+    public void add(Dish dish) {
         if (dishes.containsKey(dish)) {
             dishes.put(dish, dishes.get(dish) + 1);
         } else {

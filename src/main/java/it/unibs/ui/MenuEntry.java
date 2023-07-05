@@ -1,14 +1,9 @@
 package it.unibs.ui;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
  * Classe usata per la creazione di una entry di un menu
  * di navigazione
  */
-@Getter
-@Setter
 public class MenuEntry {
 
     private final String description;
@@ -22,5 +17,13 @@ public class MenuEntry {
     public MenuEntry(String description, Command command) {
         this.description = description;
         this.command = command;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Command getCommand() {
+        return command;
     }
 }

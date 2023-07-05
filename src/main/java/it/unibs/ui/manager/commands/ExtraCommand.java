@@ -4,33 +4,37 @@ import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
 import it.unibs.ui.Menu;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
+import java.util.Map;
+
 public class ExtraCommand implements Command {
 
     private final Restaurant restaurant;
 
+    public ExtraCommand(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
     @Override
     public void execute() {
         Menu menu = new Menu("Gestione generi alimentari extra");
-        var mapAvgExtra = restaurant.getAvgExtraAmount();
+        final Map<String, Float> averageExtraConsumption = restaurant.getImmutableAverageExtraConsumption();
 
         menu.addEntry("Visualizza generi alimentari extra", () -> {
-            if (mapAvgExtra.isEmpty()) {
+            if (averageExtraConsumption.isEmpty()) {
                 System.out.println("La lista è vuota.");
             } else {
                 System.out.println("I generi alimentari extra attualmente disponibili sono:");
-                mapAvgExtra.keySet().forEach(System.out::println);
+                averageExtraConsumption.keySet().forEach(System.out::println);
             }
         });
         menu.addEntry("Aggiungi genere alimentare", () -> {
             var name = InputManager.readString("Nome: ").toLowerCase();
 
-            if (mapAvgExtra.containsKey(name)) {
+            if (averageExtraConsumption.containsKey(name)) {
                 System.out.println("Il genere alimentare è già presente nell'elenco.");
             } else {
-                mapAvgExtra.put(name, null);
+                averageExtraConsumption.put(name, null);
             }
         });
 

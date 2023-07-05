@@ -1,82 +1,44 @@
 package it.unibs.core;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-
-import java.io.File;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Getter
-@Setter
-@RequiredArgsConstructor
 public class Restaurant {
     private static final float SUSTAINABLE_WORKLOAD_MULTIPLIER = 1.2f;
     // TODO recipes potrebbe essere una classe indipendente RecipeBook
     private final List<Recipe> recipes;
     private final Set<Dish> dishes;
-    private final List<ThematicMenu> thematicMenus;
+    private final Set<ThematicMenu> thematicMenus;
     /**
      * Map che associa il nome della bevanda al corrispettivo ammontare di consumo tipico procapite in litri
      */
-    private final Map<String, Float> avgDrinkAmount;
+    private final Map<String, Float> averageDrinkConsumption;
     /**
      * Map che associa il nome del genere extra al corrispettivo ammontare di consumo tipico procapite in ettogrammi
      */
-    private final Map<String, Float> avgExtraAmount;
+    private final Map<String, Float> averageExtraConsumption;
     private int seats;
     private int individualWorkload;
 
     public Restaurant() {
         this.recipes = new ArrayList<>();
         this.dishes = new HashSet<>();
-        this.thematicMenus = new ArrayList<>();
-        this.avgDrinkAmount = new HashMap<>();
-        this.avgExtraAmount = new HashMap<>();
-    }
-
-    public Restaurant(File file) throws IOException {
-        // TODO questa è solo un'idea
-
-        //oppure ServizioFile.caricaSingoloOggetto(File configData);?
-        //System.getProperties().load(new FileInputStream(file));
-        //this.name = System.getProperty("name");
-        this();
+        this.thematicMenus = new HashSet<>();
+        this.averageDrinkConsumption = new HashMap<>();
+        this.averageExtraConsumption = new HashMap<>();
     }
 
     public float getSustainableWorkload() {
         return (individualWorkload * seats) * SUSTAINABLE_WORKLOAD_MULTIPLIER;
     }
 
-    public void addRecipe(Recipe recipe) {
-        recipes.add(recipe);
-    }
-
-    public void addMenu(ThematicMenu menu) {
-        thematicMenus.add(menu);
-    }
-
-    public boolean addDish(Dish dish) {
-        return dishes.add(dish);
-    }
-
-    public List<ThematicMenu> getAvailableMenus() {
-        return getAvailableMenus(LocalDate.now());
-    }
-
     public List<ThematicMenu> getAvailableMenus(LocalDate date) {
-        return thematicMenus.stream().filter(m -> !m.isExpiredAtDate(date)).collect(Collectors.toList());
-    }
-
-    public List<Dish> getAvailableDishes() {
-        return getAvailableDishes(LocalDate.now());
+        return thematicMenus.stream().filter(m -> !m.isExpiredAtDate(date)).toList();
     }
 
     public List<Dish> getAvailableDishes(LocalDate date) {
-        return dishes.stream().filter(d -> !d.isExpiredAtDate(date)).collect(Collectors.toList());
+        return dishes.stream().filter(d -> !d.isExpiredAtDate(date)).toList();
     }
 
     public Optional<Dish> getDish(String name) {
@@ -86,5 +48,69 @@ public class Restaurant {
             }
         }
         return Optional.empty();
+    }
+
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public Set<Dish> getDishes() {
+        return dishes;
+    }
+
+    public Set<ThematicMenu> getThematicMenus() {
+        return thematicMenus;
+    }
+
+    public int getSeats() {
+        return seats;
+    }
+
+    public void setSeats(int seats) {
+        this.seats = seats;
+    }
+
+    public int getIndividualWorkload() {
+        return individualWorkload;
+    }
+
+    public void setIndividualWorkload(int individualWorkload) {
+        this.individualWorkload = individualWorkload;
+    }
+
+    public boolean isAverageExtraConsumptionNotSet(String name) {
+        return averageExtraConsumption.get(name) == null;
+    }
+
+    public Map<String, Float> getImmutableAverageExtraConsumption() {
+        return Collections.unmodifiableMap(averageExtraConsumption);
+    }
+
+    public Map<String, Float> getImmutableAverageExtraConsumptionNotNull() {
+        return averageExtraConsumption.entrySet().stream()
+                .filter(e -> e.getValue() != null)
+                .collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
+    public void setAverageExtraConsumption(String name, float amount) {
+        averageExtraConsumption.put(name.toLowerCase(), amount);
+    }
+
+    public boolean isAverageDrinkConsumptionNotSet(String name) {
+        return averageDrinkConsumption.get(name) == null;
+    }
+
+    public Map<String, Float> getImmutableAverageDrinkConsumption() {
+        return Collections.unmodifiableMap(averageDrinkConsumption);
+    }
+
+    public Map<String, Float> getImmutableAverageDrinkConsumptionNotNull() {
+        return averageDrinkConsumption.entrySet().stream()
+                .filter(e -> e.getValue() != null)
+                .collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue));
+    }
+
+    public void setAverageDrinkConsumption(String name, float amount) {
+        averageDrinkConsumption.put(name.toLowerCase(), amount);
     }
 }
