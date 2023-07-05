@@ -9,6 +9,7 @@ import it.unibs.ui.InputManager;
 import it.unibs.ui.Menu;
 import lombok.RequiredArgsConstructor;
 
+import java.util.HashMap;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -24,25 +25,24 @@ public class RecipesCommand implements Command {
             restaurant.getRecipes().forEach(r -> System.out.println("- " + r));
         });
         menu.addEntry("Aggiungi ricetta", () -> {
-            final Recipe recipe = new Recipe();
+
+            final HashMap<Ingredient, Quantity> ingredients = new HashMap<>();
 
             do {
                 final String name = InputManager.readString("Nome dell'ingrediente: ");
-                final Optional<Quantity> amount = Quantity.fromString(
-                        InputManager.readString("Quantità dell'ingrediente (es. 10 kg): "));
+                final Optional<Quantity> amount = Quantity.fromString(InputManager.readString("Quantità dell'ingrediente (es. 10 kg): "));
 
                 if (amount.isPresent()) {
-                    recipe.addIngredient(new Ingredient(name), amount.get());
+                    ingredients.put(new Ingredient(name), amount.get());
                 } else {
                     System.out.println("La quantità inserita non è valida.");
                 }
             } while (InputManager.readYesOrNo("Vuoi inserire un altro ingrediente? (y)es/(n)o: "));
 
-            recipe.setPortions(InputManager.readInt("Numero di porzioni che possono essere preparate con le dosi inserite: ", 1, Integer.MAX_VALUE));
+            final int portions = InputManager.readInt("Numero di porzioni che possono essere preparate con le dosi inserite: ", 1, Integer.MAX_VALUE);
+            final float portionWorkload = InputManager.readFloat("Carico di lavoro per porzione: ", 0, 1);
 
-            recipe.setPersonWorkload(InputManager.readFloat("Carico di lavoro per porzione: ", 0, 1));
-
-            restaurant.addRecipe(recipe);
+            restaurant.addRecipe(new Recipe(ingredients, portions, portionWorkload));
         });
 
         menu.run();

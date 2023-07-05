@@ -67,8 +67,12 @@ public class Quantity {
             return;
         }
 
-        amount *= 10 * quantity.prefix.getExponent();
-        prefix = MetricPrefix.fromString(quantity.prefix.getSymbol());
+        convertTo(quantity.prefix);
+    }
+
+    public void convertTo(MetricPrefix prefix) {
+        amount *= 10 * prefix.getExponent();
+        this.prefix = prefix;
     }
 
     @Override

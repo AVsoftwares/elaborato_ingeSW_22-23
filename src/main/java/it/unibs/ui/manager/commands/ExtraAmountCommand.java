@@ -23,12 +23,13 @@ public class ExtraAmountCommand implements Command {
             if (mapAvgExtra.isEmpty()) {
                 System.out.println("La lista è vuota.");
             } else {
-                System.out.println("Gli alimenti extra attualmente disponibili sono:");
-                mapAvgExtra.keySet().forEach(System.out::println);
+                mapAvgExtra.entrySet().stream()
+                        .filter(e -> e.getValue() != null)
+                        .forEach(System.out::println);
             }
         });
         menu.addEntry("Inizializza il consumo pro-capite di alimenti extra", () -> {
-            final String name = InputManager.readString("Inserisci il nome dell'alimento extra: ");
+            final String name = InputManager.readString("Nome dell'alimento extra: ");
 
             if (mapAvgExtra.containsKey(name)) {
                 mapAvgExtra.put(name, InputManager.readFloat("Consumo pro-capite: "));
