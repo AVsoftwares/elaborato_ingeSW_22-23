@@ -21,7 +21,7 @@ public class StoreRegister {
     public void add(Product product) {
         final int index = products.indexOf(product);
         if (index >= 0) {
-            products.get(index).addQuantity(product.getQuantity());
+            products.get(index).getQuantity().add(product.getQuantity());
             return;
         }
         products.add(product);

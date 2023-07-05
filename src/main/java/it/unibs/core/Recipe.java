@@ -10,9 +10,10 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 public class Recipe {
-    private Map<Ingredient, Quantity> ingredients;
-    private int portions;
-    private float portionWorkload;
+    private final Map<Ingredient, Quantity> ingredients;
+    private final int portions;
+    private final float portionWorkload;
+    // TODO è necessario preparationTime?
     private int preparationTime;
 
     /**
@@ -29,14 +30,14 @@ public class Recipe {
      * @param ingredient ingrediente da aggiungere alla ricetta
      * @param amount     quantità dell'ingrediente necessaria per la ricetta
      */
-    public void addIngredient(Ingredient ingredient, Quantity amount) {
+    public void add(Ingredient ingredient, Quantity amount) {
         ingredients.put(ingredient, amount);
     }
 
     /**
      * @param ingredient ingrediente da rimuovere dalla ricetta
      */
-    public void removeIngredient(Ingredient ingredient) {
+    public void remove(Ingredient ingredient) {
         ingredients.remove(ingredient);
     }
 
@@ -44,7 +45,7 @@ public class Recipe {
      * @param ingredient ingrediente da controllare se presente nella ricetta
      * @return true se ingrediente presente in ricetta, false altrimenti
      */
-    public boolean containsIngredient(Ingredient ingredient) {
+    public boolean contains(Ingredient ingredient) {
         return ingredients.containsKey(ingredient);
     }
 

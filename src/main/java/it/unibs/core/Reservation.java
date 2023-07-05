@@ -4,31 +4,29 @@ import java.time.LocalDate;
 import java.util.HashMap;
 
 public class Reservation {
+    private final HashMap<ThematicMenu, Integer> thematicMenus = new HashMap<>();
+    private final HashMap<Dish, Integer> dishes = new HashMap<>();
     private final LocalDate date;
     private final int seats;
-    private final HashMap<ThematicMenu, Integer> thematicMenuBookings;
-    private final HashMap<Dish, Integer> dishBookings;
 
     public Reservation(LocalDate date, int seats) {
-        this.thematicMenuBookings = new HashMap<>();
-        this.dishBookings = new HashMap<>();
         this.date = date;
         this.seats = seats;
     }
 
     public void addThematicMenu(ThematicMenu menu) {
-        if (thematicMenuBookings.containsKey(menu)) {
-            thematicMenuBookings.put(menu, thematicMenuBookings.get(menu) + 1);
+        if (thematicMenus.containsKey(menu)) {
+            thematicMenus.put(menu, thematicMenus.get(menu) + 1);
         } else {
-            thematicMenuBookings.put(menu, 1);
+            thematicMenus.put(menu, 1);
         }
     }
 
     public void addDish(Dish dish) {
-        if (dishBookings.containsKey(dish)) {
-            dishBookings.put(dish, dishBookings.get(dish) + 1);
+        if (dishes.containsKey(dish)) {
+            dishes.put(dish, dishes.get(dish) + 1);
         } else {
-            dishBookings.put(dish, 1);
+            dishes.put(dish, 1);
         }
     }
 
@@ -46,12 +44,12 @@ public class Reservation {
         return date;
     }
 
-    public HashMap<ThematicMenu, Integer> getThematicMenuBookings() {
-        return thematicMenuBookings;
+    public HashMap<ThematicMenu, Integer> getThematicMenus() {
+        return thematicMenus;
     }
 
-    public HashMap<Dish, Integer> getDishBookings() {
-        return dishBookings;
+    public HashMap<Dish, Integer> getDishes() {
+        return dishes;
     }
 
     public int getSeats() {
@@ -61,11 +59,11 @@ public class Reservation {
     public float getWorkload() {
         float workload = 0f;
 
-        for (var entry : dishBookings.entrySet()) {
+        for (var entry : dishes.entrySet()) {
             workload += entry.getKey().getWorkload() * entry.getValue();
         }
 
-        for (var entry : thematicMenuBookings.entrySet()) {
+        for (var entry : thematicMenus.entrySet()) {
             workload += entry.getKey().getTotalWorkload() * entry.getValue();
         }
 

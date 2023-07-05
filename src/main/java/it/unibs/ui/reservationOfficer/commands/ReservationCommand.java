@@ -90,7 +90,10 @@ public class ReservationCommand implements Command {
     }
 
     private int getAvailableSeatsAtDate(LocalDate date) {
-        return restaurant.getSeats() - reservationService.getReservations().stream().filter(b -> b.getDate().isEqual(date)).mapToInt(Reservation::getSeats).sum();
+        return restaurant.getSeats() - reservationService.getReservations().stream()
+                .filter(b -> b.getDate().isEqual(date))
+                .mapToInt(Reservation::getSeats)
+                .sum();
     }
 
     private boolean canSustainWorkload() {

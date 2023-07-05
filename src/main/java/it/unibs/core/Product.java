@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Product implements Expire {
     private final String name;
     private final LocalDate expiration;
-    private Quantity quantity;
+    private final Quantity quantity;
 
     public Product(String name, LocalDate expiration, Quantity quantity) {
         this.name = name;
@@ -27,13 +27,6 @@ public class Product implements Expire {
 
     public Quantity getQuantity() {
         return quantity;
-    }
-
-    public void setQuantity(Quantity quantity) {
-        this.quantity = quantity;
-    }
-
-    public void addQuantity(Quantity quantity) {
     }
 
     public boolean isAvailable() {

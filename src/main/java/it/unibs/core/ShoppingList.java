@@ -17,8 +17,8 @@ public class ShoppingList {
 
     private void computeShoppingList() {
         for (Reservation reservation : reservationService.getReservations()) {
-            final Map<Dish, Integer> dishBookings = reservation.getDishBookings();
-            final Map<ThematicMenu, Integer> thematicMenuBookings = reservation.getThematicMenuBookings();
+            final Map<Dish, Integer> dishBookings = reservation.getDishes();
+            final Map<ThematicMenu, Integer> thematicMenuBookings = reservation.getThematicMenus();
 
             dishBookings.forEach((dish, bookingsCount) -> {
                 final Map<Ingredient, Quantity> ingredients = dish.getRecipe().getIngredients();
