@@ -1,6 +1,7 @@
 package it.unibs.ui.manager.commands;
 
 import it.unibs.core.Restaurant;
+import it.unibs.core.unit.Quantity;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
 import it.unibs.ui.Menu;
@@ -18,7 +19,7 @@ public class ExtraCommand implements Command {
     @Override
     public void execute() {
         Menu menu = new Menu("Gestione generi alimentari extra");
-        final Map<String, Float> averageExtraConsumption = restaurant.getImmutableAverageExtraConsumption();
+        final Map<String, Quantity> averageExtraConsumption = restaurant.getImmutableAverageExtraConsumption();
 
         menu.addEntry("Visualizza generi alimentari extra", () -> {
             if (averageExtraConsumption.isEmpty()) {
@@ -34,7 +35,7 @@ public class ExtraCommand implements Command {
             if (averageExtraConsumption.containsKey(name)) {
                 System.out.println("Il genere alimentare è già presente nell'elenco.");
             } else {
-                averageExtraConsumption.put(name, null);
+                restaurant.setAverageExtraConsumption(name, null);
             }
         });
 

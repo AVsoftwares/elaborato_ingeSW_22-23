@@ -2,6 +2,7 @@ package it.unibs.core;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class ThematicMenu extends Menu implements Expire {
 
@@ -13,7 +14,7 @@ public class ThematicMenu extends Menu implements Expire {
 
     public ThematicMenu(String name, Period period, List<Dish> dishes) {
         super(name, dishes);
-        this.period = period;
+        this.period = Objects.requireNonNull(period);
     }
 
     /**

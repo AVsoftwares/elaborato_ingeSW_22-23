@@ -1,5 +1,6 @@
 package it.unibs.core.unit;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class Quantity {
@@ -7,10 +8,13 @@ public class Quantity {
     private float amount;
     private MetricPrefix prefix;
 
-    private Quantity(float amount, MetricPrefix prefix, MeasureUnit unit) {
+    public Quantity(float amount, MetricPrefix prefix, MeasureUnit unit) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount must be greater or equal to 0");
+        }
         this.amount = amount;
-        this.prefix = prefix;
-        this.unit = unit;
+        this.prefix = Objects.requireNonNull(prefix);
+        this.unit = Objects.requireNonNull(unit);
     }
 
     public static Optional<Quantity> fromString(String value) {
@@ -66,10 +70,6 @@ public class Quantity {
         return multiply(value.getAmount());
     }
 
-    public float getAmount() {
-        return amount;
-    }
-
     public void convertTo(Quantity quantity) throws IllegalArgumentException {
         if (!unit.equals(quantity.unit)) {
             throw new IllegalArgumentException("Argument must have the same unit of caller class");
@@ -85,6 +85,18 @@ public class Quantity {
     public void convertTo(MetricPrefix prefix) {
         amount *= 10 * prefix.getExponent();
         this.prefix = prefix;
+    }
+
+    public float getAmount() {
+        return amount;
+    }
+
+    public MetricPrefix getPrefix() {
+        return prefix;
+    }
+
+    public MeasureUnit getUnit() {
+        return unit;
     }
 
     @Override

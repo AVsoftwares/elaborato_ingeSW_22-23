@@ -2,6 +2,7 @@ package it.unibs.core;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Reservation {
     private final HashMap<ThematicMenu, Integer> thematicMenus = new HashMap<>();
@@ -10,7 +11,10 @@ public class Reservation {
     private final int seats;
 
     public Reservation(LocalDate date, int seats) {
-        this.date = date;
+        if (seats <= 0) {
+            throw new IllegalArgumentException("Seats must be greater than 0");
+        }
+        this.date = Objects.requireNonNull(date);
         this.seats = seats;
     }
 

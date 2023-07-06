@@ -12,8 +12,8 @@ public class Menu {
     private final List<Dish> dishes;
 
     public Menu(String name, List<Dish> dishes) {
-        this.name = name;
-        this.dishes = dishes;
+        this.name = Objects.requireNonNull(name);
+        this.dishes = Objects.requireNonNull(dishes);
     }
 
     /**

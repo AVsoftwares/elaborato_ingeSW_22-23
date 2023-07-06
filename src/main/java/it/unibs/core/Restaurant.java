@@ -1,5 +1,7 @@
 package it.unibs.core;
 
+import it.unibs.core.unit.Quantity;
+
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -13,11 +15,11 @@ public class Restaurant {
     /**
      * Map che associa il nome della bevanda al corrispettivo ammontare di consumo tipico procapite in litri
      */
-    private final Map<String, Float> averageDrinkConsumption;
+    private final Map<String, Quantity> averageDrinkConsumption;
     /**
      * Map che associa il nome del genere extra al corrispettivo ammontare di consumo tipico procapite in ettogrammi
      */
-    private final Map<String, Float> averageExtraConsumption;
+    private final Map<String, Quantity> averageExtraConsumption;
     private int seats;
     private int individualWorkload;
 
@@ -82,17 +84,17 @@ public class Restaurant {
         return averageExtraConsumption.get(name) == null;
     }
 
-    public Map<String, Float> getImmutableAverageExtraConsumption() {
+    public Map<String, Quantity> getImmutableAverageExtraConsumption() {
         return Collections.unmodifiableMap(averageExtraConsumption);
     }
 
-    public Map<String, Float> getImmutableAverageExtraConsumptionNotNull() {
+    public Map<String, Quantity> getImmutableAverageExtraConsumptionNotNull() {
         return averageExtraConsumption.entrySet().stream()
                 .filter(e -> e.getValue() != null)
                 .collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
-    public void setAverageExtraConsumption(String name, float amount) {
+    public void setAverageExtraConsumption(String name, Quantity amount) {
         averageExtraConsumption.put(name.toLowerCase(), amount);
     }
 
@@ -100,17 +102,17 @@ public class Restaurant {
         return averageDrinkConsumption.get(name) == null;
     }
 
-    public Map<String, Float> getImmutableAverageDrinkConsumption() {
+    public Map<String, Quantity> getImmutableAverageDrinkConsumption() {
         return Collections.unmodifiableMap(averageDrinkConsumption);
     }
 
-    public Map<String, Float> getImmutableAverageDrinkConsumptionNotNull() {
+    public Map<String, Quantity> getImmutableAverageDrinkConsumptionNotNull() {
         return averageDrinkConsumption.entrySet().stream()
                 .filter(e -> e.getValue() != null)
                 .collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
-    public void setAverageDrinkConsumption(String name, float amount) {
+    public void setAverageDrinkConsumption(String name, Quantity amount) {
         averageDrinkConsumption.put(name.toLowerCase(), amount);
     }
 }

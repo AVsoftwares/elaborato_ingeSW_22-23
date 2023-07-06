@@ -1,6 +1,7 @@
 package it.unibs.ui.manager.commands;
 
 import it.unibs.core.Restaurant;
+import it.unibs.core.unit.Quantity;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
 import it.unibs.ui.Menu;
@@ -18,7 +19,7 @@ public class DrinksCommand implements Command {
     public void execute() {
         Menu menu = new Menu("Gestione bevande");
 
-        final Map<String, Float> averageDrinkConsumption = restaurant.getImmutableAverageDrinkConsumption();
+        final Map<String, Quantity> averageDrinkConsumption = restaurant.getImmutableAverageDrinkConsumption();
 
         menu.addEntry("Visualizza bevande", () -> {
             if (averageDrinkConsumption.isEmpty()) {
@@ -34,7 +35,7 @@ public class DrinksCommand implements Command {
             if (averageDrinkConsumption.containsKey(name)) {
                 System.out.println("La bevanda è già presente nell'elenco.");
             } else {
-                averageDrinkConsumption.put(name, null);
+                restaurant.setAverageDrinkConsumption(name, null);
             }
         });
 

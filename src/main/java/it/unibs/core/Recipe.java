@@ -4,6 +4,7 @@ import it.unibs.core.unit.Quantity;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Recipe {
@@ -18,7 +19,7 @@ public class Recipe {
      * @param portions    numero di porzioni ottenibili dalla ricetta
      */
     public Recipe(Map<Ingredient, Quantity> ingredients, int portions, float portionWorkload) {
-        this.ingredients = ingredients;
+        this.ingredients = Objects.requireNonNull(ingredients);
         this.portions = portions;
         this.portionWorkload = portionWorkload;
     }

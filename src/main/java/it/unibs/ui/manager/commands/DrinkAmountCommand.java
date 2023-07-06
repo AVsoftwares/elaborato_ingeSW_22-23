@@ -1,6 +1,9 @@
 package it.unibs.ui.manager.commands;
 
 import it.unibs.core.Restaurant;
+import it.unibs.core.unit.MeasureUnit;
+import it.unibs.core.unit.MetricPrefix;
+import it.unibs.core.unit.Quantity;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
 import it.unibs.ui.Menu;
@@ -30,7 +33,9 @@ public class DrinkAmountCommand implements Command {
             var name = InputManager.readString("Nome: ").toLowerCase();
 
             if (restaurant.isAverageDrinkConsumptionNotSet(name)) {
-                restaurant.setAverageDrinkConsumption(name, InputManager.readFloat("Consumo pro-capite: "));
+                final float amount = InputManager.readFloat("Consumo pro-capite: ");
+                final Quantity quantity = new Quantity(amount, MetricPrefix.NONE, MeasureUnit.LITERS);
+                restaurant.setAverageDrinkConsumption(name, quantity);
             } else {
                 System.out.println("Non è presente nessuna bevanda \"" + name + "\".");
             }

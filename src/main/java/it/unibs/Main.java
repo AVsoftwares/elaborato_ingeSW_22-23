@@ -19,7 +19,7 @@ public class Main {
         Restaurant restaurant = new Restaurant();
         ReservationService reservationService = new ReservationService();
         StoreRegister storeRegister = new StoreRegister();
-        ShoppingList shoppingList = new ShoppingList(storeRegister, reservationService);
+        ShoppingList shoppingList = new ShoppingList(restaurant, storeRegister, reservationService);
 
         final Menu mainMenu = new Menu(MENU_TITLE, true);
         mainMenu.addEntry(MSG_MANAGER_LOGIN, () -> new ManagerMenu(restaurant).run());

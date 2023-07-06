@@ -2,6 +2,7 @@ package it.unibs.core;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class Period {
     private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yy");
@@ -9,8 +10,11 @@ public class Period {
     private final LocalDate endDate;
 
     public Period(LocalDate startDate, LocalDate endDate) {
-        this.startDate = startDate;
-        this.endDate = endDate;
+        if (startDate.isAfter(endDate)) {
+            throw new IllegalStateException("Start date must be before end date");
+        }
+        this.startDate = Objects.requireNonNull(startDate);
+        this.endDate = Objects.requireNonNull(endDate);
     }
 
     public boolean isBefore(LocalDate date) {

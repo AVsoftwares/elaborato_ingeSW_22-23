@@ -12,7 +12,7 @@ public class Product implements Expire {
     private final Quantity quantity;
 
     public Product(String name, LocalDate expiration, Quantity quantity) {
-        this.name = name;
+        this.name = Objects.requireNonNull(name);
         this.expiration = expiration;
         this.quantity = quantity;
     }

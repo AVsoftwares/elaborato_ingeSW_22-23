@@ -26,7 +26,7 @@ public class ProductSupplyCommand implements Command {
 
         if (shoppingList.contains(productName)) {
             final LocalDate expiration = InputManager.readDate("Data di scadenza: ", InputManager.DEFAULT_DATE_FORMATTER_PATTERN);
-            final Optional<Quantity> quantity = Quantity.fromString(InputManager.readString("Quantità (es. 10 kg):"));
+            final Optional<Quantity> quantity = Quantity.fromString(InputManager.readString("Quantità (es. 10 kg): "));
 
             if (quantity.isPresent()) {
                 storeRegister.add(new Product(productName, expiration, quantity.get()));
@@ -37,7 +37,7 @@ public class ProductSupplyCommand implements Command {
                         Le unità di misura accettate sono (l)itri e (g)rammi, se omessa si considerano le unità""");
             }
         } else {
-            System.out.println("Il prodotto è disponibile in magazzino e non deve essere acquistato.");
+            System.out.println("Il prodotto non è presente nella lista della spesa, non è necessario acquistarlo.");
         }
     }
 }

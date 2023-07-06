@@ -13,8 +13,8 @@ public class Dish implements Expire {
     private Period period;
 
     public Dish(String name, Period period) {
-        this.name = name;
-        this.period = period;
+        this.name = Objects.requireNonNull(name);
+        this.period = Objects.requireNonNull(period);
     }
 
     /**

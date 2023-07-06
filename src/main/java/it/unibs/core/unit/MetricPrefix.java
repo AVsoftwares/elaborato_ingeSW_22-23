@@ -1,5 +1,7 @@
 package it.unibs.core.unit;
 
+import java.util.Objects;
+
 public enum MetricPrefix {
     MILLI("m", -3),
     CENTI("c", -2),
@@ -13,7 +15,7 @@ public enum MetricPrefix {
     private final int exponent;
 
     MetricPrefix(String symbol, int exponent) {
-        this.symbol = symbol;
+        this.symbol = Objects.requireNonNull(symbol);
         this.exponent = exponent;
     }
 

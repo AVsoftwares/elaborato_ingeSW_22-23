@@ -1,5 +1,7 @@
 package it.unibs.core.unit;
 
+import java.util.Objects;
+
 public enum MeasureUnit {
     GRAMS("g"),
     LITERS("l"),
@@ -8,7 +10,7 @@ public enum MeasureUnit {
     private final String symbol;
 
     MeasureUnit(String symbol) {
-        this.symbol = symbol;
+        this.symbol = Objects.requireNonNull(symbol);
     }
 
     public static MeasureUnit fromString(String value) {

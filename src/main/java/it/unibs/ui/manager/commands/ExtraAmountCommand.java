@@ -1,6 +1,9 @@
 package it.unibs.ui.manager.commands;
 
 import it.unibs.core.Restaurant;
+import it.unibs.core.unit.MeasureUnit;
+import it.unibs.core.unit.MetricPrefix;
+import it.unibs.core.unit.Quantity;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
 import it.unibs.ui.Menu;
@@ -30,7 +33,9 @@ public class ExtraAmountCommand implements Command {
             final String name = InputManager.readString("Nome dell'alimento extra: ");
 
             if (restaurant.isAverageExtraConsumptionNotSet(name)) {
-                restaurant.setAverageExtraConsumption(name, InputManager.readFloat("Consumo pro-capite: "));
+                final float amount = InputManager.readFloat("Consumo pro-capite: ");
+                final Quantity quantity = new Quantity(amount, MetricPrefix.HECTO, MeasureUnit.GRAMS);
+                restaurant.setAverageExtraConsumption(name, quantity);
             } else {
                 System.out.println("Non è presente nessun alimento extra \"" + name + "\".");
             }
