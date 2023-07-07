@@ -95,6 +95,9 @@ public class Restaurant {
     }
 
     public void setAverageExtraConsumption(String name, Quantity amount) {
+        if (averageExtraConsumption.containsKey(name)) {
+            throw new IllegalStateException("Consumption for \"" + name + "\" is not yet set");
+        }
         averageExtraConsumption.put(name.toLowerCase(), amount);
     }
 
@@ -112,7 +115,18 @@ public class Restaurant {
                 .collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
-    public void setAverageDrinkConsumption(String name, Quantity amount) {
+    public void setAverageDrinkConsumption(String name, Quantity amount) throws IllegalStateException {
+        if (averageDrinkConsumption.containsKey(name)) {
+            throw new IllegalStateException("Consumption for \"" + name + "\" is not yet set");
+        }
         averageDrinkConsumption.put(name.toLowerCase(), amount);
+    }
+
+    public void addDrink(String name) {
+        averageDrinkConsumption.putIfAbsent(name.toLowerCase(), null);
+    }
+
+    public void addExtra(String name) {
+        averageExtraConsumption.putIfAbsent(name.toLowerCase(), null);
     }
 }

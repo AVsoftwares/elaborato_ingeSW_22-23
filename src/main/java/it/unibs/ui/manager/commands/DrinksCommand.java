@@ -35,7 +35,7 @@ public class DrinksCommand implements Command {
             if (averageDrinkConsumption.containsKey(name)) {
                 System.out.println("La bevanda è già presente nell'elenco.");
             } else {
-                restaurant.setAverageDrinkConsumption(name, null);
+                restaurant.addDrink(name);
             }
         });
 

@@ -70,6 +70,11 @@ public class ThematicMenuCommand implements Command {
 
                 final Dish dish = optionalDish.get();
 
+                if (dish.getRecipe() == null) {
+                    System.out.println("Il piatto non ha una ricetta associata, non è possibile inserirlo nel menu.");
+                    continue;
+                }
+
                 if (isDishCompatible(dish, menuDishes)) {
                     menuDishes.add(dish);
                     System.out.println("Piatto aggiunto al menu.");

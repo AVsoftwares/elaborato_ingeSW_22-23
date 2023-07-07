@@ -37,9 +37,11 @@ public class DishesCommand implements Command {
                         InputManager.DEFAULT_DATE_FORMATTER_PATTERN);
 
                 if (startDate.isBefore(expireDate)) {
-                    dishes.add(new Dish(name, new Period(startDate, expireDate)));
+                    if (!dishes.add(new Dish(name, new Period(startDate, expireDate)))) {
+                        System.out.println("Un piatto omonimo è già presente.");
+                    }
                 } else {
-                    System.out.println("La data di scadenza inserita è precedente alla data di inizio validità, impossibile continuare.");
+                    System.out.println("Il periodo inserito non è valido.");
                 }
             } while (InputManager.readYesOrNo("Vuoi inserire un altro piatto?  (y)es/(n)o: "));
         });

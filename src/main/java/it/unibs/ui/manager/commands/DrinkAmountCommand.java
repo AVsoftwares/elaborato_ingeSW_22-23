@@ -8,6 +8,8 @@ import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
 import it.unibs.ui.Menu;
 
+import java.util.Map;
+
 public class DrinkAmountCommand implements Command {
 
     private final Restaurant restaurant;
@@ -19,6 +21,8 @@ public class DrinkAmountCommand implements Command {
     @Override
     public void execute() {
         Menu menu = new Menu("Gestione consumo pro-capite di bevande");
+
+        final Map<String, Quantity> averageDrinkConsumption = restaurant.getImmutableAverageDrinkConsumption();
 
         menu.addEntry("Visualizza consumo pro-capite di bevande", () -> {
             final var drinkWithConsumption = restaurant.getImmutableAverageDrinkConsumptionNotNull();
@@ -38,6 +42,19 @@ public class DrinkAmountCommand implements Command {
                 restaurant.setAverageDrinkConsumption(name, quantity);
             } else {
                 System.out.println("Non è presente nessuna bevanda \"" + name + "\".");
+            }
+
+            if (averageDrinkConsumption.containsKey(name)) {
+                final float amount = InputManager.readFloat("Consumo pro-capite: ");
+                final Quantity quantity = new Quantity(amount, MetricPrefix.NONE, MeasureUnit.LITERS);
+
+                if (restaurant.isAverageDrinkConsumptionNotSet(name)) {
+                    restaurant.setAverageDrinkConsumption(name, quantity);
+                } else {
+                    System.out.println("La bevanda " + name + " ha un consumo pro-capite associato.");
+                }
+            } else {
+                System.out.println("La bevanda " + name + " non è presente nel ristorante.");
             }
         });
 

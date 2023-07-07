@@ -35,7 +35,7 @@ public class ExtraCommand implements Command {
             if (averageExtraConsumption.containsKey(name)) {
                 System.out.println("Il genere alimentare è già presente nell'elenco.");
             } else {
-                restaurant.setAverageExtraConsumption(name, null);
+                restaurant.addExtra(name);
             }
         });
 

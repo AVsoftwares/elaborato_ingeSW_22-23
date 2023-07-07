@@ -2,6 +2,7 @@ package it.unibs.core.unit;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.PatternSyntaxException;
 
 public class Quantity {
     private final MeasureUnit unit;
@@ -18,26 +19,29 @@ public class Quantity {
     }
 
     public static Optional<Quantity> fromString(String value) {
-        final String[] split = value.split(" ");
+        try {
+            final String[] split = value.split(" ");
 
-        final float amount = Float.parseFloat(split[0]);
+            final float amount = Float.parseFloat(split[0]);
 
-        if (split.length == 1) {
-            return Optional.of(new Quantity(amount, MetricPrefix.NONE, MeasureUnit.UNITS));
-        }
-
-        if (split.length == 2) {
-            if (split[1].length() == 1) {
-                final MeasureUnit unit = MeasureUnit.fromString(String.valueOf(split[1].charAt(0)));
-                return Optional.of(new Quantity(amount, MetricPrefix.NONE, unit));
-            } else if (split[1].length() == 2) {
-                final MetricPrefix prefix = MetricPrefix.fromString(String.valueOf(split[1].charAt(0)));
-                final MeasureUnit unit = MeasureUnit.fromString(String.valueOf(split[1].charAt(1)));
-                return Optional.of(new Quantity(amount, prefix, unit));
+            if (split.length == 1) {
+                return Optional.of(new Quantity(amount, MetricPrefix.NONE, MeasureUnit.UNITS));
             }
-        }
 
-        return Optional.empty();
+            if (split.length == 2) {
+                if (split[1].length() == 1) {
+                    final MeasureUnit unit = MeasureUnit.fromString(String.valueOf(split[1].charAt(0)));
+                    return Optional.of(new Quantity(amount, MetricPrefix.NONE, unit));
+                } else if (split[1].length() == 2) {
+                    final MetricPrefix prefix = MetricPrefix.fromString(String.valueOf(split[1].charAt(0)));
+                    final MeasureUnit unit = MeasureUnit.fromString(String.valueOf(split[1].charAt(1)));
+                    return Optional.of(new Quantity(amount, prefix, unit));
+                }
+            }
+            return Optional.empty();
+        } catch (PatternSyntaxException | NumberFormatException e) {
+            return Optional.empty();
+        }
     }
 
     public Quantity add(float value) {
