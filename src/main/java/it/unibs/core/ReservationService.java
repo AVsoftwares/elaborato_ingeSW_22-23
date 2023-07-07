@@ -22,7 +22,7 @@ public class ReservationService {
     }
 
     public boolean add(Reservation reservation) {
-        if (isDateReservable(reservation.getDate())) {
+        if (isDateValid(reservation.getDate())) {
             return reservations.add(reservation);
         }
         return false;
@@ -35,7 +35,7 @@ public class ReservationService {
      *
      * @return true se la data è valida, false altrimenti
      */
-    public boolean isDateReservable(LocalDate date) {
+    public boolean isDateValid(LocalDate date) {
         // TODO test
         final var today = LocalDate.now();
 

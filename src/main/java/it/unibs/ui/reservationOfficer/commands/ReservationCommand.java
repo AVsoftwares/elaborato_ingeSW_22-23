@@ -20,7 +20,7 @@ public class ReservationCommand implements Command {
     public void execute() {
         final LocalDate date = InputManager.readDate("Data della prenotazione: ", InputManager.DEFAULT_DATE_FORMATTER_PATTERN);
 
-        if (reservationService.isDateReservable(date)) {
+        if (reservationService.isDateValid(date)) {
             System.out.println("""
                     La data inserita non è valida.
                     Il ristorante lavora unicamente nei giorni feriali.
@@ -45,32 +45,26 @@ public class ReservationCommand implements Command {
         final Reservation reservation = new Reservation(date, seats);
 
         final Menu menu = new Menu();
-        menu.addEntry("Menu tematico", () -> {
-            if (availableMenus.isEmpty()) {
-                System.out.println("Non sono disponibili menu per la data selezionata.");
-                return;
-            }
+        if (!availableMenus.isEmpty()) {
+            menu.addEntry("Menu tematico", () -> {
+                for (int j = 0; j < availableMenus.size(); j++) {
+                    System.out.println("\t- " + j + " " + availableMenus.get(j));
+                }
+                final int choice = InputManager.readInt("Menu tematico: ", 0, availableMenus.size());
 
-            for (int j = 0; j < availableMenus.size(); j++) {
-                System.out.println("\t- " + j + " " + availableMenus.get(j));
-            }
-            final int choice = InputManager.readInt("Menu tematico: ", 0, availableMenus.size());
+                reservation.add(availableMenus.get(choice));
+            });
+        }
+        if (!availableDishes.isEmpty()) {
+            menu.addEntry("Piatti singoli", () -> {
+                for (int j = 0; j < availableDishes.size(); j++) {
+                    System.out.println("\t- " + j + " " + availableDishes.get(j));
+                }
+                final int choice = InputManager.readInt("Piatto: ", 0, availableDishes.size());
 
-            reservation.add(availableMenus.get(choice));
-        });
-        menu.addEntry("Piatti singoli", () -> {
-            if (availableDishes.isEmpty()) {
-                System.out.println("Non sono disponibili piatti per la data selezionata.");
-                return;
-            }
-
-            for (int j = 0; j < availableDishes.size(); j++) {
-                System.out.println("\t- " + j  + " " + availableDishes.get(j));
-            }
-            final int choice = InputManager.readInt("Piatto: ", 0, availableDishes.size());
-
-            reservation.add(availableDishes.get(choice));
-        });
+                reservation.add(availableDishes.get(choice));
+            });
+        }
 
         for (int i = 0; i < seats; i++) {
             menu.setTitle("Prenotazione per il coperto " + i);
@@ -78,9 +72,7 @@ public class ReservationCommand implements Command {
         }
 
         if (canSustainWorkload()) {
-            if (!reservationService.add(reservation)) {
-                System.out.println("La prenotazione non è valida, impossibile continuare.");
-            }
+            reservationService.add(reservation);
         } else {
             System.out.println("Il ristorante non è in grado di gestire il carico di lavoro.");
         }

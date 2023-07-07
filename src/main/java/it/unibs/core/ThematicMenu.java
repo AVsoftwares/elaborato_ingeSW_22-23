@@ -11,7 +11,6 @@ public class ThematicMenu extends Menu implements Expire {
     /**
      * @param name nome del menu tematico
      */
-
     public ThematicMenu(String name, Period period, List<Dish> dishes) {
         super(name, dishes);
         this.period = Objects.requireNonNull(period);

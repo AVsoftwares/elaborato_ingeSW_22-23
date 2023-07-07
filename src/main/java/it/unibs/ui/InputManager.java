@@ -18,8 +18,8 @@ public class InputManager {
     private static final String YES_NO_REGEX = "(\\s*)(?:y|yes|n|no)(\\s*)";
     private static final String YES_REGEX = "(\\s*)(?:y|yes)(\\s*)";
 
-    private static final String ASSERT_NULL_PROMPT = "Prompt cannot be null";
-    private static final String ASSERT_MIN_LESS_THAN_MAX = "min must be less than max";
+    private static final String PROMPT_CANNOT_BE_NULL = "Prompt cannot be null";
+    private static final String MIN_MUST_BE_LESS_THAN_MAX = "min must be less than max";
     private static final String INVALID_INPUT_OUT_OF_RANGE = "Invalid input: out of range";
     private static final String INVALID_INPUT_EXPECTED_INT = "Invalid input: expected int";
     private static final String INVALID_INPUT_EXPECTED_FLOAT = "Invalid input: expected float";
@@ -32,7 +32,7 @@ public class InputManager {
     }
 
     public static int readInt(String prompt) {
-        Objects.requireNonNull(prompt, ASSERT_NULL_PROMPT);
+        Objects.requireNonNull(prompt, PROMPT_CANNOT_BE_NULL);
 
         while (true) {
             System.out.print(prompt);
@@ -52,10 +52,10 @@ public class InputManager {
     }
 
     public static int readInt(String prompt, int min, int max) {
-        Objects.requireNonNull(prompt, ASSERT_NULL_PROMPT);
+        Objects.requireNonNull(prompt, PROMPT_CANNOT_BE_NULL);
 
         if (min > max) {
-            throw new IllegalArgumentException(ASSERT_MIN_LESS_THAN_MAX);
+            throw new IllegalArgumentException(MIN_MUST_BE_LESS_THAN_MAX);
         }
 
         while (true) {
@@ -70,7 +70,7 @@ public class InputManager {
     }
 
     public static float readFloat(String prompt) {
-        Objects.requireNonNull(prompt, ASSERT_NULL_PROMPT);
+        Objects.requireNonNull(prompt, PROMPT_CANNOT_BE_NULL);
 
         while (true) {
             System.out.print(prompt);
@@ -90,10 +90,10 @@ public class InputManager {
     }
 
     public static float readFloat(String prompt, float min, float max) {
-        Objects.requireNonNull(prompt, ASSERT_NULL_PROMPT);
+        Objects.requireNonNull(prompt, PROMPT_CANNOT_BE_NULL);
 
         if (min >= max) {
-            throw new IllegalArgumentException(ASSERT_MIN_LESS_THAN_MAX);
+            throw new IllegalArgumentException(MIN_MUST_BE_LESS_THAN_MAX);
         }
 
         while (true) {
@@ -108,7 +108,7 @@ public class InputManager {
     }
 
     public static String readString(String prompt) {
-        Objects.requireNonNull(prompt, ASSERT_NULL_PROMPT);
+        Objects.requireNonNull(prompt, PROMPT_CANNOT_BE_NULL);
 
         while (true) {
             System.out.print(prompt);
@@ -126,8 +126,8 @@ public class InputManager {
     }
 
     public static String readString(String prompt, String regex) {
-        Objects.requireNonNull(prompt, ASSERT_NULL_PROMPT);
-        Objects.requireNonNull(regex, ASSERT_NULL_PROMPT);
+        Objects.requireNonNull(prompt, PROMPT_CANNOT_BE_NULL);
+        Objects.requireNonNull(regex, PROMPT_CANNOT_BE_NULL);
 
         Pattern pattern = Pattern.compile(regex);
 
@@ -143,8 +143,8 @@ public class InputManager {
     }
 
     public static LocalDate readDate(String prompt, String pattern) {
-        Objects.requireNonNull(prompt, ASSERT_NULL_PROMPT);
-        Objects.requireNonNull(pattern, ASSERT_NULL_PROMPT);
+        Objects.requireNonNull(prompt, PROMPT_CANNOT_BE_NULL);
+        Objects.requireNonNull(pattern, PROMPT_CANNOT_BE_NULL);
 
         while (true) {
             System.out.print(prompt + "(" + pattern + ") ");
@@ -162,7 +162,7 @@ public class InputManager {
     }
 
     public static boolean readYesOrNo(String prompt) {
-        Objects.requireNonNull(prompt, ASSERT_NULL_PROMPT);
+        Objects.requireNonNull(prompt, PROMPT_CANNOT_BE_NULL);
 
         while (true) {
             System.out.print(prompt + "(y)es/(n)o ");
