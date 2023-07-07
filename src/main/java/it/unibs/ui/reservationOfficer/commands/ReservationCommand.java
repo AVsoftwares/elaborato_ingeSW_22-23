@@ -45,36 +45,35 @@ public class ReservationCommand implements Command {
         final Reservation reservation = new Reservation(date, seats);
 
         final Menu menu = new Menu();
+        menu.addEntry("Menu tematico", () -> {
+            if (availableMenus.isEmpty()) {
+                System.out.println("Non sono disponibili menu per la data selezionata.");
+                return;
+            }
+
+            for (int j = 0; j < availableMenus.size(); j++) {
+                System.out.println("\t- " + j + " " + availableMenus.get(j));
+            }
+            final int choice = InputManager.readInt("Menu tematico: ", 0, availableMenus.size());
+
+            reservation.add(availableMenus.get(choice));
+        });
+        menu.addEntry("Piatti singoli", () -> {
+            if (availableDishes.isEmpty()) {
+                System.out.println("Non sono disponibili piatti per la data selezionata.");
+                return;
+            }
+
+            for (int j = 0; j < availableDishes.size(); j++) {
+                System.out.println("\t- " + j  + " " + availableDishes.get(j));
+            }
+            final int choice = InputManager.readInt("Piatto: ", 0, availableDishes.size());
+
+            reservation.add(availableDishes.get(choice));
+        });
+
         for (int i = 0; i < seats; i++) {
             menu.setTitle("Prenotazione per il coperto " + i);
-
-            menu.addEntry("Menu tematico", () -> {
-                if (availableMenus.isEmpty()) {
-                    System.out.println("Non sono disponibili menu per la data selezionata.");
-                    return;
-                }
-
-                for (int j = 0; j < availableMenus.size(); j++) {
-                    System.out.println("\t- " + j + availableMenus.get(j));
-                }
-                final int choice = InputManager.readInt("Menu tematico: ", 0, availableMenus.size());
-
-                reservation.add(availableMenus.get(choice));
-            });
-            menu.addEntry("Piatti singoli", () -> {
-                if (availableDishes.isEmpty()) {
-                    System.out.println("Non sono disponibili piatti per la data selezionata.");
-                    return;
-                }
-
-                for (int j = 0; j < availableDishes.size(); j++) {
-                    System.out.println("- " + j + availableDishes.get(j));
-                }
-                final int choice = InputManager.readInt("Piatto: ", 0, availableDishes.size());
-
-                reservation.add(availableDishes.get(choice));
-            });
-
             menu.run();
         }
 

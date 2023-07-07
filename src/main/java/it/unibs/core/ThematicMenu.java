@@ -41,6 +41,6 @@ public class ThematicMenu extends Menu implements Expire {
 
     @Override
     public String toString() {
-        return super.toString() + period;
+        return super.toString() + " " + period;
     }
 }

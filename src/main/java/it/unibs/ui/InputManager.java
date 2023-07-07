@@ -3,6 +3,7 @@ package it.unibs.ui;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -31,7 +32,7 @@ public class InputManager {
     }
 
     public static int readInt(String prompt) {
-        assert (prompt != null) : ASSERT_NULL_PROMPT;
+        Objects.requireNonNull(prompt, ASSERT_NULL_PROMPT);
 
         while (true) {
             System.out.print(prompt);
@@ -51,8 +52,11 @@ public class InputManager {
     }
 
     public static int readInt(String prompt, int min, int max) {
-        assert (prompt != null) : ASSERT_NULL_PROMPT;
-        assert (min < max) : ASSERT_MIN_LESS_THAN_MAX;
+        Objects.requireNonNull(prompt, ASSERT_NULL_PROMPT);
+
+        if (min > max) {
+            throw new IllegalArgumentException(ASSERT_MIN_LESS_THAN_MAX);
+        }
 
         while (true) {
             var input = readInt(prompt);
@@ -66,7 +70,7 @@ public class InputManager {
     }
 
     public static float readFloat(String prompt) {
-        assert (prompt != null) : ASSERT_NULL_PROMPT;
+        Objects.requireNonNull(prompt, ASSERT_NULL_PROMPT);
 
         while (true) {
             System.out.print(prompt);
@@ -86,8 +90,11 @@ public class InputManager {
     }
 
     public static float readFloat(String prompt, float min, float max) {
-        assert (prompt != null) : ASSERT_NULL_PROMPT;
-        assert (min >= max) : ASSERT_MIN_LESS_THAN_MAX;
+        Objects.requireNonNull(prompt, ASSERT_NULL_PROMPT);
+
+        if (min >= max) {
+            throw new IllegalArgumentException(ASSERT_MIN_LESS_THAN_MAX);
+        }
 
         while (true) {
             var input = readFloat(prompt);
@@ -101,7 +108,7 @@ public class InputManager {
     }
 
     public static String readString(String prompt) {
-        assert (prompt != null) : ASSERT_NULL_PROMPT;
+        Objects.requireNonNull(prompt, ASSERT_NULL_PROMPT);
 
         while (true) {
             System.out.print(prompt);
@@ -119,8 +126,8 @@ public class InputManager {
     }
 
     public static String readString(String prompt, String regex) {
-        assert (prompt != null) : ASSERT_NULL_PROMPT;
-        assert (regex != null) : ASSERT_NULL_PROMPT;
+        Objects.requireNonNull(prompt, ASSERT_NULL_PROMPT);
+        Objects.requireNonNull(regex, ASSERT_NULL_PROMPT);
 
         Pattern pattern = Pattern.compile(regex);
 
@@ -136,7 +143,8 @@ public class InputManager {
     }
 
     public static LocalDate readDate(String prompt, String pattern) {
-        assert (prompt != null) : ASSERT_NULL_PROMPT;
+        Objects.requireNonNull(prompt, ASSERT_NULL_PROMPT);
+        Objects.requireNonNull(pattern, ASSERT_NULL_PROMPT);
 
         while (true) {
             System.out.print(prompt + "(" + pattern + ") ");
@@ -154,7 +162,7 @@ public class InputManager {
     }
 
     public static boolean readYesOrNo(String prompt) {
-        assert (prompt != null) : ASSERT_NULL_PROMPT;
+        Objects.requireNonNull(prompt, ASSERT_NULL_PROMPT);
 
         while (true) {
             System.out.print(prompt + "(y)es/(n)o ");
