@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ShoppingList {
     private final Map<String, Quantity> products = new HashMap<>();
@@ -65,6 +66,8 @@ public class ShoppingList {
                 products.put(name, products.get(name).subtract(product.getQuantity()));
             }
         }
+
+        products.entrySet().removeIf(e -> e.getValue().getAmount() <= 0);
     }
 
     public Map<String, Quantity> getProducts() {
