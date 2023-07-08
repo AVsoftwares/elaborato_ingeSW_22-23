@@ -3,10 +3,10 @@ package it.unibs.ui.reservationOfficer.commands;
 import it.unibs.core.*;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
-import it.unibs.ui.Menu;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class ReservationCommand implements Command {
     private final Restaurant restaurant;
@@ -20,7 +20,7 @@ public class ReservationCommand implements Command {
     public void execute() {
         final LocalDate date = InputManager.readDate("Data della prenotazione: ", InputManager.DEFAULT_DATE_FORMATTER_PATTERN);
 
-        if (reservationService.isDateValid(date)) {
+        if (!reservationService.isDateValid(date)) {
             System.out.println("""
                     La data inserita non è valida.
                     Il ristorante lavora unicamente nei giorni feriali.
@@ -31,11 +31,6 @@ public class ReservationCommand implements Command {
         final List<ThematicMenu> availableMenus = restaurant.getAvailableMenus(date);
         final List<Dish> availableDishes = restaurant.getAvailableDishes(date);
 
-        if (availableDishes.isEmpty() && availableMenus.isEmpty()) {
-            System.out.println("Non sono disponibili né piatti né menu per il giorno selezionato, impossibile continuare.");
-            return;
-        }
-
         final int seats = InputManager.readInt("Numero di coperti da prenotare: ", 1, Integer.MAX_VALUE);
         if (getAvailableSeatsAtDate(date) - seats < 0) {
             System.out.println("Non ci sono sufficienti posti disponibili per la data selezionata.");
@@ -44,31 +39,18 @@ public class ReservationCommand implements Command {
 
         final Reservation reservation = new Reservation(date, seats);
 
-        final Menu menu = new Menu();
-        if (!availableMenus.isEmpty()) {
-            menu.addEntry("Menu tematico", () -> {
-                for (int j = 0; j < availableMenus.size(); j++) {
-                    System.out.println("\t- " + j + " " + availableMenus.get(j));
-                }
-                final int choice = InputManager.readInt("Menu tematico: ", 0, availableMenus.size());
+        final List<? extends Orderable> orderables = Stream.concat(availableMenus.stream(), availableDishes.stream()).toList();
 
-                reservation.add(availableMenus.get(choice));
-            });
-        }
-        if (!availableDishes.isEmpty()) {
-            menu.addEntry("Piatti singoli", () -> {
-                for (int j = 0; j < availableDishes.size(); j++) {
-                    System.out.println("\t- " + j + " " + availableDishes.get(j));
-                }
-                final int choice = InputManager.readInt("Piatto: ", 0, availableDishes.size());
+        if (!orderables.isEmpty()) {
+            for (int i = 0; i < orderables.size(); i++) {
+                System.out.println("\t- " + i + " " + orderables.get(i));
+            }
+            final int choice = InputManager.readInt("Ordine: ", 0, orderables.size());
 
-                reservation.add(availableDishes.get(choice));
-            });
-        }
-
-        for (int i = 0; i < seats; i++) {
-            menu.setTitle("Prenotazione per il coperto " + i);
-            menu.run();
+            reservation.add(orderables.get(choice));
+        } else {
+            System.out.println("Non sono disponibili né piatti né menu per il giorno selezionato, impossibile continuare.");
+            return;
         }
 
         if (canSustainWorkload()) {

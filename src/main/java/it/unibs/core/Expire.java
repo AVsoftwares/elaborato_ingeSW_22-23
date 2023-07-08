@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public interface Expire {
 
-    boolean isExpired();
+    boolean isValid();
 
-    boolean isExpiredAtDate(LocalDate date);
+    boolean isValidAtDate(LocalDate date);
 }

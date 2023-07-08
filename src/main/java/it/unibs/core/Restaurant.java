@@ -36,11 +36,11 @@ public class Restaurant {
     }
 
     public List<ThematicMenu> getAvailableMenus(LocalDate date) {
-        return thematicMenus.stream().filter(m -> !m.isExpiredAtDate(date)).toList();
+        return thematicMenus.stream().filter(m -> m.isValidAtDate(date)).toList();
     }
 
     public List<Dish> getAvailableDishes(LocalDate date) {
-        return dishes.stream().filter(d -> !d.isExpiredAtDate(date)).toList();
+        return dishes.stream().filter(d -> d.isValidAtDate(date)).toList();
     }
 
     public Optional<Dish> getDish(String name) {

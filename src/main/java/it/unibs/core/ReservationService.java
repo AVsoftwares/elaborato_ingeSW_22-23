@@ -2,9 +2,10 @@ package it.unibs.core;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class ReservationService {
     private final List<Reservation> reservations = new ArrayList<>();
@@ -36,15 +37,10 @@ public class ReservationService {
      * @return true se la data è valida, false altrimenti
      */
     public boolean isDateValid(LocalDate date) {
-        // TODO test
         final var today = LocalDate.now();
 
-        if (date.isBefore(today)) {
-            return false;
-        }
-
         DayOfWeek dayOfWeek = date.getDayOfWeek();
-        return (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY && ChronoUnit.DAYS.between(today, date) >= 1);
+        return (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY && DAYS.between(date, today) >= 1);
     }
 
     private void removeExpiredReservations() {

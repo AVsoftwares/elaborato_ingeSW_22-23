@@ -1,9 +1,13 @@
 package it.unibs.core;
 
+import it.unibs.core.unit.Quantity;
+
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
-public class Dish implements Expire {
+public class Dish implements Orderable, Expire {
     /**
      * Nome univoco che identifica il piatto
      */
@@ -36,17 +40,22 @@ public class Dish implements Expire {
         this.recipe = recipe;
     }
 
+    @Override
+    public Map<? extends Product, Quantity> getProductsQuantity() {
+        return recipe.getIngredients();
+    }
+
     /**
      * @return true se piatto disponibile al momento della verifica
      */
     @Override
-    public boolean isExpired() {
-        return isExpiredAtDate(LocalDate.now());
+    public boolean isValid() {
+        return isValidAtDate(LocalDate.now());
     }
 
     @Override
-    public boolean isExpiredAtDate(LocalDate date) {
-        return period.isBefore(date);
+    public boolean isValidAtDate(LocalDate date) {
+        return period.includes(date);
     }
 
     @Override

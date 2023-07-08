@@ -32,7 +32,7 @@ public class StoreRegister {
     }
 
     public void removeExpiredProducts() {
-        products.removeIf(Product::isExpired);
+        products.removeIf(product -> !product.isValid());
     }
 
     public List<Product> getProducts() {

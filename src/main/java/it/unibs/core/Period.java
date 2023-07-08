@@ -18,11 +18,15 @@ public class Period {
     }
 
     public boolean isBefore(LocalDate date) {
-        return date.isBefore(startDate) && date.isBefore(endDate);
+        return startDate.isBefore(date) && endDate.isBefore(date);
     }
 
     public boolean isAfter(LocalDate date) {
-        return date.isAfter(startDate) && date.isAfter(endDate);
+        return startDate.isAfter(date) && endDate.isAfter(date);
+    }
+
+    public boolean includes(LocalDate date) {
+        return startDate.isBefore(date) && endDate.isAfter(date);
     }
 
     public LocalDate getStartDate() {

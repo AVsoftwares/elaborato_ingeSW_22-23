@@ -24,14 +24,13 @@ public class ShoppingList {
         final Map<String, Quantity> averageExtraConsumption = restaurant.getImmutableAverageExtraConsumptionNotNull();
 
         for (Reservation reservation : reservationService.getReservations(LocalDate.now())) {
-            final Map<Dish, Integer> dishBookings = reservation.getDishes();
-            final Map<ThematicMenu, Integer> thematicMenuBookings = reservation.getThematicMenus();
+            final Map<Orderable, Integer> orders = reservation.getOrders();
 
-            dishBookings.forEach((dish, count) -> {
-                final Map<Ingredient, Quantity> ingredients = dish.getRecipe().getIngredients();
+            orders.forEach((orderable, count) -> {
+                final Map<? extends Product, Quantity> productsQuantity = orderable.getProductsQuantity();
 
-                ingredients.forEach((ingredient, quantity) -> {
-                    final String name = ingredient.getName();
+                productsQuantity.forEach((product, quantity) -> {
+                    final String name = product.getName();
                     final Quantity totalQuantity = new Quantity(quantity.getAmount() * count, quantity.getPrefix(), quantity.getUnit());
 
                     if (products.containsKey(name)) {
@@ -40,23 +39,6 @@ public class ShoppingList {
                         products.put(name, totalQuantity);
                     }
                 });
-            });
-
-            thematicMenuBookings.forEach((menu, count) -> {
-                for (Dish dish : menu.getDishes()) {
-                    final Map<Ingredient, Quantity> ingredients = dish.getRecipe().getIngredients();
-
-                    ingredients.forEach((ingredient, quantity) -> {
-                        final String name = ingredient.getName();
-                        final Quantity totalQuantity = new Quantity(quantity.getAmount() * count, quantity.getPrefix(), quantity.getUnit());
-
-                        if (products.containsKey(name)) {
-                            products.put(name, totalQuantity.add(products.get(name)));
-                        } else {
-                            products.put(name, totalQuantity);
-                        }
-                    });
-                }
             });
 
             averageDrinkConsumption.forEach((drink, quantity) -> {

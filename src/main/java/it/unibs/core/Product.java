@@ -47,12 +47,12 @@ public class Product implements Expire {
     }
 
     @Override
-    public boolean isExpired() {
-        return isExpiredAtDate(LocalDate.now());
+    public boolean isValid() {
+        return isValidAtDate(LocalDate.now());
     }
 
     @Override
-    public boolean isExpiredAtDate(LocalDate date) {
+    public boolean isValidAtDate(LocalDate date) {
         return date.isAfter(expiration);
     }
 

@@ -5,8 +5,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class Reservation {
-    private final HashMap<ThematicMenu, Integer> thematicMenus = new HashMap<>();
-    private final HashMap<Dish, Integer> dishes = new HashMap<>();
+    private final HashMap<Orderable, Integer> orders = new HashMap<>();
     private final LocalDate date;
     private final int seats;
 
@@ -18,19 +17,11 @@ public class Reservation {
         this.seats = seats;
     }
 
-    public void add(ThematicMenu menu) {
-        if (thematicMenus.containsKey(menu)) {
-            thematicMenus.put(menu, thematicMenus.get(menu) + 1);
+    public void add(Orderable orderable) {
+        if (orders.containsKey(orderable)) {
+            orders.put(orderable, orders.get(orderable) + 1);
         } else {
-            thematicMenus.put(menu, 1);
-        }
-    }
-
-    public void add(Dish dish) {
-        if (dishes.containsKey(dish)) {
-            dishes.put(dish, dishes.get(dish) + 1);
-        } else {
-            dishes.put(dish, 1);
+            orders.put(orderable, 1);
         }
     }
 
@@ -48,12 +39,8 @@ public class Reservation {
         return date;
     }
 
-    public HashMap<ThematicMenu, Integer> getThematicMenus() {
-        return thematicMenus;
-    }
-
-    public HashMap<Dish, Integer> getDishes() {
-        return dishes;
+    public HashMap<Orderable, Integer> getOrders() {
+        return orders;
     }
 
     public int getSeats() {
@@ -63,12 +50,8 @@ public class Reservation {
     public float getWorkload() {
         float workload = 0f;
 
-        for (var entry : dishes.entrySet()) {
+        for (var entry : orders.entrySet()) {
             workload += entry.getKey().getWorkload() * entry.getValue();
-        }
-
-        for (var entry : thematicMenus.entrySet()) {
-            workload += entry.getKey().getTotalWorkload() * entry.getValue();
         }
 
         return workload;
