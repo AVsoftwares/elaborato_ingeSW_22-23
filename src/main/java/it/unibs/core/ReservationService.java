@@ -40,7 +40,7 @@ public class ReservationService {
         final var today = LocalDate.now();
 
         DayOfWeek dayOfWeek = date.getDayOfWeek();
-        return (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY && DAYS.between(date, today) >= 1);
+        return (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY && DAYS.between(today, date) >= 1);
     }
 
     private void removeExpiredReservations() {
