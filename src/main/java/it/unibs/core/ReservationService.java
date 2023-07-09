@@ -11,8 +11,7 @@ public class ReservationService {
     private final List<Reservation> reservations = new ArrayList<>();
 
     public List<Reservation> getReservations() {
-        removeExpiredReservations();
-        return reservations;
+        return getReservations(LocalDate.now());
     }
 
     public List<Reservation> getReservations(LocalDate date) {

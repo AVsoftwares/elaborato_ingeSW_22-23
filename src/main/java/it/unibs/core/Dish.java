@@ -3,7 +3,6 @@ package it.unibs.core;
 import it.unibs.core.unit.Quantity;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
