@@ -36,19 +36,10 @@ public class DrinkAmountCommand implements Command {
         menu.addEntry("Inizializza il consumo pro-capite di bevanda", () -> {
             var name = InputManager.readString("Nome: ").toLowerCase();
 
-            if (restaurant.isAverageDrinkConsumptionNotSet(name)) {
-                final float amount = InputManager.readFloat("Consumo pro-capite: ");
-                final Quantity quantity = new Quantity(amount, MetricPrefix.NONE, MeasureUnit.LITERS);
-                restaurant.setAverageDrinkConsumption(name, quantity);
-            } else {
-                System.out.println("Non è presente nessuna bevanda \"" + name + "\".");
-            }
-
             if (averageDrinkConsumption.containsKey(name)) {
-                final float amount = InputManager.readFloat("Consumo pro-capite: ");
-                final Quantity quantity = new Quantity(amount, MetricPrefix.NONE, MeasureUnit.LITERS);
-
                 if (restaurant.isAverageDrinkConsumptionNotSet(name)) {
+                    final float amount = InputManager.readFloat("Consumo pro-capite: ");
+                    final Quantity quantity = new Quantity(amount, MetricPrefix.NONE, MeasureUnit.LITERS);
                     restaurant.setAverageDrinkConsumption(name, quantity);
                 } else {
                     System.out.println("La bevanda " + name + " ha un consumo pro-capite associato.");
