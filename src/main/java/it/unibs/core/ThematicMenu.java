@@ -22,7 +22,7 @@ public class ThematicMenu extends Menu implements Orderable, Expire {
 
     @Override
     public Map<? extends Product, Quantity> getProductsQuantity() {
-        return getDishes().stream()
+        return getImmutableDishes().stream()
                 .flatMap(dish -> dish.getProductsQuantity().entrySet().stream())
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
@@ -32,7 +32,7 @@ public class ThematicMenu extends Menu implements Orderable, Expire {
      */
     @Override
     public float getWorkload() {
-        return (float) super.getDishes().stream().mapToDouble(Dish::getWorkload).sum();
+        return (float) super.getImmutableDishes().stream().mapToDouble(Dish::getWorkload).sum();
     }
 
     @Override

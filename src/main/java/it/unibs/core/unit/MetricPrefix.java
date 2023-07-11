@@ -2,6 +2,9 @@ package it.unibs.core.unit;
 
 import java.util.Objects;
 
+/**
+ * Enum per la rappresentazione dei prefissi metrici, da milli- a kilo-
+ */
 public enum MetricPrefix {
     MILLI("m", -3),
     CENTI("c", -2),

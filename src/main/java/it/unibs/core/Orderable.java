@@ -4,6 +4,9 @@ import it.unibs.core.unit.Quantity;
 
 import java.util.Map;
 
+/**
+ * Interfaccia che fornisce metodi per oggetti ordinabili nel ristorante
+ */
 public interface Orderable {
     float getWorkload();
 

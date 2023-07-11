@@ -6,10 +6,28 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Lista della spesa che il gestore del magazzino può consultare per gli acquisti
+ */
 public class ShoppingList {
+    /**
+     * Map di coppie prodotto-quantità che bisogna acquistare per soddisfare la domanda
+     */
     private final Map<String, Quantity> products = new HashMap<>();
+    /**
+     * Referenza al ristorante
+     * @see Restaurant
+     */
     private final Restaurant restaurant;
+    /**
+     * Referenza allo store register
+     * @see StoreRegister
+     */
     private final StoreRegister storeRegister;
+    /**
+     * Referenza al reservation service
+     * @see ReservationService
+     */
     private final ReservationService reservationService;
 
     public ShoppingList(Restaurant restaurant, StoreRegister storeRegister, ReservationService reservationService) {
@@ -18,15 +36,27 @@ public class ShoppingList {
         this.reservationService = Objects.requireNonNull(reservationService);
     }
 
+    /**
+     * @return la Map prodotto-quantità da acquistare per soddisfare la domanda
+     */
     public Map<String, Quantity> getProducts() {
         computeShoppingList();
         return products;
     }
 
+    /**
+     * @param productName nome del prodotto
+     * @return true se la lista della spesa contiene il prodotto specificato
+     */
     public boolean contains(String productName) {
         return getProducts().containsKey(productName);
     }
 
+    /**
+     * Computa la lista {@link #products} della spesa tenendo conto per ciascuna prenotazione dei piatti e dei menu prenotati,
+     * delle bevande, dei generi alimentari extra e del relativo consumo pro-capite
+     * Rimuove infine i prodotti che hanno in magazzino quantità sufficiente
+     */
     private void computeShoppingList() {
         for (Reservation reservation : reservationService.getReservations()) {
             computeOrders(reservation);
@@ -36,6 +66,9 @@ public class ShoppingList {
         removeProductsWithEnoughSupply();
     }
 
+    /**
+     * Rimuove dalla lista {@link #products} i prodotti che hanno in magazzino quantità sufficiente a soddisfare la domanda
+     */
     private void removeProductsWithEnoughSupply() {
         for (Product storedProduct : storeRegister.getProducts()) {
             final String name = storedProduct.getName();
@@ -48,6 +81,10 @@ public class ShoppingList {
         products.entrySet().removeIf(e -> e.getValue().getAmount() <= 0);
     }
 
+    /**
+     * Computa quali prodotti sono necessari per la prenotazione specificata
+     * @param reservation la prenotazione per la quale bisogna calcolare gli ordini
+     */
     private void computeOrders(Reservation reservation) {
         final Map<Orderable, Integer> orders = reservation.getOrders();
 
@@ -68,6 +105,10 @@ public class ShoppingList {
         });
     }
 
+    /**
+     * Computa quali e quanti drink sono necessari per il numero di persone specificate
+     * @param numberOfPeople numero di persone della prenotazione
+     */
     private void computeDrinks(int numberOfPeople) {
         final Map<String, Quantity> averageDrinkConsumption = restaurant.getImmutableAverageDrinkConsumptionNotNull();
 
@@ -82,6 +123,10 @@ public class ShoppingList {
         });
     }
 
+    /**
+     * Computa quali e quanti alimenti extra sono necessari per il numero di persone specificate
+     * @param numberOfPeople numero di persone della prenotazione
+     */
     private void computeExtraGroceries(int numberOfPeople) {
         final Map<String, Quantity> averageExtraConsumption = restaurant.getImmutableAverageExtraConsumptionNotNull();
 
