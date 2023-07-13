@@ -262,3 +262,7 @@ nbdist/
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij+iml,java,eclipse,netbeans,visualstudiocode,macos,maven
+
+# Escludi documentazione
+*.pdf
+*.odt
