@@ -1,5 +1,6 @@
 package it.unibs.core;
 
+import java.time.Clock;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,6 +16,15 @@ public class ReservationService {
      * Lista di prenotazioni effettuate
      */
     private final List<Reservation> reservations = new ArrayList<>();
+    private final Clock clock;
+
+    public ReservationService() {
+        this(Clock.systemDefaultZone());
+    }
+
+    public ReservationService(Clock clock) {
+        this.clock = clock;
+    }
 
     /**
      * getter delle prenotazioni odierne
@@ -22,7 +32,7 @@ public class ReservationService {
      * @see #getReservations(LocalDate)
      */
     public List<Reservation> getReservations() {
-        return getReservations(LocalDate.now());
+        return getReservations(LocalDate.now(clock));
     }
 
     /**
@@ -57,7 +67,7 @@ public class ReservationService {
      * @return true se la data è valida, false altrimenti
      */
     public boolean isDateValid(LocalDate date) {
-        final var today = LocalDate.now();
+        final var today = LocalDate.now(clock);
 
         DayOfWeek dayOfWeek = date.getDayOfWeek();
         return (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY && DAYS.between(today, date) >= 1);
