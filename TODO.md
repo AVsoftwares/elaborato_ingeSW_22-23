@@ -7,3 +7,4 @@ quando qualcosa varia, implementare Observer
 - [ ] La classe Restaurant va semplificata, magari Facade o simili
 - [ ] Praticamente tutte le stringhe possono essere rimosse e messe in file dove vengono
 caricate on demand
+- [ ] Validazione prenotazioni da muovere in Reservation (SRP, information expert)
