@@ -1,5 +1,6 @@
 package it.unibs.core;
 
+import java.time.Clock;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Objects;
@@ -50,11 +51,12 @@ public class Reservation {
 
     /**
      * Controlla se la prenotazione è scaduta.
-     * Una prenotazione è scaduta se antecedente alla data odierna.
+     * Una prenotazione è scaduta se antecedente alla data passata come parametro.
+     * @param target la data rispetto alla quale si controlla se la prenotazione è scaduta
      * @return true se la prenotazione è scaduta, false altrimenti
      */
-    public boolean isExpired() {
-        return date.isBefore(LocalDate.now());
+    public boolean isExpired(LocalDate target) {
+        return date.isBefore(target);
     }
 
     public LocalDate getDate() {

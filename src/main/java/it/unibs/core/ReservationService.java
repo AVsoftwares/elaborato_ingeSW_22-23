@@ -15,14 +15,15 @@ public class ReservationService {
     /**
      * Lista di prenotazioni effettuate
      */
-    private final List<Reservation> reservations = new ArrayList<>();
+    private final List<Reservation> reservations;
     private final Clock clock;
 
     public ReservationService() {
-        this(Clock.systemDefaultZone());
+        this(new ArrayList<>(), Clock.systemDefaultZone());
     }
 
-    public ReservationService(Clock clock) {
+    public ReservationService(List<Reservation> reservations, Clock clock) {
+        this.reservations = reservations;
         this.clock = clock;
     }
 
@@ -77,7 +78,7 @@ public class ReservationService {
      * Rimuove le prenotazioni scadute
      */
     private void removeExpiredReservations() {
-        reservations.removeIf(Reservation::isExpired);
+        reservations.removeIf(reservation -> reservation.isExpired(LocalDate.now()));
     }
 
     /**
