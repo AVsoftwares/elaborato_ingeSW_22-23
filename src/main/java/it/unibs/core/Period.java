@@ -15,11 +15,11 @@ public class Period {
      */
     private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yy");
     /**
-     * Data di inizio periodo
+     * Data di inizio periodo, inclusivo
      */
     private final LocalDate startDate;
     /**
-     * Data di fine periodo
+     * Data di fine periodo, inclusivo
      */
     private final LocalDate endDate;
 
@@ -58,11 +58,11 @@ public class Period {
     /**
      * Controlla se la data passata come parametro è inclusa nel periodo istanza chiamante
      * @param date la data rispetto alla quale viene effettuato il controllo
-     * @return true se {@link #startDate startDate} è precedente alla data in input e {@link #endDate endDate} è successiva
+     * @return true se {@link #startDate} è precedente alla data in input e {@link #endDate} è successiva
      * alla data in input
      */
     public boolean includes(LocalDate date) {
-        return startDate.isBefore(date) && endDate.isAfter(date);
+        return (startDate.isBefore(date) || startDate.isEqual(date)) && (endDate.isAfter(date) || endDate.isEqual(date));
     }
 
     public LocalDate getStartDate() {

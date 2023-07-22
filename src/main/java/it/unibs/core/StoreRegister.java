@@ -1,6 +1,6 @@
 package it.unibs.core;
 
-import java.util.ArrayList;
+import java.time.Clock;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,10 +12,17 @@ public class StoreRegister {
     /**
      * Lista di prodotti presenti in magazzino
      */
-    private final List<Product> products = new ArrayList<>();
+    private final List<Product> products;
+    private final Clock clock;
+
+    public StoreRegister(List<Product> products, Clock clock) {
+        this.products = products;
+        this.clock = clock;
+    }
 
     /**
      * Verifica se un prodotto è presente in magazzino
+     *
      * @param name nome del prodotto
      * @return true se in magazzino è presente un prodotto con tale nome ed in quantità sufficiente, false altrimenti
      */
@@ -25,6 +32,7 @@ public class StoreRegister {
 
     /**
      * Ritorna una lista di prodotti con nome uguale al nome in input
+     *
      * @param name nome dei prodotti da cercare
      * @return lista di prodotti con nome corrispondente all'input
      */
@@ -36,6 +44,7 @@ public class StoreRegister {
 
     /**
      * Aggiunge un prodotto al magazzino, se già presente aggiorna la quantità
+     *
      * @param product prodotto da aggiungere
      */
     public void add(Product product) {
@@ -49,6 +58,7 @@ public class StoreRegister {
 
     /**
      * Rimuove un prodotto dal magazzino
+     *
      * @param product prodotto da rimuovere
      */
     public void remove(Product product) {
@@ -59,7 +69,7 @@ public class StoreRegister {
      * Rimuove i prodotti scaduti dal magazzino
      */
     public void removeExpiredProducts() {
-        products.removeIf(product -> !product.isValid());
+        products.removeIf(product -> !product.isValid(clock));
     }
 
     public List<Product> getProducts() {

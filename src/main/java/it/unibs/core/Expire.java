@@ -1,5 +1,6 @@
 package it.unibs.core;
 
+import java.time.Clock;
 import java.time.LocalDate;
 
 /**
@@ -8,7 +9,7 @@ import java.time.LocalDate;
  */
 public interface Expire {
 
-    boolean isValid();
+    boolean isValid(Clock clock);
 
     boolean isValidAtDate(LocalDate date);
 }

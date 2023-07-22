@@ -2,6 +2,7 @@ package it.unibs.core;
 
 import it.unibs.core.unit.Quantity;
 
+import java.time.Clock;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +37,7 @@ public class ThematicMenu extends Menu implements Orderable, Expire {
     }
 
     @Override
-    public boolean isValid() {
+    public boolean isValid(Clock clock) {
         return isValidAtDate(LocalDate.now());
     }
 

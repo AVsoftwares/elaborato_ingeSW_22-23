@@ -2,6 +2,7 @@ package it.unibs.core;
 
 import it.unibs.core.unit.Quantity;
 
+import java.time.Clock;
 import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
@@ -78,14 +79,14 @@ public class Product implements Expire {
      * @see #isValidAtDate(LocalDate)
      */
     @Override
-    public boolean isValid() {
-        return isValidAtDate(LocalDate.now());
+    public boolean isValid(Clock clock) {
+        return isValidAtDate(LocalDate.now(clock));
     }
 
     /**
      * Metodo per controllare la validità di un Product, un product è valido se non è scaduto rispetto ad una data
      * @param date la data rispetto alla quale controllare la validità
-     * @return true se la data passata come parametro è precedente alla data di scadenza
+     * @return true se la data passata come parametro è precedente o uguale alla data di scadenza
      */
     @Override
     public boolean isValidAtDate(LocalDate date) {

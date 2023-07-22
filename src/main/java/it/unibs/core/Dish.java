@@ -2,6 +2,7 @@ package it.unibs.core;
 
 import it.unibs.core.unit.Quantity;
 
+import java.time.Clock;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.Objects;
@@ -63,8 +64,8 @@ public class Dish implements Orderable, Expire {
      * @see #isValidAtDate(LocalDate)
      */
     @Override
-    public boolean isValid() {
-        return isValidAtDate(LocalDate.now());
+    public boolean isValid(Clock clock) {
+        return isValidAtDate(LocalDate.now(clock));
     }
 
     /**
