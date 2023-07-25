@@ -1,6 +1,5 @@
 package it.unibs.core;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.Clock;
@@ -40,7 +39,7 @@ class ReservationServiceTest {
     }
 
     @Test
-    void getReservationsAllExpired() {
+    void shouldBeAllReservationsExpired() {
         ArrayList<Reservation> reservations = new ArrayList<>();
 
         reservations.add(new Reservation(LocalDate.of(2023, 7, 15), 100));
@@ -54,7 +53,7 @@ class ReservationServiceTest {
     }
 
     @Test
-    void getReservationsSomeExpired() {
+    void shouldBeSomeReservationsExpired() {
         ArrayList<Reservation> reservations = new ArrayList<>();
 
         reservations.add(new Reservation(LocalDate.of(2023, 7, 15), 100));

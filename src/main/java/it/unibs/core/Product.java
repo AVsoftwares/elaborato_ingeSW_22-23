@@ -50,7 +50,7 @@ public class Product implements Expire {
      * @return true se la quantità è maggiore di 0, false altrimenti
      */
     public boolean isAvailable() {
-        return quantity.getAmount() > 0;
+        return quantity != null && quantity.getAmount() > 0;
     }
 
     /**
@@ -90,7 +90,7 @@ public class Product implements Expire {
      */
     @Override
     public boolean isValidAtDate(LocalDate date) {
-        return date.isBefore(expiration);
+        return date.isBefore(expiration) || date.isEqual(expiration);
     }
 
     @Override

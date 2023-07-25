@@ -90,10 +90,6 @@ class StoreRegisterTest {
                 "Pomodori",
                 LocalDate.of(2023, 5, 31),
                 new Quantity(5, MetricPrefix.KILO, MeasureUnit.GRAMS)));
-        products.add(new Product(
-                "Patate",
-                LocalDate.of(2023, 7, 19),
-                new Quantity(30, MetricPrefix.KILO, MeasureUnit.GRAMS)));
 
         StoreRegister storeRegister = new StoreRegister(products, Clock.fixed(
                 LocalDate.of(2023, 7, 19)
@@ -104,14 +100,12 @@ class StoreRegisterTest {
         assertTrue(storeRegister.isAvailable("Pane"));
         assertTrue(storeRegister.isAvailable("Grissini"));
         assertTrue(storeRegister.isAvailable("Pomodori"));
-        assertTrue(storeRegister.isAvailable("Patate"));
 
         storeRegister.removeExpiredProducts();
 
         assertFalse(storeRegister.isAvailable("Pane"));
         assertFalse(storeRegister.isAvailable("Grissini"));
         assertFalse(storeRegister.isAvailable("Pomodori"));
-        assertFalse(storeRegister.isAvailable("Patate"));
     }
 
     @Test
@@ -132,7 +126,7 @@ class StoreRegisterTest {
                 new Quantity(5, MetricPrefix.KILO, MeasureUnit.GRAMS)));
         products.add(new Product(
                 "Patate",
-                LocalDate.of(2023, 7, 30),
+                LocalDate.of(2023, 7, 19),
                 new Quantity(30, MetricPrefix.KILO, MeasureUnit.GRAMS)));
 
         StoreRegister storeRegister = new StoreRegister(products, Clock.fixed(
