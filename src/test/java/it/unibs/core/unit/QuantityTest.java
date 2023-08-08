@@ -27,18 +27,23 @@ class QuantityTest {
         assertEquals(
                 Optional.of(new Quantity(12345, MetricPrefix.NONE, MeasureUnit.UNITS)),
                 Quantity.fromString("12345"));
+
         assertEquals(
                 Optional.of(new Quantity(0, MetricPrefix.NONE, MeasureUnit.UNITS)),
                 Quantity.fromString("0"));
+
         assertEquals(
                 Optional.of(new Quantity(0, MetricPrefix.NONE, MeasureUnit.UNITS)),
                 Quantity.fromString("   0   "));
+
         assertEquals(
                 Optional.of(new Quantity(1, MetricPrefix.KILO, MeasureUnit.GRAMS)),
                 Quantity.fromString("1 kg"));
+
         assertEquals(
                 Optional.of(new Quantity(1, MetricPrefix.NONE, MeasureUnit.LITERS)),
                 Quantity.fromString("1 l"));
+
         assertEquals(
                 Optional.of(new Quantity(1, MetricPrefix.NONE, MeasureUnit.LITERS)),
                 Quantity.fromString("   1 l   "));
