@@ -151,9 +151,6 @@ public class Restaurant {
      * @throws IllegalStateException se l'alimento extra non è presente nella lista
      */
     public void setAverageExtraConsumption(String name, Quantity amount) {
-        if (averageExtraConsumption.containsKey(name)) {
-            throw new IllegalStateException("Extra \"" + name + "\" has not been added yet");
-        }
         averageExtraConsumption.put(name.toLowerCase(), amount);
     }
 
@@ -190,10 +187,7 @@ public class Restaurant {
      * @param amount la quantità a cui la si vuole inizializzare
      * @throws IllegalStateException se la bevanda non è presente nella lista
      */
-    public void setAverageDrinkConsumption(String name, Quantity amount) throws IllegalStateException {
-        if (averageDrinkConsumption.containsKey(name)) {
-            throw new IllegalStateException("No drink \"" + name + "\" found");
-        }
+    public void setAverageDrinkConsumption(String name, Quantity amount) {
         averageDrinkConsumption.put(name.toLowerCase(), amount);
     }
 
