@@ -45,7 +45,7 @@ public class Quantity {
      */
     public static Optional<Quantity> fromString(String value) {
         try {
-            final String[] split = value.split(" ");
+            final String[] split = value.trim().split(" ");
 
             final float amount = Float.parseFloat(split[0]);
 
@@ -164,6 +164,19 @@ public class Quantity {
 
     public MeasureUnit getUnit() {
         return unit;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Quantity quantity = (Quantity) o;
+        return Float.compare(quantity.amount, amount) == 0 && unit == quantity.unit && prefix == quantity.prefix;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(unit, amount, prefix);
     }
 
     @Override
