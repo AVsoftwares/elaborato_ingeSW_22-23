@@ -123,7 +123,7 @@ public class Restaurant {
      * @return true se il consumo medio del genere alimentare extra è null, false altrimenti
      */
     public boolean isAverageExtraConsumptionNotSet(String name) {
-        return averageExtraConsumption.get(name) == null;
+        return averageExtraConsumption.get(name.toLowerCase()) == null;
     }
 
     /**
@@ -163,7 +163,7 @@ public class Restaurant {
      * @return true se il consumo medio della bevanda è null, false altrimenti
      */
     public boolean isAverageDrinkConsumptionNotSet(String name) {
-        return averageDrinkConsumption.get(name) == null;
+        return averageDrinkConsumption.get(name.toLowerCase()) == null;
     }
 
     /**
@@ -192,7 +192,7 @@ public class Restaurant {
      */
     public void setAverageDrinkConsumption(String name, Quantity amount) throws IllegalStateException {
         if (averageDrinkConsumption.containsKey(name)) {
-            throw new IllegalStateException("Consumption for \"" + name + "\" is not yet set");
+            throw new IllegalStateException("No drink \"" + name + "\" found");
         }
         averageDrinkConsumption.put(name.toLowerCase(), amount);
     }
