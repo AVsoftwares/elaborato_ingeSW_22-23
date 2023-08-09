@@ -21,14 +21,13 @@ public class Main {
     public static void main(String[] args) {
         Clock clock = Clock.systemDefaultZone();
 
-        Restaurant restaurant = new Restaurant();
         ReservationService reservationService = new ReservationService();
         StoreRegister storeRegister = new StoreRegister(new ArrayList<>(), clock);
-        ShoppingList shoppingList = new ShoppingList(restaurant, storeRegister, reservationService);
+        ShoppingList shoppingList = new ShoppingList(storeRegister, reservationService);
 
         final Menu mainMenu = new Menu(MENU_TITLE, true);
-        mainMenu.addEntry(MSG_MANAGER_LOGIN, () -> new ManagerMenu(restaurant).run());
-        mainMenu.addEntry(MSG_BOOKING_OFFICER_LOGIN, () -> new ReservationOfficerMenu(restaurant, reservationService).run());
+        mainMenu.addEntry(MSG_MANAGER_LOGIN, () -> new ManagerMenu(Restaurant.getInstance()).run());
+        mainMenu.addEntry(MSG_BOOKING_OFFICER_LOGIN, () -> new ReservationOfficerMenu(Restaurant.getInstance(), reservationService).run());
         mainMenu.addEntry(MSG_WAREHOUSE_MAN_LOGIN, () -> new StorekeeperMenu(storeRegister, shoppingList).run());
         mainMenu.run();
     }

@@ -7,6 +7,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Restaurant {
+
+    /* Refactoring usando pattern Singleton */
+    private volatile static Restaurant restaurantInstance;
+
     /**
      * Costante moltiplicativa del carico di lavoro sostenibile dal ristorante
      */
@@ -40,12 +44,26 @@ public class Restaurant {
      */
     private int individualWorkload;
 
-    public Restaurant() {
+    /*Singleton-> Costruttore privato*/
+
+    private Restaurant() {
         this.recipes = new ArrayList<>();
         this.dishes = new HashSet<>();
         this.thematicMenus = new HashSet<>();
         this.averageDrinkConsumption = new HashMap<>();
         this.averageExtraConsumption = new HashMap<>();
+    }
+
+    /*Sono bloccati solo i thread che tentano di accedere a restaurantIstance mentre instance viene creato*/
+    public static Restaurant getInstance(){
+        if(restaurantInstance == null){
+            synchronized(Restaurant.class){
+                if(restaurantInstance == null){
+                    restaurantInstance = new Restaurant();
+                }
+            }
+        }
+        return restaurantInstance;
     }
 
     /**

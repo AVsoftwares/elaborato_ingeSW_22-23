@@ -30,8 +30,8 @@ public class ShoppingList {
      */
     private final ReservationService reservationService;
 
-    public ShoppingList(Restaurant restaurant, StoreRegister storeRegister, ReservationService reservationService) {
-        this.restaurant = Objects.requireNonNull(restaurant);
+    public ShoppingList(StoreRegister storeRegister, ReservationService reservationService) {
+        this.restaurant = Restaurant.getInstance();
         this.storeRegister = Objects.requireNonNull(storeRegister);
         this.reservationService = Objects.requireNonNull(reservationService);
     }

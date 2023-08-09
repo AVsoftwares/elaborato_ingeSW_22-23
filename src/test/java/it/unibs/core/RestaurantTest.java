@@ -11,7 +11,7 @@ class RestaurantTest {
 
     @Test
     void drinkConsumptionNotSet(){
-        Restaurant r = new Restaurant();
+        Restaurant r = Restaurant.getInstance();
         r.addDrink("acqua");
 
         assertTrue(r.isAverageDrinkConsumptionNotSet("acqua"));
@@ -19,7 +19,7 @@ class RestaurantTest {
 
     @Test
     void drinkConsumptionSet(){
-        Restaurant r = new Restaurant();
+        Restaurant r = Restaurant.getInstance();
 
         r.addDrink("Vino");
         Quantity q = new Quantity(2, MetricPrefix.NONE, MeasureUnit.LITERS);
