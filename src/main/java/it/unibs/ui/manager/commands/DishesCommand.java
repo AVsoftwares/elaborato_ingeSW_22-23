@@ -14,8 +14,8 @@ public class DishesCommand implements Command {
 
     private final Restaurant restaurant;
 
-    public DishesCommand(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public DishesCommand() {
+        this.restaurant = Restaurant.getInstance();
     }
 
     @Override

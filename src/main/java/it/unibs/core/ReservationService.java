@@ -1,12 +1,9 @@
 package it.unibs.core;
 
 import java.time.Clock;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * Gestisce le prenotazioni
@@ -55,23 +52,10 @@ public class ReservationService {
      * @return true se la prenotazione è stata aggiunta, false altrimenti
      */
     public boolean add(Reservation reservation) {
-        if (isDateValid(reservation.getDate())) {
+        if (reservation.isDateValid(reservation.getDate())) {
             return reservations.add(reservation);
         }
         return false;
-    }
-
-    /**
-     * Valida la prenotazione.
-     * Una prenotazione è valida se la sua data è feriale, antecedente
-     * alla data odierna e pervenuta con almeno un giorno feriale di anticipo.
-     * @return true se la data è valida, false altrimenti
-     */
-    public boolean isDateValid(LocalDate date) {
-        final var today = LocalDate.now(clock);
-
-        DayOfWeek dayOfWeek = date.getDayOfWeek();
-        return (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY && DAYS.between(today, date) >= 1);
     }
 
     /**

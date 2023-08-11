@@ -1,9 +1,12 @@
 package it.unibs.core;
 
 import java.time.Clock;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Objects;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * Una prenotazione effettuata presso il ristorante
@@ -18,6 +21,7 @@ public class Reservation {
      * Data per cui è stata fatta la prenotazione
      */
     private final LocalDate date;
+    //private Clock clock;
     /**
      * Numero di posti a sedere prenotati
      */
@@ -83,5 +87,19 @@ public class Reservation {
         }
 
         return workload;
+    }
+
+    /**
+     * Valida la prenotazione.
+     * Una prenotazione è valida se la sua data è feriale, antecedente
+     * alla data odierna e pervenuta con almeno un giorno feriale di anticipo.
+     * @return true se la data è valida, false altrimenti
+     */
+    public static boolean isDateValid(LocalDate date) {
+
+        final var today = LocalDate.now(Clock.systemDefaultZone());
+
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+        return (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY && DAYS.between(today, date) >= 1);
     }
 }

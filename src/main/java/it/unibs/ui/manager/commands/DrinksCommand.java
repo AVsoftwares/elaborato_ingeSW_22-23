@@ -11,8 +11,8 @@ import java.util.Map;
 public class DrinksCommand implements Command {
     private final Restaurant restaurant;
 
-    public DrinksCommand(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public DrinksCommand() {
+        this.restaurant = Restaurant.getInstance();
     }
 
     @Override

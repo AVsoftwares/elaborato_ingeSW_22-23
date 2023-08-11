@@ -33,6 +33,6 @@ public class ReservationOfficerMenu extends Menu {
 
     public ReservationOfficerMenu(Restaurant restaurant, ReservationService reservationService) {
         super(MENU_NAME);
-        addEntry(MSG_BOOKING, new ReservationCommand(restaurant, reservationService));
+        addEntry(MSG_BOOKING, new ReservationCommand(reservationService));
     }
 }

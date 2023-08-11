@@ -14,8 +14,8 @@ public class ExtraAmountCommand implements Command {
 
     private final Restaurant restaurant;
 
-    public ExtraAmountCommand(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public ExtraAmountCommand() {
+        this.restaurant = Restaurant.getInstance();
     }
 
     @Override

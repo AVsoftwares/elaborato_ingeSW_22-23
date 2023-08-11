@@ -54,7 +54,8 @@ public class Restaurant {
         this.averageExtraConsumption = new HashMap<>();
     }
 
-    /*Sono bloccati solo i thread che tentano di accedere a restaurantIstance mentre instance viene creato*/
+    /*Sono bloccati solo i thread che tentano di accedere a restaurantIstance
+     mentre instance viene creato*/
     public static Restaurant getInstance(){
         if(restaurantInstance == null){
             synchronized(Restaurant.class){

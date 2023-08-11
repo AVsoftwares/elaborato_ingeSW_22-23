@@ -12,15 +12,15 @@ public class ReservationCommand implements Command {
     private final Restaurant restaurant;
     private final ReservationService reservationService;
 
-    public ReservationCommand(Restaurant restaurant, ReservationService reservationService) {
-        this.restaurant = restaurant;
+    public ReservationCommand(ReservationService reservationService) {
+        this.restaurant = Restaurant.getInstance();
         this.reservationService = reservationService;
     }
 
     public void execute() {
         final LocalDate date = InputManager.readDate("Data della prenotazione: ", InputManager.DEFAULT_DATE_FORMATTER_PATTERN);
 
-        if (!reservationService.isDateValid(date)) {
+        if (!Reservation.isDateValid(date)) {
             System.out.println("""
                     La data inserita non è valida.
                     Il ristorante lavora unicamente nei giorni feriali.
