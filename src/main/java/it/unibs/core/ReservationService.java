@@ -52,7 +52,7 @@ public class ReservationService {
      * @return true se la prenotazione è stata aggiunta, false altrimenti
      */
     public boolean add(Reservation reservation) {
-        if (reservation.isDateValid(reservation.getDate())) {
+        if (Reservation.isDateValid(reservation.getDate())) {
             return reservations.add(reservation);
         }
         return false;

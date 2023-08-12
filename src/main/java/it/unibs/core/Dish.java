@@ -21,10 +21,6 @@ public class Dish implements Orderable, Expire {
      */
     private Recipe recipe;
     /**
-     * Tempo di preparazione del piatto
-     */
-    private int preparationTime;
-    /**
      * Periodo di validità del piatto
      */
     private Period period;

@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 public class Restaurant {
 
-    /* Refactoring usando pattern Singleton */
     private volatile static Restaurant restaurantInstance;
 
     /**
@@ -54,8 +53,6 @@ public class Restaurant {
         this.averageExtraConsumption = new HashMap<>();
     }
 
-    /*Sono bloccati solo i thread che tentano di accedere a restaurantIstance
-     mentre instance viene creato*/
     public static Restaurant getInstance(){
         if(restaurantInstance == null){
             synchronized(Restaurant.class){
@@ -217,6 +214,7 @@ public class Restaurant {
     public void addDrink(String name) {
         averageDrinkConsumption.putIfAbsent(name.toLowerCase(), null);
     }
+
 
     /**
      * Aggiunge un alimento extra, con quantità nulla

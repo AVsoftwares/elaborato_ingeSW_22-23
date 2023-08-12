@@ -24,23 +24,25 @@ class ReservationServiceTest {
                         .atStartOfDay(ZoneId.systemDefault())
                         .toInstant()), ZoneId.systemDefault());
 
-        ReservationService reservationService = new ReservationService(new ArrayList<>(), clock);
+        //ReservationService reservationService = new ReservationService(new ArrayList<>(), clock);
 
         LocalDate date1 = LocalDate.of(2023, 7, 18);
         LocalDate date2 = LocalDate.of(2023, 7, 19);
         LocalDate date3 = LocalDate.of(2023, 7, 22);
         LocalDate date4 = LocalDate.of(2023, 7, 20);
 
+        /**
         Reservation reservation1 = new Reservation(date1, 5);
         Reservation reservation2 = new Reservation(date2, 4);
         Reservation reservation3 = new Reservation(date3, 8);
         Reservation reservation4 = new Reservation(date4, 7);
+        **/
 
-        assertFalse(reservation1.isDateValid(date1)); // "La prenotazione è precedente al giorno odierno");
-        assertFalse(reservation2.isDateValid(date2)); // "La prenotazione non è pervenuta con un giorno di anticipo");
-        assertFalse(reservation3.isDateValid(date3)); // "La prenotazione non è effettuata per giorni feriali");
+        assertFalse(Reservation.isDateValid(date1)); // "La prenotazione è precedente al giorno odierno");
+        assertFalse(Reservation.isDateValid(date2)); // "La prenotazione non è pervenuta con un giorno di anticipo");
+        assertFalse(Reservation.isDateValid(date3)); // "La prenotazione non è effettuata per giorni feriali");
 
-        assertFalse(reservation4.isDateValid(date4)); //La prenotazione è pervenuta con un giorno di anticipo e per un giorno feriale");
+        assertFalse(Reservation.isDateValid(date4)); //La prenotazione è pervenuta con un giorno di anticipo e per un giorno feriale");
     }
 
     @Test

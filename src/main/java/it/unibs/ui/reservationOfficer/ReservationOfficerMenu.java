@@ -1,7 +1,6 @@
 package it.unibs.ui.reservationOfficer;
 
 import it.unibs.core.ReservationService;
-import it.unibs.core.Restaurant;
 import it.unibs.ui.Menu;
 import it.unibs.ui.reservationOfficer.commands.ReservationCommand;
 
@@ -31,7 +30,7 @@ public class ReservationOfficerMenu extends Menu {
     private static final String MENU_NAME = "Menu gestore delle prenotazioni";
     private static final String MSG_BOOKING = "Raccogli una prenotazione";
 
-    public ReservationOfficerMenu(Restaurant restaurant, ReservationService reservationService) {
+    public ReservationOfficerMenu(ReservationService reservationService) {
         super(MENU_NAME);
         addEntry(MSG_BOOKING, new ReservationCommand(reservationService));
     }

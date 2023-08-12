@@ -6,10 +6,13 @@ import it.unibs.ui.InputManager;
 
 public class IndividualWorkloadCommand implements Command {
 
+    public static final String VALUE_NOT_INITIALIZED = "Il valore non è ancora stato inizializzato.";
+    public static final String ADD_PERSON_WORKLOAD = "Inserisci il carico di lavoro per persona: ";
+    public static final String ACTUAL_VALUE = "Il valore attuale è: ";
     private final Restaurant restaurant;
 
     public IndividualWorkloadCommand(Restaurant restaurant) {
-        this.restaurant = restaurant;
+        this.restaurant = Restaurant.getInstance();
     }
 
     @Override
@@ -17,12 +20,12 @@ public class IndividualWorkloadCommand implements Command {
         final var workload = restaurant.getIndividualWorkload();
 
         if (workload == 0) {
-            System.out.println("Il valore non è ancora stato inizializzato.");
+            System.out.println(VALUE_NOT_INITIALIZED);
 
-            final int individualWorkload = InputManager.readInt("Inserisci il carico di lavoro per persona: ", 0, Integer.MAX_VALUE);
+            final int individualWorkload = InputManager.readInt(ADD_PERSON_WORKLOAD, 0, Integer.MAX_VALUE);
             restaurant.setIndividualWorkload(individualWorkload);
         } else {
-            System.out.println("Il valore attuale è: " + workload);
+            System.out.println(ACTUAL_VALUE + workload);
         }
     }
 }

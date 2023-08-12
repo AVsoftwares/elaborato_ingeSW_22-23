@@ -15,10 +15,20 @@ import java.util.Set;
  */
 public class PairDishWithRecipeCommand implements Command {
 
+    public static final String NO_PRESENT_DISHES_IMPOSSIBLE_PROCEED = "Non sono presenti piatti, impossibile procedere.";
+    public static final String ALL_DISHES_PAIRED = "Tutti i piatti sono associati ad una ricetta.";
+    public static final String NO_PRESENT_RECIPES_IMPOSSIBLE_PROCEED = "Non sono presenti ricette, impossibile procedere.";
+    public static final String DISHES_NOT_PAIRED = "I seguenti piatti non hanno una ricetta associata: ";
+    public static final String DISH_TO_PAIR = "Nome del piatto da associare: ";
+    public static final String DISH_NOT_IN_LIST = "Il piatto non è presente nella lista.";
+    public static final String DISH_ALREADY_PAIRED = "Il piatto ha già una ricetta associata";
+    public static final String MSG_SAVED_RECIPES = "Sono memorizzate le seguenti ricette: ";
+    public static final String RECIPE_INDEX_TO_PAIR = "Indice della ricetta da assegnare: ";
+    public static final String ANOTHER_DISH_Y_OR_NO = "Vuoi modificare un altro piatto? (y)es/(n)o: ";
     private final Restaurant restaurant;
 
     public PairDishWithRecipeCommand(Restaurant restaurant) {
-        this.restaurant = restaurant;
+        this.restaurant = Restaurant.getInstance();
     }
 
     @Override
@@ -26,48 +36,48 @@ public class PairDishWithRecipeCommand implements Command {
         Set<Dish> dishes = restaurant.getDishes();
 
         if (dishes.isEmpty()) {
-            System.out.println("Non sono presenti piatti, impossibile procedere.");
+            System.out.println(NO_PRESENT_DISHES_IMPOSSIBLE_PROCEED);
             return;
         }
         if (dishes.stream().noneMatch(d -> d.getRecipe() == null)) {
-            System.out.println("Tutti i piatti sono associati ad una ricetta.");
+            System.out.println(ALL_DISHES_PAIRED);
             return;
         }
 
         List<Recipe> recipes = restaurant.getRecipes();
         if (recipes.isEmpty()) {
-            System.out.println("Non sono presenti ricette, impossibile procedere.");
+            System.out.println(NO_PRESENT_RECIPES_IMPOSSIBLE_PROCEED);
             return;
         }
 
         do {
             final List<Dish> dishesWithoutRecipe = dishes.stream().filter(d -> d.getRecipe() == null).toList();
 
-            System.out.println("I seguenti piatti non hanno una ricetta associata: ");
+            System.out.println(DISHES_NOT_PAIRED);
             dishesWithoutRecipe.forEach(System.out::println);
 
-            final String dishName = InputManager.readString("Nome del piatto da associare: ");
+            final String dishName = InputManager.readString(DISH_TO_PAIR);
             final Optional<Dish> optionalDish = restaurant.getDish(dishName);
 
             if (optionalDish.isEmpty()) {
-                System.out.println("Il piatto non è presente nella lista.");
+                System.out.println(DISH_NOT_IN_LIST);
                 continue;
             }
 
             final Dish dish = optionalDish.get();
 
             if (!dishesWithoutRecipe.contains(dish)) {
-                System.out.println("Il piatto ha già una ricetta associata");
+                System.out.println(DISH_ALREADY_PAIRED);
                 continue;
             }
 
-            System.out.println("Sono memorizzate le seguenti ricette: ");
+            System.out.println(MSG_SAVED_RECIPES);
             for (int i = 0; i < recipes.size(); i++) {
                 System.out.println("\t- " + i + recipes.get(i));
             }
-            final int recipeIndex = InputManager.readInt("Indice della ricetta da assegnare: ", 0, recipes.size());
+            final int recipeIndex = InputManager.readInt(RECIPE_INDEX_TO_PAIR, 0, recipes.size());
 
             dish.setRecipe(recipes.get(recipeIndex));
-        } while (InputManager.readYesOrNo("Vuoi modificare un altro piatto? (y)es/(n)o: "));
+        } while (InputManager.readYesOrNo(ANOTHER_DISH_Y_OR_NO));
     }
 }

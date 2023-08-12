@@ -27,7 +27,7 @@ public class Main {
 
         final Menu mainMenu = new Menu(MENU_TITLE, true);
         mainMenu.addEntry(MSG_MANAGER_LOGIN, () -> new ManagerMenu(Restaurant.getInstance()).run());
-        mainMenu.addEntry(MSG_BOOKING_OFFICER_LOGIN, () -> new ReservationOfficerMenu(Restaurant.getInstance(), reservationService).run());
+        mainMenu.addEntry(MSG_BOOKING_OFFICER_LOGIN, () -> new ReservationOfficerMenu(reservationService).run());
         mainMenu.addEntry(MSG_WAREHOUSE_MAN_LOGIN, () -> new StorekeeperMenu(storeRegister, shoppingList).run());
         mainMenu.run();
     }

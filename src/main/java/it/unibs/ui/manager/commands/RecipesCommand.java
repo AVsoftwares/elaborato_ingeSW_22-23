@@ -14,10 +14,22 @@ import java.util.Optional;
 
 public class RecipesCommand implements Command {
 
+    public static final String VIEW_RECIPES = "Visualizza ricette";
+    public static final String NO_RECIPES_SAVED = "Non sono memorizzate ricette.";
+    public static final String ADD_RECIPE = "Aggiungi ricetta";
+    public static final String INGREDIENT_NAME = "Nome dell'ingrediente: ";
+    public static final String INGREDIENT_AMOUNT = "Quantità dell'ingrediente (es. 10 kg): ";
+    public static final String AMOUNT_NOT_VALID = """
+            La quantità inserita non è valida.
+            Deve essere nel formato: quantity [prefix unit]
+            Le unità di misura accettate sono (l)itri e (g)rammi, se omessa si considerano le unità""";
+    public static final String ANOTHER_INGREDIENT_Y_OR_NO = "Vuoi inserire un altro ingrediente? (y)es/(n)o: ";
+    public static final String PORTIONS_PREPARED_WITH_INSERTED_DOSES = "Numero di porzioni che possono essere preparate con le dosi inserite: ";
+    public static final String PORTION_WORKLOAD = "Carico di lavoro per porzione: ";
     private final Restaurant restaurant;
 
     public RecipesCommand(Restaurant restaurant) {
-        this.restaurant = restaurant;
+        this.restaurant = Restaurant.getInstance();
     }
 
     @Override
@@ -26,33 +38,30 @@ public class RecipesCommand implements Command {
 
         final List<Recipe> recipes = restaurant.getRecipes();
 
-        menu.addEntry("Visualizza ricette", () -> {
+        menu.addEntry(VIEW_RECIPES, () -> {
             if (recipes.isEmpty()) {
-                System.out.println("Non sono memorizzate ricette.");
+                System.out.println(NO_RECIPES_SAVED);
             } else {
                 recipes.forEach(System.out::println);
             }
         });
-        menu.addEntry("Aggiungi ricetta", () -> {
+        menu.addEntry(ADD_RECIPE, () -> {
 
             final HashMap<Ingredient, Quantity> ingredients = new HashMap<>();
 
             do {
-                final String name = InputManager.readString("Nome dell'ingrediente: ");
-                final Optional<Quantity> amount = Quantity.fromString(InputManager.readString("Quantità dell'ingrediente (es. 10 kg): "));
+                final String name = InputManager.readString(INGREDIENT_NAME);
+                final Optional<Quantity> amount = Quantity.fromString(InputManager.readString(INGREDIENT_AMOUNT));
 
                 if (amount.isPresent()) {
                     ingredients.put(new Ingredient(name), amount.get());
                 } else {
-                    System.out.println("""
-                            La quantità inserita non è valida.
-                            Deve essere nel formato: quantity [prefix unit]
-                            Le unità di misura accettate sono (l)itri e (g)rammi, se omessa si considerano le unità""");
+                    System.out.println(AMOUNT_NOT_VALID);
                 }
-            } while (InputManager.readYesOrNo("Vuoi inserire un altro ingrediente? (y)es/(n)o: "));
+            } while (InputManager.readYesOrNo(ANOTHER_INGREDIENT_Y_OR_NO));
 
-            final int portions = InputManager.readInt("Numero di porzioni che possono essere preparate con le dosi inserite: ", 1, Integer.MAX_VALUE);
-            final float portionWorkload = InputManager.readFloat("Carico di lavoro per porzione: ", 0, 1);
+            final int portions = InputManager.readInt(PORTIONS_PREPARED_WITH_INSERTED_DOSES, 1, Integer.MAX_VALUE);
+            final float portionWorkload = InputManager.readFloat(PORTION_WORKLOAD, 0, 1);
 
             recipes.add(new Recipe(ingredients, portions, portionWorkload));
         });
