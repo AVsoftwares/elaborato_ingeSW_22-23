@@ -1,5 +1,6 @@
 package it.unibs.core;
 
+import it.unibs.core.reservation.Reservation;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

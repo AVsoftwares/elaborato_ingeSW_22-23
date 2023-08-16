@@ -1,6 +1,6 @@
 package it.unibs.ui.reservationOfficer;
 
-import it.unibs.core.ReservationService;
+import it.unibs.core.reservation.ReservationService;
 import it.unibs.ui.Menu;
 import it.unibs.ui.reservationOfficer.commands.ReservationCommand;
 

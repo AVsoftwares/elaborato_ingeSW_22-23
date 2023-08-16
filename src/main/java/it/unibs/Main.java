@@ -1,9 +1,8 @@
 package it.unibs;
 
-import it.unibs.core.ReservationService;
-import it.unibs.core.Restaurant;
-import it.unibs.core.ShoppingList;
-import it.unibs.core.StoreRegister;
+import it.unibs.core.*;
+import it.unibs.core.reservation.ConcreteDateValidationStrategy;
+import it.unibs.core.reservation.ReservationService;
 import it.unibs.ui.Menu;
 import it.unibs.ui.manager.ManagerMenu;
 import it.unibs.ui.reservationOfficer.ReservationOfficerMenu;
@@ -21,7 +20,7 @@ public class Main {
     public static void main(String[] args) {
         Clock clock = Clock.systemDefaultZone();
 
-        ReservationService reservationService = new ReservationService();
+        ReservationService reservationService = new ReservationService(new ConcreteDateValidationStrategy());
         StoreRegister storeRegister = new StoreRegister(new ArrayList<>(), clock);
         ShoppingList shoppingList = new ShoppingList(storeRegister, reservationService);
 

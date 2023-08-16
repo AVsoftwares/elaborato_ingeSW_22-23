@@ -1,4 +1,6 @@
-package it.unibs.core;
+package it.unibs.core.reservation;
+
+import it.unibs.core.Orderable;
 
 import java.time.Clock;
 import java.time.DayOfWeek;
@@ -40,21 +42,6 @@ public class Reservation {
         }
         this.date = Objects.requireNonNull(date);
         this.seats = seats;
-    }
-
-    /**
-     * Valida la prenotazione.
-     * Una prenotazione è valida se la sua data è feriale, antecedente
-     * alla data odierna e pervenuta con almeno un giorno feriale di anticipo.
-     *
-     * @return true se la data è valida, false altrimenti
-     */
-    public static boolean isDateValid(LocalDate date) {
-
-        final var today = LocalDate.now(Clock.systemDefaultZone());
-
-        DayOfWeek dayOfWeek = date.getDayOfWeek();
-        return (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY && DAYS.between(today, date) >= 1);
     }
 
     /**

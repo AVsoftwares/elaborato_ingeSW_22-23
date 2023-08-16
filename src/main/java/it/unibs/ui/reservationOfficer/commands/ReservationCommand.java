@@ -1,6 +1,8 @@
 package it.unibs.ui.reservationOfficer.commands;
 
 import it.unibs.core.*;
+import it.unibs.core.reservation.Reservation;
+import it.unibs.core.reservation.ReservationService;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
 
@@ -20,7 +22,7 @@ public class ReservationCommand implements Command {
     public void execute() {
         final LocalDate date = InputManager.readDate("Data della prenotazione: ", InputManager.DEFAULT_DATE_FORMATTER_PATTERN);
 
-        if (!Reservation.isDateValid(date)) {
+        if (!reservationService.isValid(date)) {
             System.out.println("""
                     La data inserita non è valida.
                     Il ristorante lavora unicamente nei giorni feriali.

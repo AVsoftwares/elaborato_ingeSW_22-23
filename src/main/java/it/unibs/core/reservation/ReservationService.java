@@ -1,4 +1,4 @@
-package it.unibs.core;
+package it.unibs.core.reservation;
 
 import java.time.Clock;
 import java.time.LocalDate;
@@ -13,10 +13,12 @@ public class ReservationService {
      * Lista di prenotazioni effettuate
      */
     private final List<Reservation> reservations;
+    private DateValidationStrategy dateValidationStrategy;
     private final Clock clock;
 
-    public ReservationService() {
+    public ReservationService(DateValidationStrategy dateValidationStrategy) {
         this(new ArrayList<>(), Clock.systemDefaultZone());
+        this.dateValidationStrategy = dateValidationStrategy;
     }
 
     public ReservationService(List<Reservation> reservations, Clock clock) {
@@ -55,7 +57,7 @@ public class ReservationService {
      * @return true se la prenotazione è stata aggiunta, false altrimenti
      */
     public boolean add(Reservation reservation) {
-        if (Reservation.isDateValid(reservation.getDate())) {
+        if (dateValidationStrategy.isValid(reservation.getDate())) {
             return reservations.add(reservation);
         }
         return false;
@@ -79,5 +81,9 @@ public class ReservationService {
                 .filter(reservation -> reservation.getDate().isEqual(date))
                 .mapToDouble(Reservation::getWorkload)
                 .sum();
+    }
+
+    public boolean isValid(LocalDate date) {
+        return dateValidationStrategy.isValid(date);
     }
 }

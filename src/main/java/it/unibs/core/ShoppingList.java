@@ -1,5 +1,7 @@
 package it.unibs.core;
 
+import it.unibs.core.reservation.Reservation;
+import it.unibs.core.reservation.ReservationService;
 import it.unibs.core.unit.Quantity;
 
 import java.util.HashMap;
