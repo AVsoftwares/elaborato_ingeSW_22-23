@@ -13,16 +13,16 @@ public class ReservationService {
      * Lista di prenotazioni effettuate
      */
     private final List<Reservation> reservations;
-    private DateValidationStrategy dateValidationStrategy;
+    private final DateValidationStrategy dateValidationStrategy;
     private final Clock clock;
 
     public ReservationService(DateValidationStrategy dateValidationStrategy) {
-        this(new ArrayList<>(), Clock.systemDefaultZone());
-        this.dateValidationStrategy = dateValidationStrategy;
+        this(new ArrayList<>(), dateValidationStrategy, Clock.systemDefaultZone());
     }
 
-    public ReservationService(List<Reservation> reservations, Clock clock) {
+    public ReservationService(List<Reservation> reservations, DateValidationStrategy dateValidationStrategy, Clock clock) {
         this.reservations = reservations;
+        this.dateValidationStrategy = dateValidationStrategy;
         this.clock = clock;
     }
 

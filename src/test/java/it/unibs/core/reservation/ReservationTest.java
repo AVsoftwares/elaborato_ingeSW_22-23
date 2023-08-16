@@ -1,5 +1,8 @@
-package it.unibs.core;
+package it.unibs.core.reservation;
 
+import it.unibs.core.Dish;
+import it.unibs.core.Orderable;
+import it.unibs.core.Period;
 import it.unibs.core.reservation.Reservation;
 import org.junit.jupiter.api.Test;
 
