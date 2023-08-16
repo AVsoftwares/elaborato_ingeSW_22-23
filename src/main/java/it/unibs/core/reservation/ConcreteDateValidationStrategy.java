@@ -17,9 +17,9 @@ public class ConcreteDateValidationStrategy implements DateValidationStrategy {
      */
     @Override
     public boolean isValid(LocalDate date) {
-            final var today = LocalDate.now(Clock.systemDefaultZone());
+        final var today = LocalDate.now(Clock.systemDefaultZone());
 
-            DayOfWeek dayOfWeek = date.getDayOfWeek();
-            return (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY && DAYS.between(today, date) >= 1);
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+        return (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY && DAYS.between(today, date) >= 1);
     }
 }

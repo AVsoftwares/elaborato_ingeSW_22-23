@@ -1,6 +1,9 @@
 package it.unibs.ui.reservationOfficer.commands;
 
-import it.unibs.core.*;
+import it.unibs.core.Dish;
+import it.unibs.core.Orderable;
+import it.unibs.core.Restaurant;
+import it.unibs.core.ThematicMenu;
 import it.unibs.core.reservation.Reservation;
 import it.unibs.core.reservation.ReservationService;
 import it.unibs.ui.Command;

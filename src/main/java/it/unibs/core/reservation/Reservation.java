@@ -2,13 +2,9 @@ package it.unibs.core.reservation;
 
 import it.unibs.core.Orderable;
 
-import java.time.Clock;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Objects;
-
-import static java.time.temporal.ChronoUnit.DAYS;
 
 /**
  * Una prenotazione effettuata presso il ristorante

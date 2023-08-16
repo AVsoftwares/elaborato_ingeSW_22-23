@@ -1,6 +1,8 @@
 package it.unibs;
 
-import it.unibs.core.*;
+import it.unibs.core.Restaurant;
+import it.unibs.core.ShoppingList;
+import it.unibs.core.StoreRegister;
 import it.unibs.core.reservation.ConcreteDateValidationStrategy;
 import it.unibs.core.reservation.ReservationService;
 import it.unibs.ui.Menu;
