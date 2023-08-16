@@ -8,7 +8,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ReservationServiceTest {
 
@@ -32,11 +33,11 @@ class ReservationServiceTest {
         LocalDate date4 = LocalDate.of(2023, 7, 20);
 
         /**
-        Reservation reservation1 = new Reservation(date1, 5);
-        Reservation reservation2 = new Reservation(date2, 4);
-        Reservation reservation3 = new Reservation(date3, 8);
-        Reservation reservation4 = new Reservation(date4, 7);
-        **/
+         Reservation reservation1 = new Reservation(date1, 5);
+         Reservation reservation2 = new Reservation(date2, 4);
+         Reservation reservation3 = new Reservation(date3, 8);
+         Reservation reservation4 = new Reservation(date4, 7);
+         **/
 
         assertFalse(Reservation.isDateValid(date1)); // "La prenotazione è precedente al giorno odierno");
         assertFalse(Reservation.isDateValid(date2)); // "La prenotazione non è pervenuta con un giorno di anticipo");

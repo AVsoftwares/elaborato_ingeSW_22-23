@@ -5,9 +5,10 @@ import it.unibs.core.unit.MetricPrefix;
 import it.unibs.core.unit.Quantity;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ProductTest {
 

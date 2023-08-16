@@ -26,6 +26,7 @@ public class ReservationService {
 
     /**
      * getter delle prenotazioni odierne
+     *
      * @return le prenotazioni odierne
      * @see #getReservations(LocalDate)
      */
@@ -35,6 +36,7 @@ public class ReservationService {
 
     /**
      * getter delle prenotazioni ad una data specificata come parametro
+     *
      * @param date la data per cui si vuole la lista delle prenotazioni
      * @return la lista delle prenotazioni nella data specificata
      */
@@ -48,6 +50,7 @@ public class ReservationService {
     /**
      * Aggiunge prenotazioni alla lista delle prenotazioni, solamente se la data della prenotazione è valida
      * rispetto alle specifiche del ristorante relativamente alla prenotazione
+     *
      * @param reservation la prenotazione da aggiungere
      * @return true se la prenotazione è stata aggiunta, false altrimenti
      */
@@ -67,6 +70,7 @@ public class ReservationService {
 
     /**
      * Calcola il carico di lavoro complessivo delle prenotazioni nella data passata come parametro
+     *
      * @param date la data per cui si vuole calcolare il carico di lavoro
      * @return il carico di lavoro complessivo
      */

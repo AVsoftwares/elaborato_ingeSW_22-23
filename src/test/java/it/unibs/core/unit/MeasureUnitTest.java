@@ -14,7 +14,7 @@ class MeasureUnitTest {
     }
 
     @Test
-    void notValidUnits(){
+    void notValidUnits() {
         assertNotEquals(MeasureUnit.LITERS, MeasureUnit.fromString("g"));
         assertNotEquals(MeasureUnit.UNITS, MeasureUnit.fromString("l"));
         assertNotEquals(MeasureUnit.GRAMS, MeasureUnit.fromString("u"));

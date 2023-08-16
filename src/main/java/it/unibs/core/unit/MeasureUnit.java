@@ -27,6 +27,7 @@ public enum MeasureUnit {
 
     /**
      * Effettua il parsing da una stringa per ottenere una valida istanza di MeasureUnit
+     *
      * @param value rappresenta il simbolo dell'unità di misura (g, l, u o null)
      * @return MeasureUnit
      * @throws IllegalArgumentException se non esiste unità con simbolo uguale all'argomento

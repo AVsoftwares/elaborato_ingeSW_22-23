@@ -8,12 +8,11 @@ import java.util.stream.Collectors;
 
 public class Restaurant {
 
-    private volatile static Restaurant restaurantInstance;
-
     /**
      * Costante moltiplicativa del carico di lavoro sostenibile dal ristorante
      */
     private static final float SUSTAINABLE_WORKLOAD_MULTIPLIER = 1.2f;
+    private volatile static Restaurant restaurantInstance;
     /**
      * Lista di ricette memorizzate nel ristorante
      */
@@ -53,10 +52,10 @@ public class Restaurant {
         this.averageExtraConsumption = new HashMap<>();
     }
 
-    public static Restaurant getInstance(){
-        if(restaurantInstance == null){
-            synchronized(Restaurant.class){
-                if(restaurantInstance == null){
+    public static Restaurant getInstance() {
+        if (restaurantInstance == null) {
+            synchronized (Restaurant.class) {
+                if (restaurantInstance == null) {
                     restaurantInstance = new Restaurant();
                 }
             }
@@ -66,6 +65,7 @@ public class Restaurant {
 
     /**
      * Calcola il carico di lavoro sostenibile dal ristorante
+     *
      * @return carico di lavoro sostenibile
      */
     public float getSustainableWorkload() {
@@ -74,6 +74,7 @@ public class Restaurant {
 
     /**
      * getter che ritorna la lista di menu disponibili alla data in input
+     *
      * @param date data rispetto alla quale si vuole ottenere la lista di menu disponibili
      * @return lista di menu disponibili alla data in input
      */
@@ -83,6 +84,7 @@ public class Restaurant {
 
     /**
      * getter che ritorna la lista di piatti disponibili alla data in input
+     *
      * @param date data rispetto alla quale si vuole ottenere la lista di piatti disponibili
      * @return lista di piatti disponibili alla data in input
      */
@@ -92,6 +94,7 @@ public class Restaurant {
 
     /**
      * getter che ritorna un piatto ricercandolo nella lista tramite il nome dello stesso
+     *
      * @param name nome del piatto da cercare
      * @return un {@link Optional} vuoto se non esiste piatto con tale nome, {@link Optional} contenente il piatto
      * se esiste nella lista un piatto con tale nome
@@ -135,6 +138,7 @@ public class Restaurant {
 
     /**
      * Controlla se il consumo medio di un genere alimentare extra non è stato ancora inizializzato
+     *
      * @param name il nome del genere alimentare extra
      * @return true se il consumo medio del genere alimentare extra è null, false altrimenti
      */
@@ -144,6 +148,7 @@ public class Restaurant {
 
     /**
      * Ritorna una Map immutabile delle coppie extra-quantità in modo da proteggere uso improprio dai client
+     *
      * @return Map immputabile di coppie extra-quantità
      */
     public Map<String, Quantity> getImmutableAverageExtraConsumption() {
@@ -152,6 +157,7 @@ public class Restaurant {
 
     /**
      * Ritorna una Map immutabile delle coppie extra-quantità che sono state inizializzate (quantità != null)
+     *
      * @return Map immputabile di coppie extra-quantità inizializzate
      */
     public Map<String, Quantity> getImmutableAverageExtraConsumptionNotNull() {
@@ -162,7 +168,8 @@ public class Restaurant {
 
     /**
      * Inizializza il consumo di una coppia extra-quantità
-     * @param name il nome dell'alimento extra
+     *
+     * @param name   il nome dell'alimento extra
      * @param amount la quantità a cui lo si vuole inizializzare
      * @throws IllegalStateException se l'alimento extra non è presente nella lista
      */
@@ -172,6 +179,7 @@ public class Restaurant {
 
     /**
      * Controlla se il consumo medio di una bevanda non è stato ancora inizializzato
+     *
      * @param name il nome della bevanda
      * @return true se il consumo medio della bevanda è null, false altrimenti
      */
@@ -181,6 +189,7 @@ public class Restaurant {
 
     /**
      * Ritorna una Map immutabile delle coppie bevanda-quantità in modo da proteggere uso improprio dai client
+     *
      * @return Map immputabile di coppie bevanda-quantità
      */
     public Map<String, Quantity> getImmutableAverageDrinkConsumption() {
@@ -189,6 +198,7 @@ public class Restaurant {
 
     /**
      * Ritorna una Map immutabile delle coppie bevanda-quantità che sono state inizializzate (quantità != null)
+     *
      * @return Map immputabile di coppie bevanda-quantità inizializzate
      */
     public Map<String, Quantity> getImmutableAverageDrinkConsumptionNotNull() {
@@ -199,7 +209,8 @@ public class Restaurant {
 
     /**
      * Inizializza il consumo di una coppia bevanda-quantità
-     * @param name il nome della bevanda
+     *
+     * @param name   il nome della bevanda
      * @param amount la quantità a cui la si vuole inizializzare
      * @throws IllegalStateException se la bevanda non è presente nella lista
      */
@@ -209,6 +220,7 @@ public class Restaurant {
 
     /**
      * Aggiunge una bevanda, con quantità nulla
+     *
      * @param name nome della bevanda
      */
     public void addDrink(String name) {
@@ -218,6 +230,7 @@ public class Restaurant {
 
     /**
      * Aggiunge un alimento extra, con quantità nulla
+     *
      * @param name nome dell'alimento extra
      */
     public void addExtra(String name) {

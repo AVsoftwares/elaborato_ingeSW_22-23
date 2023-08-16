@@ -16,16 +16,19 @@ public class ShoppingList {
     private final Map<String, Quantity> products = new HashMap<>();
     /**
      * Referenza al ristorante
+     *
      * @see Restaurant
      */
     private final Restaurant restaurant;
     /**
      * Referenza allo store register
+     *
      * @see StoreRegister
      */
     private final StoreRegister storeRegister;
     /**
      * Referenza al reservation service
+     *
      * @see ReservationService
      */
     private final ReservationService reservationService;
@@ -83,6 +86,7 @@ public class ShoppingList {
 
     /**
      * Computa quali prodotti sono necessari per la prenotazione specificata
+     *
      * @param reservation la prenotazione per la quale bisogna calcolare gli ordini
      */
     private void computeOrders(Reservation reservation) {
@@ -107,6 +111,7 @@ public class ShoppingList {
 
     /**
      * Computa quali e quanti drink sono necessari per il numero di persone specificate
+     *
      * @param numberOfPeople numero di persone della prenotazione
      */
     private void computeDrinks(int numberOfPeople) {
@@ -125,6 +130,7 @@ public class ShoppingList {
 
     /**
      * Computa quali e quanti alimenti extra sono necessari per il numero di persone specificate
+     *
      * @param numberOfPeople numero di persone della prenotazione
      */
     private void computeExtraGroceries(int numberOfPeople) {

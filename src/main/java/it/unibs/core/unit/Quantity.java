@@ -23,9 +23,10 @@ public class Quantity {
 
     /**
      * Ritorna un'istanza di Quantity
+     *
      * @param amount ammontare della quantità
      * @param prefix prefisso dell'unità di misura
-     * @param unit unità di misura
+     * @param unit   unità di misura
      * @throws IllegalArgumentException se amount è minore di 0 (zero)
      */
     public Quantity(float amount, MetricPrefix prefix, MeasureUnit unit) {
@@ -39,6 +40,7 @@ public class Quantity {
 
     /**
      * Effettua il parsing di una Quantity da una stringa di input
+     *
      * @param value la stringa da cui effettua il parsing
      * @return un Optional vuoto nel caso in cui il parsing sia fallito, un Optional contenente la Quantity
      * se il parsing è andato a buon fine
@@ -71,6 +73,7 @@ public class Quantity {
 
     /**
      * Aggiunge un valore alla Quantity corrente
+     *
      * @param value il valore floating point da aggiungere
      * @return l'istanza stessa della classe
      */
@@ -81,6 +84,7 @@ public class Quantity {
 
     /**
      * Aggiunge una quantitò alla Quantity corrente
+     *
      * @param value la quantità da aggiungere
      * @return @see {@link #add(float) add} metodo
      */
@@ -91,6 +95,7 @@ public class Quantity {
 
     /**
      * Sottrae un valore alla Quantity corrente
+     *
      * @param value il valore floating point da sottrarre
      * @return l'istanza stessa della classe
      */
@@ -101,6 +106,7 @@ public class Quantity {
 
     /**
      * Sottrae una quantità alla Quantity corrente
+     *
      * @param value la quantità da aggiungere
      * @return @see {@link #subtract(float) subtract} metodo
      */
@@ -111,6 +117,7 @@ public class Quantity {
 
     /**
      * Moltiplica un valore alla Quantity corrente
+     *
      * @param value il valore floating point da moltiplicare
      * @return l'istanza stessa della classe
      */
@@ -118,8 +125,10 @@ public class Quantity {
         amount *= value;
         return this;
     }
+
     /**
      * Moltiplica una quantità alla Quantity corrente
+     *
      * @param value la quantità da moltiplicare
      * @return @see {@link #multiply(float) multiply} metodo
      */
@@ -130,6 +139,7 @@ public class Quantity {
 
     /**
      * Converte il prefisso dell'unità di misura della quantità corrente, in quello della quantità passata come parametro
+     *
      * @param quantity la quantità verso cui convertire
      * @throws IllegalArgumentException se le unità di misura del chiamante e dell'argomento sono diverse
      */
@@ -147,6 +157,7 @@ public class Quantity {
 
     /**
      * Converte il prefisso dell'unità di misura della quantità corrente, in quella passata come parametro
+     *
      * @param prefix il prefisso verso cui convertire
      */
     public void convertTo(MetricPrefix prefix) {

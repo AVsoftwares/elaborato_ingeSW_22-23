@@ -26,8 +26,8 @@ public class Recipe {
     private final float portionWorkload;
 
     /**
-     * @param ingredients coppie di ingredienti e quantità relative componenti la ricetta
-     * @param portions    numero di porzioni ottenibili dalla ricetta
+     * @param ingredients     coppie di ingredienti e quantità relative componenti la ricetta
+     * @param portions        numero di porzioni ottenibili dalla ricetta
      * @param portionWorkload carico di lavoro per porzione associato alla ricetta
      */
     public Recipe(Map<Ingredient, Quantity> ingredients, int portions, float portionWorkload) {
@@ -38,6 +38,7 @@ public class Recipe {
 
     /**
      * Aggiunge un ingrediente alla ricetta
+     *
      * @param ingredient ingrediente da aggiungere alla ricetta
      * @param amount     quantità dell'ingrediente necessaria per la ricetta
      */
@@ -47,6 +48,7 @@ public class Recipe {
 
     /**
      * Rimuove un ingrediente dalla ricetta
+     *
      * @param ingredient ingrediente da rimuovere dalla ricetta
      */
     public void remove(Ingredient ingredient) {
@@ -55,6 +57,7 @@ public class Recipe {
 
     /**
      * Controlla se un ingrediente è contenuto nella ricetta
+     *
      * @param ingredient ingrediente da controllare se presente nella ricetta
      * @return true se ingrediente presente in ricetta, false altrimenti
      */
@@ -64,6 +67,7 @@ public class Recipe {
 
     /**
      * getter che ritorna una Map immutabile per evitare un uso improprio dal client
+     *
      * @return Map immutabile di coppie ingrediente-quantità
      */
     public Map<Ingredient, Quantity> getIngredients() {

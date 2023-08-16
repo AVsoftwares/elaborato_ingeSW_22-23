@@ -47,6 +47,7 @@ public class Product implements Expire {
 
     /**
      * Metodo per controllare se il prodotto è presente in termini di quantità
+     *
      * @return true se la quantità è maggiore di 0, false altrimenti
      */
     public boolean isAvailable() {
@@ -55,6 +56,7 @@ public class Product implements Expire {
 
     /**
      * Metodo per verificare se due Product sono equivalenti
+     *
      * @param o oggetto rispetto al quale viene verificata l'equivalenza
      * @return true se i due oggetti sono riferimenti alla stessa istanza o se entrambi sono istanze di
      * Product ed hanno nome uguale (case insensitive) secondo {@link String#equals(Object) String.equals} e data di
@@ -75,6 +77,7 @@ public class Product implements Expire {
 
     /**
      * Metodo per controllare la validità di un Product, un product è valido se non è scaduto rispetto ad una data
+     *
      * @return true se non è scaduto alla data corrente
      * @see #isValidAtDate(LocalDate)
      */
@@ -85,6 +88,7 @@ public class Product implements Expire {
 
     /**
      * Metodo per controllare la validità di un Product, un product è valido se non è scaduto rispetto ad una data
+     *
      * @param date la data rispetto alla quale controllare la validità
      * @return true se la data passata come parametro è precedente o uguale alla data di scadenza
      */

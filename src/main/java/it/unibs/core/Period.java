@@ -10,6 +10,7 @@ import java.util.Objects;
 public class Period {
     /**
      * Formatter di default usato per il parsing e la rappresentazione in stringa
+     *
      * @see #format(DateTimeFormatter)
      * @see #toString()
      */
@@ -24,9 +25,8 @@ public class Period {
     private final LocalDate endDate;
 
     /**
-     *
      * @param startDate la data di inizio periodo
-     * @param endDate la data di fine periodo
+     * @param endDate   la data di fine periodo
      * @throws IllegalArgumentException se la data di inizio periodo è successiva alla data di fine periodo
      */
     public Period(LocalDate startDate, LocalDate endDate) {
@@ -39,6 +39,7 @@ public class Period {
 
     /**
      * Controlla se il periodo istanza chiamante è precedente ad una data passata come parametro
+     *
      * @param date la data rispetto alla quale viene effettuato il controllo
      * @return true se {@link #startDate startDate} e {@link #endDate endDate} sono precedenti alla data in input
      */
@@ -48,6 +49,7 @@ public class Period {
 
     /**
      * Controlla se il periodo istanza chiamante è successivo ad una data passata come parametro
+     *
      * @param date la data rispetto alla quale viene effettuato il controllo
      * @return true se {@link #startDate startDate} e {@link #endDate endDate} sono successive alla data in input
      */
@@ -57,6 +59,7 @@ public class Period {
 
     /**
      * Controlla se la data passata come parametro è inclusa nel periodo istanza chiamante
+     *
      * @param date la data rispetto alla quale viene effettuato il controllo
      * @return true se {@link #startDate} è precedente alla data in input e {@link #endDate} è successiva
      * alla data in input
@@ -75,6 +78,7 @@ public class Period {
 
     /**
      * Formatta il periodo in una stringa leggibile per rappresentazione testuale
+     *
      * @param formatter specifica come deve essere formattata la stringa
      * @return una stringa formattata di semplice lettura
      */

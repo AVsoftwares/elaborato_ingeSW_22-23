@@ -27,7 +27,7 @@ class MetricPrefixTest {
         assertNotEquals(MetricPrefix.KILO, MetricPrefix.fromString("h"));
 
         assertNotEquals(MetricPrefix.MILLI, "g2");
-        assertNotEquals(MetricPrefix.CENTI,"tre2");
+        assertNotEquals(MetricPrefix.CENTI, "tre2");
         assertNotEquals(MetricPrefix.DECI, "dec");
         assertNotEquals(MetricPrefix.DECA, "deca");
         assertNotEquals(MetricPrefix.HECTO, "etto");

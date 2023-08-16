@@ -29,7 +29,8 @@ public class Reservation {
 
     /**
      * Ritorna un'istanza di Reservation
-     * @param date data prenotata
+     *
+     * @param date  data prenotata
      * @param seats numero di posti a sedere prenotati
      * @throws IllegalArgumentException se i posti a sedere sono minori o uguali a 0
      */
@@ -42,7 +43,23 @@ public class Reservation {
     }
 
     /**
+     * Valida la prenotazione.
+     * Una prenotazione è valida se la sua data è feriale, antecedente
+     * alla data odierna e pervenuta con almeno un giorno feriale di anticipo.
+     *
+     * @return true se la data è valida, false altrimenti
+     */
+    public static boolean isDateValid(LocalDate date) {
+
+        final var today = LocalDate.now(Clock.systemDefaultZone());
+
+        DayOfWeek dayOfWeek = date.getDayOfWeek();
+        return (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY && DAYS.between(today, date) >= 1);
+    }
+
+    /**
      * Aggiunge un {@link Orderable} alla Map degli ordini ed aggiorna il relativo numero intero associato
+     *
      * @param orderable ordine da aggiungere alla Map
      */
     public void add(Orderable orderable) {
@@ -56,6 +73,7 @@ public class Reservation {
     /**
      * Controlla se la prenotazione è scaduta.
      * Una prenotazione è scaduta se antecedente alla data passata come parametro.
+     *
      * @param target la data rispetto alla quale si controlla se la prenotazione è scaduta
      * @return true se la prenotazione è scaduta, false altrimenti
      */
@@ -77,6 +95,7 @@ public class Reservation {
 
     /**
      * getter per il calcolo del carico di lavoro della prenotazione
+     *
      * @return il carico di lavoro complessivo della prenotazione
      */
     public float getWorkload() {
@@ -87,19 +106,5 @@ public class Reservation {
         }
 
         return workload;
-    }
-
-    /**
-     * Valida la prenotazione.
-     * Una prenotazione è valida se la sua data è feriale, antecedente
-     * alla data odierna e pervenuta con almeno un giorno feriale di anticipo.
-     * @return true se la data è valida, false altrimenti
-     */
-    public static boolean isDateValid(LocalDate date) {
-
-        final var today = LocalDate.now(Clock.systemDefaultZone());
-
-        DayOfWeek dayOfWeek = date.getDayOfWeek();
-        return (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY && DAYS.between(today, date) >= 1);
     }
 }

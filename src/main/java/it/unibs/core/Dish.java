@@ -56,6 +56,7 @@ public class Dish implements Orderable, Expire {
 
     /**
      * Metodo di validazione di un piatto
+     *
      * @return true se piatto disponibile nel momento della verifica
      * @see #isValidAtDate(LocalDate)
      */
@@ -66,6 +67,7 @@ public class Dish implements Orderable, Expire {
 
     /**
      * Metodo di validazione di un piatto, rispetto ad una data
+     *
      * @param date la data per cui bisogna verificare se il piatto è disponibile
      * @return true se il piatto è valido alla data specificata, false altrimenti
      */
@@ -76,6 +78,7 @@ public class Dish implements Orderable, Expire {
 
     /**
      * Metodo per verificare se due Dish sono equivalenti
+     *
      * @param o oggetto rispetto al quale viene verificata l'equivalenza
      * @return true se i due oggetti sono riferimenti alla stessa istanza o se entrambi sono istanze di
      * Dish ed hanno nome uguale (case insensitive), false altrimenti
