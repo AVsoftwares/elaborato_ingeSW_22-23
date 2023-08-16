@@ -1,22 +1,15 @@
 package it.unibs.ui.manager.commands;
 
 import it.unibs.core.Restaurant;
-import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
 
-public class IndividualWorkloadCommand implements Command {
+public class IndividualWorkloadController {
 
     public static final String VALUE_NOT_INITIALIZED = "Il valore non è ancora stato inizializzato.";
     public static final String ADD_PERSON_WORKLOAD = "Inserisci il carico di lavoro per persona: ";
     public static final String ACTUAL_VALUE = "Il valore attuale è: ";
-    private final Restaurant restaurant;
 
-    public IndividualWorkloadCommand(Restaurant restaurant) {
-        this.restaurant = Restaurant.getInstance();
-    }
-
-    @Override
-    public void execute() {
+    public void individualWorkloadController(Restaurant restaurant) {
         final var workload = restaurant.getIndividualWorkload();
 
         if (workload == 0) {
