@@ -92,7 +92,7 @@ public class ShoppingList {
      * @param reservation la prenotazione per la quale bisogna calcolare gli ordini
      */
     private void computeOrders(Reservation reservation) {
-        final Map<Orderable, Integer> orders = reservation.getOrders();
+        final Map<Consumable, Integer> orders = reservation.getOrders();
 
 
         orders.forEach((orderable, count) -> {

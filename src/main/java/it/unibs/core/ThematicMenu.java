@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class ThematicMenu extends Menu implements Orderable, Expire {
+public class ThematicMenu extends Menu implements Consumable, Perishable {
 
     private final Period period;
 
@@ -37,13 +37,13 @@ public class ThematicMenu extends Menu implements Orderable, Expire {
     }
 
     @Override
-    public boolean isValid(Clock clock) {
-        return isValidAtDate(LocalDate.now());
+    public boolean isExpired(Clock clock) {
+        return isExpiredAtDate(LocalDate.now());
     }
 
     @Override
-    public boolean isValidAtDate(LocalDate date) {
-        return period.includes(date);
+    public boolean isExpiredAtDate(LocalDate date) {
+        return !period.includes(date);
     }
 
     @Override

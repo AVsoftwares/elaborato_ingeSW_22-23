@@ -30,7 +30,7 @@ public final class ManagerMenu extends Menu {
     }
 
     private void initMenuEntries(Restaurant restaurant) {
-        addEntry(MSG_WORKLOAD, new IndividualWorkloadCommand(restaurant));
+        addEntry(MSG_WORKLOAD, new IndividualWorkloadCommand(restaurant, this));
         addEntry(MSG_SEATS, new SeatsCommand(restaurant));
         addEntry(MSG_DRINKS, new DrinksCommand());
         addEntry(MSG_EXTRA, new ExtraCommand(restaurant));

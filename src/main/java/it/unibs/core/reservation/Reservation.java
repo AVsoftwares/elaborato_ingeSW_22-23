@@ -1,6 +1,6 @@
 package it.unibs.core.reservation;
 
-import it.unibs.core.Orderable;
+import it.unibs.core.Consumable;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -12,14 +12,13 @@ import java.util.Objects;
 public class Reservation {
     /**
      * Coppie ordine-intero dove un ordine è qualcosa che può essere ordinato presso il ristorante,
-     * deve implementare {@link Orderable}
+     * deve implementare {@link Consumable}
      */
-    private final HashMap<Orderable, Integer> orders = new HashMap<>();
+    private final HashMap<Consumable, Integer> orders = new HashMap<>();
     /**
      * Data per cui è stata fatta la prenotazione
      */
     private final LocalDate date;
-    //private Clock clock;
     /**
      * Numero di posti a sedere prenotati
      */
@@ -41,15 +40,15 @@ public class Reservation {
     }
 
     /**
-     * Aggiunge un {@link Orderable} alla Map degli ordini ed aggiorna il relativo numero intero associato
+     * Aggiunge un {@link Consumable} alla Map degli ordini ed aggiorna il relativo numero intero associato
      *
-     * @param orderable ordine da aggiungere alla Map
+     * @param consumable ordine da aggiungere alla Map
      */
-    public void add(Orderable orderable) {
-        if (orders.containsKey(orderable)) {
-            orders.put(orderable, orders.get(orderable) + 1);
+    public void add(Consumable consumable) {
+        if (orders.containsKey(consumable)) {
+            orders.put(consumable, orders.get(consumable) + 1);
         } else {
-            orders.put(orderable, 1);
+            orders.put(consumable, 1);
         }
     }
 
@@ -68,7 +67,7 @@ public class Reservation {
         return date;
     }
 
-    public HashMap<Orderable, Integer> getOrders() {
+    public HashMap<Consumable, Integer> getOrders() {
         return orders;
     }
 

@@ -13,7 +13,7 @@ public class ReservationService {
      * Lista di prenotazioni effettuate
      */
     private final List<Reservation> reservations;
-    private final DateValidationStrategy dateValidationStrategy;
+    private DateValidationStrategy dateValidationStrategy;
     private final Clock clock;
 
     public ReservationService(DateValidationStrategy dateValidationStrategy) {
@@ -85,5 +85,13 @@ public class ReservationService {
 
     public boolean isValid(LocalDate date) {
         return dateValidationStrategy.isValid(date);
+    }
+
+    public DateValidationStrategy getDateValidationStrategy() {
+        return dateValidationStrategy;
+    }
+
+    public void setDateValidationStrategy(DateValidationStrategy dateValidationStrategy) {
+        this.dateValidationStrategy = dateValidationStrategy;
     }
 }

@@ -11,17 +11,25 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class ThematicMenuTest {
 
     @Test
-    void isValidAtDate() {
+    void shouldNotBeExpired() {
         ThematicMenu thematicMenu = new ThematicMenu(
                 "TestMenu",
                 new Period(LocalDate.of(2023, 1, 1), LocalDate.of(2024, 1, 1)),
                 new ArrayList<>());
 
-        assertTrue(thematicMenu.isValidAtDate(LocalDate.of(2023, 1, 1)));
-        assertTrue(thematicMenu.isValidAtDate(LocalDate.of(2024, 1, 1)));
-        assertTrue(thematicMenu.isValidAtDate(LocalDate.of(2023, 7, 19)));
+        assertFalse(thematicMenu.isExpiredAtDate(LocalDate.of(2023, 1, 1)));
+        assertFalse(thematicMenu.isExpiredAtDate(LocalDate.of(2024, 1, 1)));
+        assertFalse(thematicMenu.isExpiredAtDate(LocalDate.of(2023, 7, 19)));
+    }
 
-        assertFalse(thematicMenu.isValidAtDate(LocalDate.of(2022, 12, 31)));
-        assertFalse(thematicMenu.isValidAtDate(LocalDate.of(2024, 1, 2)));
+    @Test
+    void shouldBeExpired() {
+        ThematicMenu thematicMenu = new ThematicMenu(
+                "TestMenu",
+                new Period(LocalDate.of(2023, 1, 1), LocalDate.of(2024, 1, 1)),
+                new ArrayList<>());
+
+        assertTrue(thematicMenu.isExpiredAtDate(LocalDate.of(2022, 12, 31)));
+        assertTrue(thematicMenu.isExpiredAtDate(LocalDate.of(2024, 1, 2)));
     }
 }

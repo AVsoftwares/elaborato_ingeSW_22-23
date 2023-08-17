@@ -7,9 +7,9 @@ import java.time.LocalDate;
  * Interfaccia fornisce metodi per la verifica della validità
  * di un oggetto con scadenza o non sempre valido
  */
-public interface Expire {
+public interface Perishable {
 
-    boolean isValid(Clock clock);
+    boolean isExpired(Clock clock);
 
-    boolean isValidAtDate(LocalDate date);
+    boolean isExpiredAtDate(LocalDate date);
 }

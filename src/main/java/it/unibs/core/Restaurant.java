@@ -79,7 +79,7 @@ public class Restaurant {
      * @return lista di menu disponibili alla data in input
      */
     public List<ThematicMenu> getAvailableMenus(LocalDate date) {
-        return thematicMenus.stream().filter(m -> m.isValidAtDate(date)).toList();
+        return thematicMenus.stream().filter(m -> m.isExpiredAtDate(date)).toList();
     }
 
     /**
@@ -89,7 +89,7 @@ public class Restaurant {
      * @return lista di piatti disponibili alla data in input
      */
     public List<Dish> getAvailableDishes(LocalDate date) {
-        return dishes.stream().filter(d -> d.isValidAtDate(date)).toList();
+        return dishes.stream().filter(d -> d.isExpiredAtDate(date)).toList();
     }
 
     /**

@@ -35,24 +35,32 @@ class ProductTest {
     }
 
     @Test
-    void shouldBeAllValid() {
-        Product product1 = new Product("Mozzarella", LocalDate.of(2023, 7, 19), null);
-        Product product2 = new Product("Farina", LocalDate.of(2023, 7, 20), null);
-        Product product3 = new Product("Zucchero", LocalDate.of(2023, 7, 21), null);
+    void shouldNoneBeExpired() {
+        LocalDate date1 = LocalDate.of(2023, 7, 19);
+        LocalDate date2 = LocalDate.of(2023, 7, 20);
+        LocalDate date3 = LocalDate.of(2023, 7, 21);
 
-        assertTrue(product1.isValidAtDate(LocalDate.of(2023, 7, 19)));
-        assertTrue(product2.isValidAtDate(LocalDate.of(2023, 7, 19)));
-        assertTrue(product3.isValidAtDate(LocalDate.of(2023, 7, 19)));
+        Product product1 = new Product("Mozzarella", date1, null);
+        Product product2 = new Product("Farina", date2, null);
+        Product product3 = new Product("Zucchero", date3, null);
+
+        assertFalse(product1.isExpiredAtDate(date1));
+        assertFalse(product2.isExpiredAtDate(date2));
+        assertFalse(product3.isExpiredAtDate(date3));
     }
 
     @Test
-    void shouldBeNoneValid() {
+    void shouldAllBeExpired() {
         Product product1 = new Product("Mozzarella", LocalDate.of(2023, 7, 16), null);
         Product product2 = new Product("Farina", LocalDate.of(2023, 7, 17), null);
         Product product3 = new Product("Zucchero", LocalDate.of(2023, 7, 18), null);
 
-        assertFalse(product1.isValidAtDate(LocalDate.of(2023, 7, 19)));
-        assertFalse(product2.isValidAtDate(LocalDate.of(2023, 7, 19)));
-        assertFalse(product3.isValidAtDate(LocalDate.of(2023, 7, 19)));
+        LocalDate date1 = LocalDate.of(2023, 7, 17);
+        LocalDate date2 = LocalDate.of(2023, 7, 18);
+        LocalDate date3 = LocalDate.of(2023, 7, 19);
+
+        assertTrue(product1.isExpiredAtDate(date1));
+        assertTrue(product2.isExpiredAtDate(date2));
+        assertTrue(product3.isExpiredAtDate(date3));
     }
 }

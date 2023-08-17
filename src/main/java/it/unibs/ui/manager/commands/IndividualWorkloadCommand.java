@@ -3,6 +3,7 @@ package it.unibs.ui.manager.commands;
 import it.unibs.core.Restaurant;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
+import it.unibs.ui.Menu;
 
 public class IndividualWorkloadCommand implements Command {
 
@@ -10,9 +11,11 @@ public class IndividualWorkloadCommand implements Command {
     public static final String ADD_PERSON_WORKLOAD = "Inserisci il carico di lavoro per persona: ";
     public static final String ACTUAL_VALUE = "Il valore attuale è: ";
     private final Restaurant restaurant;
+    private Menu view;
 
-    public IndividualWorkloadCommand(Restaurant restaurant) {
+    public IndividualWorkloadCommand(Restaurant restaurant, Menu view) {
         this.restaurant = Restaurant.getInstance();
+        this.view = view;
     }
 
     @Override

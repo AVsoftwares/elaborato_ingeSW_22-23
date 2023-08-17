@@ -69,7 +69,7 @@ public class StoreRegister {
      * Rimuove i prodotti scaduti dal magazzino
      */
     public void removeExpiredProducts() {
-        products.removeIf(product -> !product.isValid(clock));
+        products.removeIf(product -> product.isExpired(clock));
     }
 
     public List<Product> getProducts() {

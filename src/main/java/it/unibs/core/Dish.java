@@ -11,7 +11,7 @@ import java.util.Objects;
  * Classe che rappresenta un piatto, identificato univocamente da un nome,
  * associato ad una ricetta e con un periodo di validità
  */
-public class Dish implements Orderable, Expire {
+public class Dish implements Consumable, Perishable {
     /**
      * Nome univoco che identifica il piatto
      */
@@ -58,11 +58,11 @@ public class Dish implements Orderable, Expire {
      * Metodo di validazione di un piatto
      *
      * @return true se piatto disponibile nel momento della verifica
-     * @see #isValidAtDate(LocalDate)
+     * @see #isExpiredAtDate(LocalDate)
      */
     @Override
-    public boolean isValid(Clock clock) {
-        return isValidAtDate(LocalDate.now(clock));
+    public boolean isExpired(Clock clock) {
+        return isExpiredAtDate(LocalDate.now(clock));
     }
 
     /**
@@ -72,8 +72,8 @@ public class Dish implements Orderable, Expire {
      * @return true se il piatto è valido alla data specificata, false altrimenti
      */
     @Override
-    public boolean isValidAtDate(LocalDate date) {
-        return period.includes(date);
+    public boolean isExpiredAtDate(LocalDate date) {
+        return !period.includes(date);
     }
 
     /**

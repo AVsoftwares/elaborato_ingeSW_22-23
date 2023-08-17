@@ -1,7 +1,7 @@
 package it.unibs.ui.reservationOfficer.commands;
 
 import it.unibs.core.Dish;
-import it.unibs.core.Orderable;
+import it.unibs.core.Consumable;
 import it.unibs.core.Restaurant;
 import it.unibs.core.ThematicMenu;
 import it.unibs.core.reservation.Reservation;
@@ -44,7 +44,7 @@ public class ReservationCommand implements Command {
 
         final Reservation reservation = new Reservation(date, seats);
 
-        final List<? extends Orderable> orderables = Stream.concat(availableMenus.stream(), availableDishes.stream()).toList();
+        final List<? extends Consumable> orderables = Stream.concat(availableMenus.stream(), availableDishes.stream()).toList();
 
         if (!orderables.isEmpty()) {
             for (int i = 0; i < orderables.size(); i++) {

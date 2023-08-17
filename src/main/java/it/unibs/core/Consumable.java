@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * Interfaccia che fornisce metodi per oggetti ordinabili nel ristorante
  */
-public interface Orderable {
+public interface Consumable {
     float getWorkload();
 
     Map<? extends Product, Quantity> getProductsQuantity();

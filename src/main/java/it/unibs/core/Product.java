@@ -13,7 +13,7 @@ import java.util.Objects;
  * genere alimentare extra, ingrediente ed eventualmente altro non contemplato dalla
  * specifica iniziale
  */
-public class Product implements Expire {
+public class Product implements Perishable {
     /**
      * Nome del prodotto
      */
@@ -79,11 +79,11 @@ public class Product implements Expire {
      * Metodo per controllare la validità di un Product, un product è valido se non è scaduto rispetto ad una data
      *
      * @return true se non è scaduto alla data corrente
-     * @see #isValidAtDate(LocalDate)
+     * @see #isExpiredAtDate(LocalDate)
      */
     @Override
-    public boolean isValid(Clock clock) {
-        return isValidAtDate(LocalDate.now(clock));
+    public boolean isExpired(Clock clock) {
+        return isExpiredAtDate(LocalDate.now(clock));
     }
 
     /**
@@ -93,8 +93,8 @@ public class Product implements Expire {
      * @return true se la data passata come parametro è precedente o uguale alla data di scadenza
      */
     @Override
-    public boolean isValidAtDate(LocalDate date) {
-        return date.isBefore(expiration) || date.isEqual(expiration);
+    public boolean isExpiredAtDate(LocalDate date) {
+        return date.isAfter(expiration);
     }
 
     @Override
