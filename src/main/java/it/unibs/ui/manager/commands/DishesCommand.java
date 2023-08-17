@@ -14,26 +14,26 @@ public class DishesCommand implements Command {
 
     public static final String DISHES_MANAGEMENT = "Gestione piatti";
     public static final String ADD_DISH = "Aggiungi piatti";
-    public static final String DISH_LIST_INITIALIZED = "La lista di piatti è già stata inizializzata.";
+
     public static final String NAME = "Nome: ";
     public static final String START_VALIDITY = "Data di inizio validità: ";
     public static final String STOP_VALIDITY = "Data di fine validità: ";
-    public static final String DISH_ALREADY_PRESENT = "Un piatto omonimo è già presente.";
-    public static final String PERIOD_NOT_VALID = "Il periodo inserito non è valido.";
     public static final String ANOTHER_DISH_Y_OR_N = "Vuoi inserire un altro piatto?  (y)es/(n)o: ";
     public static final String VIEW_DIHES = "Visualizza piatti";
-    public static final String NO_DISHES_SAVED = "Non sono memorizzati piatti.";
 
-    private final Restaurant restaurant = Restaurant.getInstance();
 
+    private final Restaurant model = Restaurant.getInstance();
+    private final DishesCommandView dishView = new DishesCommandView() ;
     @Override
     public void execute() {
-        Set<Dish> dishes = restaurant.getDishes();
+
+        Set<Dish> dishes = model.getDishes();
 
         Menu menu = new Menu(DISHES_MANAGEMENT);
+
         menu.addEntry(ADD_DISH, () -> {
             if (!dishes.isEmpty()) {
-                System.out.println(DISH_LIST_INITIALIZED);
+                dishView.printDishListInitialized();
                 return;
             }
 
@@ -46,19 +46,16 @@ public class DishesCommand implements Command {
 
                 if (startDate.isBefore(expireDate)) {
                     if (!dishes.add(new Dish(name, new Period(startDate, expireDate)))) {
-                        System.out.println(DISH_ALREADY_PRESENT);
+                        dishView.printDishPresent();
                     }
                 } else {
-                    System.out.println(PERIOD_NOT_VALID);
+                    dishView.printPeriodNotValid();
                 }
             } while (InputManager.readYesOrNo(ANOTHER_DISH_Y_OR_N));
         });
+
         menu.addEntry(VIEW_DIHES, () -> {
-            if (dishes.isEmpty()) {
-                System.out.println(NO_DISHES_SAVED);
-            } else {
-                dishes.forEach(System.out::println);
-            }
+                dishView.printDishes(dishes);
         });
         menu.run();
     }
