@@ -32,11 +32,7 @@ public class ThematicMenuCommand implements Command {
     public static final String DISH_ADDED = "Piatto aggiunto al menu.";
     public static final String DISH_WORKLOAD_EXCEDED = "Il piatto scelto ha un carico di lavoro incompatibile con il menu.";
     public static final String ADD_ANOTHER_DISH_Y_OR_NO = "Vuoi inserire un altro piatto? (y)es/(n)o: ";
-    private final Restaurant restaurant;
-
-    public ThematicMenuCommand(Restaurant restaurant) {
-        this.restaurant = Restaurant.getInstance();
-    }
+    private final Restaurant restaurant = Restaurant.getInstance();
 
     /**
      * @see Command

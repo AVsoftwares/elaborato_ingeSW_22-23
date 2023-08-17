@@ -9,11 +9,7 @@ public class SeatsCommand implements Command {
     public static final String VALUE_NOT_INITIALIZED = "Il valore non è ancora stato inizializzato.";
     public static final String RESTAURANT_SEATS = "Inserisci il numero di posti a sedere del ristorante: ";
     public static final String ACTUAL_VALUE = "Il valore attuale è: ";
-    private final Restaurant restaurant;
-
-    public SeatsCommand(Restaurant restaurant) {
-        this.restaurant = Restaurant.getInstance();
-    }
+    private final Restaurant restaurant = Restaurant.getInstance();
 
     @Override
     public void execute() {

@@ -25,11 +25,7 @@ public class PairDishWithRecipeCommand implements Command {
     public static final String MSG_SAVED_RECIPES = "Sono memorizzate le seguenti ricette: ";
     public static final String RECIPE_INDEX_TO_PAIR = "Indice della ricetta da assegnare: ";
     public static final String ANOTHER_DISH_Y_OR_NO = "Vuoi modificare un altro piatto? (y)es/(n)o: ";
-    private final Restaurant restaurant;
-
-    public PairDishWithRecipeCommand(Restaurant restaurant) {
-        this.restaurant = Restaurant.getInstance();
-    }
+    private final Restaurant restaurant = Restaurant.getInstance();
 
     @Override
     public void execute() {

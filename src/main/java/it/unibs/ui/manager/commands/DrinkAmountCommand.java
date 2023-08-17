@@ -21,11 +21,7 @@ public class DrinkAmountCommand implements Command {
     public static final String DRINK_MSG = "La bevanda ";
     public static final String ASSOCIATED_CONSUMPTION_PER_CAPITA = " ha un consumo pro-capite associato.";
     public static final String NOT_PRESENT_MSG = " non è presente nel ristorante.";
-    private final Restaurant restaurant;
-
-    public DrinkAmountCommand() {
-        this.restaurant = Restaurant.getInstance();
-    }
+    private final Restaurant restaurant = Restaurant.getInstance();
 
     @Override
     public void execute() {

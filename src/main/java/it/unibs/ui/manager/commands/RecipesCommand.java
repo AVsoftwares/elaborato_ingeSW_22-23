@@ -26,11 +26,7 @@ public class RecipesCommand implements Command {
     public static final String ANOTHER_INGREDIENT_Y_OR_NO = "Vuoi inserire un altro ingrediente? (y)es/(n)o: ";
     public static final String PORTIONS_PREPARED_WITH_INSERTED_DOSES = "Numero di porzioni che possono essere preparate con le dosi inserite: ";
     public static final String PORTION_WORKLOAD = "Carico di lavoro per porzione: ";
-    private final Restaurant restaurant;
-
-    public RecipesCommand(Restaurant restaurant) {
-        this.restaurant = Restaurant.getInstance();
-    }
+    private final Restaurant restaurant = Restaurant.getInstance();
 
     @Override
     public void execute() {

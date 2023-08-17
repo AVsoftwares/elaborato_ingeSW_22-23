@@ -13,8 +13,8 @@ public class ReservationService {
      * Lista di prenotazioni effettuate
      */
     private final List<Reservation> reservations;
-    private DateValidationStrategy dateValidationStrategy;
     private final Clock clock;
+    private DateValidationStrategy dateValidationStrategy;
 
     public ReservationService(DateValidationStrategy dateValidationStrategy) {
         this(new ArrayList<>(), dateValidationStrategy, Clock.systemDefaultZone());

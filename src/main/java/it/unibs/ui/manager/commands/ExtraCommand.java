@@ -16,11 +16,7 @@ public class ExtraCommand implements Command {
     public static final String ACTUALLY_AVAILABLE = "I generi alimentari extra attualmente disponibili sono:";
     public static final String ADD_EXTRA_FOOD = "Aggiungi genere alimentare";
     public static final String ALREADY_PRESENT = "Il genere alimentare è già presente nell'elenco.";
-    private final Restaurant restaurant;
-
-    public ExtraCommand(Restaurant restaurant) {
-        this.restaurant = Restaurant.getInstance();
-    }
+    private final Restaurant restaurant = Restaurant.getInstance();
 
     @Override
     public void execute() {

@@ -1,6 +1,5 @@
 package it.unibs.ui.manager;
 
-import it.unibs.core.Restaurant;
 import it.unibs.ui.Menu;
 import it.unibs.ui.manager.commands.*;
 
@@ -21,24 +20,21 @@ public final class ManagerMenu extends Menu {
     private static final String MSG_RECIPES = "Gestisci le ricette disponibili.";
     private static final String MSG_THEMATIC_MENU = "Gestisci i menu tematici disponibili.";
 
-    /**
-     * @param restaurant
-     */
-    public ManagerMenu(Restaurant restaurant) {
+    public ManagerMenu() {
         super(MENU_NAME);
-        initMenuEntries(restaurant);
+        initMenuEntries();
     }
 
-    private void initMenuEntries(Restaurant restaurant) {
-        addEntry(MSG_WORKLOAD, new IndividualWorkloadCommand(restaurant, this));
-        addEntry(MSG_SEATS, new SeatsCommand(restaurant));
+    private void initMenuEntries() {
+        addEntry(MSG_WORKLOAD, new IndividualWorkloadCommand());
+        addEntry(MSG_SEATS, new SeatsCommand());
         addEntry(MSG_DRINKS, new DrinksCommand());
-        addEntry(MSG_EXTRA, new ExtraCommand(restaurant));
+        addEntry(MSG_EXTRA, new ExtraCommand());
         addEntry(MSG_DRINK_AMOUNT, new DrinkAmountCommand());
         addEntry(MSG_EXTRA_AMOUNT, new ExtraAmountCommand());
-        addEntry(MSG_COUPLE_DISH_RECIPE, new PairDishWithRecipeCommand(restaurant));
+        addEntry(MSG_COUPLE_DISH_RECIPE, new PairDishWithRecipeCommand());
         addEntry(MSG_DISH, new DishesCommand());
-        addEntry(MSG_RECIPES, new RecipesCommand(restaurant));
-        addEntry(MSG_THEMATIC_MENU, new ThematicMenuCommand(restaurant));
+        addEntry(MSG_RECIPES, new RecipesCommand());
+        addEntry(MSG_THEMATIC_MENU, new ThematicMenuCommand());
     }
 }

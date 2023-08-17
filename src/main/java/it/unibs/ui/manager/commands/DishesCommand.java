@@ -24,11 +24,7 @@ public class DishesCommand implements Command {
     public static final String VIEW_DIHES = "Visualizza piatti";
     public static final String NO_DISHES_SAVED = "Non sono memorizzati piatti.";
 
-    private final Restaurant restaurant;
-
-    public DishesCommand() {
-        this.restaurant = Restaurant.getInstance();
-    }
+    private final Restaurant restaurant = Restaurant.getInstance();
 
     @Override
     public void execute() {

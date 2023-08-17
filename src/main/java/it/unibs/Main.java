@@ -1,6 +1,5 @@
 package it.unibs;
 
-import it.unibs.core.Restaurant;
 import it.unibs.core.ShoppingList;
 import it.unibs.core.StoreRegister;
 import it.unibs.core.reservation.ConcreteDateValidationStrategy;
@@ -27,7 +26,7 @@ public class Main {
         ShoppingList shoppingList = new ShoppingList(storeRegister, reservationService);
 
         final Menu mainMenu = new Menu(MENU_TITLE, true);
-        mainMenu.addEntry(MSG_MANAGER_LOGIN, () -> new ManagerMenu(Restaurant.getInstance()).run());
+        mainMenu.addEntry(MSG_MANAGER_LOGIN, () -> new ManagerMenu().run());
         mainMenu.addEntry(MSG_BOOKING_OFFICER_LOGIN, () -> new ReservationOfficerMenu(reservationService).run());
         mainMenu.addEntry(MSG_WAREHOUSE_MAN_LOGIN, () -> new StorekeeperMenu(storeRegister, shoppingList).run());
         mainMenu.run();

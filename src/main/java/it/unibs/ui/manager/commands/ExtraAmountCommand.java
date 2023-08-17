@@ -20,11 +20,7 @@ public class ExtraAmountCommand implements Command {
     public static final String EXTRA_MSG = "L'alimento extra ";
     public static final String EXTRA_FOOD_CONSUMPTION_PER_CAPITA = " ha un consumo pro-capite associato.";
     public static final String NOT_PRESENT_RESTAURANT = " non è presente nel ristorante.";
-    private final Restaurant restaurant;
-
-    public ExtraAmountCommand() {
-        this.restaurant = Restaurant.getInstance();
-    }
+    private final Restaurant restaurant = Restaurant.getInstance();
 
     @Override
     public void execute() {

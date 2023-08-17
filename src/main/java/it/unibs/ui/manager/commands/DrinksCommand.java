@@ -15,11 +15,7 @@ public class DrinksCommand implements Command {
     public static final String MSG_DRINKS_AVAILABLE_NOW = "Le bevande attualmente disponibili sono:";
     public static final String ADD_BEVERAGE = "Aggiungi bevanda";
     public static final String BEVERAGE_ALREADY_PRESENT = "La bevanda è già presente nell'elenco.";
-    private final Restaurant restaurant;
-
-    public DrinksCommand() {
-        this.restaurant = Restaurant.getInstance();
-    }
+    private final Restaurant restaurant = Restaurant.getInstance();
 
     @Override
     public void execute() {
