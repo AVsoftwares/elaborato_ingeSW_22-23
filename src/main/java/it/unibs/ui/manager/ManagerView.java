@@ -13,17 +13,6 @@ import java.util.Set;
  */
 public final class ManagerView extends BaseMenu {
 
-    private static final String MENU_NAME = "Manager Menu";
-    private static final String MSG_WORKLOAD = "Gestisci carico di lavoro per persona.";
-    private static final String MSG_SEATS = "Gestisci numero dei posti a sedere.";
-    private static final String MSG_DRINKS = "Gestisci insieme delle bevande.";
-    private static final String MSG_EXTRA = "Gestisci insieme di generi alimentari extra.";
-    private static final String MSG_DRINK_AMOUNT = "Gestisci consumo pro-capite di bevande.";
-    private static final String MSG_EXTRA_AMOUNT = "Gestisci consumo pro-capite di generi alimentari extra.";
-    private static final String MSG_COUPLE_DISH_RECIPE = "Gestisci corrispondenze piatto-ricetta.";
-    private static final String MSG_DISH = "Gestisci denominazione e periodo di validità di ciascun piatto.";
-    private static final String MSG_RECIPES = "Gestisci le ricette disponibili.";
-    private static final String MSG_THEMATIC_MENU = "Gestisci i menu tematici disponibili.";
     public static final String DISH_LIST_INITIALIZED = "La lista di piatti è già stata inizializzata.";
     public static final String DISH_ALREADY_PRESENT = "Un piatto omonimo è già presente.";
     public static final String PERIOD_NOT_VALID = "Il periodo inserito non è valido.";
@@ -39,10 +28,10 @@ public final class ManagerView extends BaseMenu {
     public static final String EXTRA_MSG = "L'alimento extra ";
     public static final String EXTRA_FOOD_CONSUMPTION_PER_CAPITA = " ha un consumo pro-capite associato.";
     public static final String NOT_PRESENT_RESTAURANT = " non è presente nel ristorante.";
-    public static final String ACTUALLY_AVAILABLE = "I generi alimentari extra attualmente disponibili sono:";
+    public static final String CURRENTLY_AVAILABLE = "I generi alimentari extra attualmente disponibili sono:";
     public static final String ALREADY_PRESENT = "Il genere alimentare è già presente nell'elenco.";
     public static final String VALUE_NOT_INITIALIZED = "Il valore non è ancora stato inizializzato.";
-    public static final String ACTUAL_VALUE = "Il valore attuale è: ";
+    public static final String CURRENT_VALUE = "Il valore attuale è: ";
     public static final String ALL_DISHES_PAIRED = "Tutti i piatti sono associati ad una ricetta.";
     public static final String NO_PRESENT_RECIPES_IMPOSSIBLE_PROCEED = "Non sono presenti ricette, impossibile procedere.";
     public static final String DISHES_NOT_PAIRED = "I seguenti piatti non hanno una ricetta associata: ";
@@ -61,6 +50,17 @@ public final class ManagerView extends BaseMenu {
     public static final String NO_PAIRED_RECIPE_DISH = "Il piatto non ha una ricetta associata, non è possibile inserirlo nel menu.";
     public static final String DISH_ADDED = "Piatto aggiunto al menu.";
     public static final String DISH_WORKLOAD_EXCEDED = "Il piatto scelto ha un carico di lavoro incompatibile con il menu.";
+    private static final String MENU_NAME = "Manager Menu";
+    private static final String MSG_WORKLOAD = "Gestisci carico di lavoro per persona.";
+    private static final String MSG_SEATS = "Gestisci numero dei posti a sedere.";
+    private static final String MSG_DRINKS = "Gestisci insieme delle bevande.";
+    private static final String MSG_EXTRA = "Gestisci insieme di generi alimentari extra.";
+    private static final String MSG_DRINK_AMOUNT = "Gestisci consumo pro-capite di bevande.";
+    private static final String MSG_EXTRA_AMOUNT = "Gestisci consumo pro-capite di generi alimentari extra.";
+    private static final String MSG_COUPLE_DISH_RECIPE = "Gestisci corrispondenze piatto-ricetta.";
+    private static final String MSG_DISH = "Gestisci denominazione e periodo di validità di ciascun piatto.";
+    private static final String MSG_RECIPES = "Gestisci le ricette disponibili.";
+    private static final String MSG_THEMATIC_MENU = "Gestisci i menu tematici disponibili.";
 
 
     public ManagerView() {
@@ -84,18 +84,21 @@ public final class ManagerView extends BaseMenu {
     public void printDishListInitialized() {
         System.out.println(DISH_LIST_INITIALIZED);
     }
+
     public void printDishPresent() {
         System.out.println(DISH_ALREADY_PRESENT);
     }
+
     public void printPeriodNotValid() {
         System.out.println(PERIOD_NOT_VALID);
     }
+
     public void printNoDishesSaved() {
         System.out.println(NO_DISHES_SAVED);
     }
 
     //TODO: SISTEMARE toString di Dish
-    public void showDishes(Set<Dish> d){
+    public void printDishes(Set<Dish> d) {
         d.forEach(System.out::println);
     }
 
@@ -122,32 +125,39 @@ public final class ManagerView extends BaseMenu {
     public void printNoDrinkAssociated() {
         System.out.println(NO_DRINKS_WITH_CONSUMPTION_PER_CAPITA_ASSOCIATED);
     }
+
     public void printNoExtraFood() {
         System.out.println(NO_EXTRA_FOOD_CONSUMPTION_PER_CAPITA);
     }
+
     public void printExtraConsumption(String extraName) {
         System.out.println(EXTRA_MSG + extraName + EXTRA_FOOD_CONSUMPTION_PER_CAPITA);
     }
+
     public void printExtraNotPresent(String extraName) {
         System.out.println(EXTRA_MSG + extraName + NOT_PRESENT_RESTAURANT);
     }
+
     public void printExtraAvailable() {
-        System.out.println(ACTUALLY_AVAILABLE);
+        System.out.println(CURRENTLY_AVAILABLE);
     }
+
     public void printExtraPresent() {
         System.out.println(ALREADY_PRESENT);
     }
 
-    public void printValueNotInitizialized() {
+    public void printValueNotInitialized() {
         System.out.println(VALUE_NOT_INITIALIZED);
     }
 
-    public void printActualValue(int value) {
-        System.out.println(ACTUAL_VALUE + value);
+    public void printCurrentValue(int value) {
+        System.out.println(CURRENT_VALUE + value);
     }
+
     public void printAllDishesPaired() {
         System.out.println(ALL_DISHES_PAIRED);
     }
+
     public void printNoRecipes() {
         System.out.println(NO_PRESENT_RECIPES_IMPOSSIBLE_PROCEED);
     }
@@ -155,45 +165,58 @@ public final class ManagerView extends BaseMenu {
     public void printNoPairedDishesh() {
         System.out.println(DISHES_NOT_PAIRED);
     }
+
     public void printDishNotPresent() {
         System.out.println(DISH_NOT_IN_LIST);
     }
+
     public void printDishAlreadyPaired() {
         System.out.println(DISH_ALREADY_PAIRED);
     }
+
     public void printSavedRecipes() {
         System.out.println(MSG_SAVED_RECIPES);
     }
+
     public void printRecipes(List<Recipe> recipes) {
         for (int i = 0; i < recipes.size(); i++) {
             System.out.println("\t- " + i + recipes.get(i));
         }
     }
+
     public void printNotSavedRecipes() {
         System.out.println(NO_RECIPES_SAVED);
     }
+
     public void printNotValidAmount() {
         System.out.println(AMOUNT_NOT_VALID);
     }
+
     public void printThematicSaved() {
         System.out.println(THEMATIC_MENU_SAVED);
     }
+
     public void printNoDishesAvailable() {
         System.out.println(NO_DISH_AVAILABLE);
     }
+
     public void printDateBeforeStart() {
         System.out.println(EXPIRATION_DATE_BEFORE_START_DATE_VALIDITY);
     }
+
     public void printNoDish(String dishName) {
         System.out.println(NO_DISH + dishName);
     }
+
     public void printNotPaired() {
         System.out.println(NO_PAIRED_RECIPE_DISH);
     }
+
     public void printDishAdded() {
         System.out.println(DISH_ADDED);
     }
-    public void printWolExceded() {
+
+    public void printWorkloadExceeded() {
         System.out.println(DISH_WORKLOAD_EXCEDED);
     }
 }

@@ -89,7 +89,7 @@ public class ThematicMenuCommand implements Command {
                     menuDishes.add(dish);
                     view.printDishAdded();
                 } else {
-                    view.printWolExceded();
+                    view.printWorkloadExceeded();
                 }
             } while (InputManager.readYesOrNo(ADD_ANOTHER_DISH_Y_OR_NO));
 

@@ -20,10 +20,10 @@ public class SeatsCommand implements Command {
         final var seats = restaurant.getSeats();
 
         if (seats == 0) {
-            view.printValueNotInitizialized();
+            view.printValueNotInitialized();
             restaurant.setSeats(InputManager.readInt(RESTAURANT_SEATS));
         } else {
-            view.printActualValue(seats);
+            view.printCurrentValue(seats);
         }
     }
 }

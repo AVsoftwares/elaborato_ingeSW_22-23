@@ -20,12 +20,12 @@ public class IndividualWorkloadCommand implements Command {
         final var workload = restaurant.getIndividualWorkload();
 
         if (workload == 0) {
-            view.printValueNotInitizialized();
+            view.printValueNotInitialized();
 
             final int individualWorkload = InputManager.readInt(ADD_PERSON_WORKLOAD, 0, Integer.MAX_VALUE);
             restaurant.setIndividualWorkload(individualWorkload);
         } else {
-            view.printActualValue(workload);
+            view.printCurrentValue(workload);
         }
     }
 }

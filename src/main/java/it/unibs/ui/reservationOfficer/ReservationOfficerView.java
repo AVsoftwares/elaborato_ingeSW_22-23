@@ -32,9 +32,10 @@ public class ReservationOfficerView extends BaseMenu {
             Le unità di misura accettate sono (l)itri e (g)rammi, se omessa si considerano le unità""";
     private static final String MENU_NAME = "Menu gestore delle prenotazioni";
     private static final String MSG_BOOKING = "Raccogli una prenotazione";
-    private static final String NO_AVAILABLE_SEATS= "Non ci sono sufficienti posti disponibili per la data selezionata.";
+    private static final String NO_AVAILABLE_SEATS = "Non ci sono sufficienti posti disponibili per la data selezionata.";
     private static final String NOTHING_AVAILABLE = "Non sono disponibili né piatti né menu per il giorno selezionato, impossibile continuare.";
-   private static final String OVERWORKLOAD = "Il ristorante non è in grado di gestire il carico di lavoro.";
+    private static final String OVER_WORKLOAD = "Il ristorante non è in grado di gestire il carico di lavoro.";
+
     public ReservationOfficerView(ReservationService reservationService) {
         super(MENU_NAME);
         addEntry(MSG_BOOKING, new ReservationCommand(this, reservationService));
@@ -43,7 +44,16 @@ public class ReservationOfficerView extends BaseMenu {
     public void printInvalidQuantity() {
         System.out.println(ERR_INVALID_QUANTITY);
     }
-    public void printNoAvailableSeats() { System.out.println(NO_AVAILABLE_SEATS); }
-    public void printNothingAvailable() { System.out.println(NOTHING_AVAILABLE); }
-    public void printOverWorkload() { System.out.println(OVERWORKLOAD); }
+
+    public void printNoAvailableSeats() {
+        System.out.println(NO_AVAILABLE_SEATS);
+    }
+
+    public void printNothingAvailable() {
+        System.out.println(NOTHING_AVAILABLE);
+    }
+
+    public void printOverWorkload() {
+        System.out.println(OVER_WORKLOAD);
+    }
 }
