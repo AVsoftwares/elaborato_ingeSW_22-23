@@ -7,6 +7,7 @@ import it.unibs.core.unit.Quantity;
 import it.unibs.ui.BaseMenu;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
+import it.unibs.ui.manager.ManagerView;
 
 import java.util.Map;
 
@@ -14,13 +15,15 @@ public class ExtraAmountCommand implements Command {
 
     public static final String EXTRA_FOOD_MANAGEMENT_PER_CAPITA = "Gestione consumo pro-capite di alimenti extra";
     public static final String VIEW_EXTRA_FOOD_CONSUMPTION_PER_CAPITA = "Visualizza consumo pro-capite di alimenti extra";
-    public static final String NO_EXTRA_FOOD_CONSUMPTION_PER_CAPITA = "Non è presente nessun alimento extra con consumo pro-capite associato.";
     public static final String INITIALIZE_CONSUMPTION_EXTRA_FOOD_PER_PERSON = "Inizializza il consumo pro-capite di alimenti extra";
     public static final String PRO_CAPITE = "Consumo pro-capite: ";
-    public static final String EXTRA_MSG = "L'alimento extra ";
-    public static final String EXTRA_FOOD_CONSUMPTION_PER_CAPITA = " ha un consumo pro-capite associato.";
-    public static final String NOT_PRESENT_RESTAURANT = " non è presente nel ristorante.";
     private final Restaurant restaurant = Restaurant.getInstance();
+    private final ManagerView view;
+
+    public ExtraAmountCommand(ManagerView view) {
+        this.view = view;
+    }
+
 
     @Override
     public void execute() {
@@ -32,7 +35,7 @@ public class ExtraAmountCommand implements Command {
             final var extraWithConsumption = restaurant.getImmutableAverageExtraConsumptionNotNull();
 
             if (extraWithConsumption.isEmpty()) {
-                System.out.println(NO_EXTRA_FOOD_CONSUMPTION_PER_CAPITA);
+                view.printNoExtraFood();
             } else {
                 extraWithConsumption.entrySet().forEach(System.out::println);
             }
@@ -47,10 +50,10 @@ public class ExtraAmountCommand implements Command {
                 if (restaurant.isAverageExtraConsumptionNotSet(name)) {
                     restaurant.setAverageExtraConsumption(name, quantity);
                 } else {
-                    System.out.println(EXTRA_MSG + name + EXTRA_FOOD_CONSUMPTION_PER_CAPITA);
+                    view.printExtraConsumption(name);
                 }
             } else {
-                System.out.println(EXTRA_MSG + name + NOT_PRESENT_RESTAURANT);
+                view.printExtraNotPresent(name);
             }
         });
 

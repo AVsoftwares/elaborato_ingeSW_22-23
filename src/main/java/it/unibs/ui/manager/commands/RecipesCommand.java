@@ -7,6 +7,7 @@ import it.unibs.core.unit.Quantity;
 import it.unibs.ui.BaseMenu;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
+import it.unibs.ui.manager.ManagerView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,18 +16,19 @@ import java.util.Optional;
 public class RecipesCommand implements Command {
 
     public static final String VIEW_RECIPES = "Visualizza ricette";
-    public static final String NO_RECIPES_SAVED = "Non sono memorizzate ricette.";
     public static final String ADD_RECIPE = "Aggiungi ricetta";
     public static final String INGREDIENT_NAME = "Nome dell'ingrediente: ";
     public static final String INGREDIENT_AMOUNT = "Quantità dell'ingrediente (es. 10 kg): ";
-    public static final String AMOUNT_NOT_VALID = """
-            La quantità inserita non è valida.
-            Deve essere nel formato: quantity [prefix unit]
-            Le unità di misura accettate sono (l)itri e (g)rammi, se omessa si considerano le unità""";
+
     public static final String ANOTHER_INGREDIENT_Y_OR_NO = "Vuoi inserire un altro ingrediente? (y)es/(n)o: ";
     public static final String PORTIONS_PREPARED_WITH_INSERTED_DOSES = "Numero di porzioni che possono essere preparate con le dosi inserite: ";
     public static final String PORTION_WORKLOAD = "Carico di lavoro per porzione: ";
     private final Restaurant restaurant = Restaurant.getInstance();
+    private final ManagerView view;
+
+    public RecipesCommand(ManagerView view) {
+        this.view = view;
+    }
 
     @Override
     public void execute() {
@@ -36,9 +38,9 @@ public class RecipesCommand implements Command {
 
         menu.addEntry(VIEW_RECIPES, () -> {
             if (recipes.isEmpty()) {
-                System.out.println(NO_RECIPES_SAVED);
+                view.printNotSavedRecipes();
             } else {
-                recipes.forEach(System.out::println);
+                view.printRecipes(recipes);
             }
         });
         menu.addEntry(ADD_RECIPE, () -> {
@@ -52,7 +54,7 @@ public class RecipesCommand implements Command {
                 if (amount.isPresent()) {
                     ingredients.put(new Ingredient(name), amount.get());
                 } else {
-                    System.out.println(AMOUNT_NOT_VALID);
+                    view.printNotValidAmount();
                 }
             } while (InputManager.readYesOrNo(ANOTHER_INGREDIENT_Y_OR_NO));
 

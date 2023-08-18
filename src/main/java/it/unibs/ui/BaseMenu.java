@@ -7,7 +7,7 @@ public class BaseMenu {
     private static final String SEPARATOR = "=";
     private final boolean isMainMenu;
     private final List<BaseMenuEntry> entries = new ArrayList<>();
-    private String title;
+    private final String title;
 
     public BaseMenu(String title, boolean isMainMenu) {
         this.title = title;
@@ -58,19 +58,7 @@ public class BaseMenu {
         System.out.println(footer);
     }
 
-    public void print(String message) {
-        System.out.print(message);
-    }
-
     private int selectEntry() {
         return InputManager.readInt("Enter choice: ", 0, entries.size());
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 }

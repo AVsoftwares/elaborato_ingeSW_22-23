@@ -5,17 +5,20 @@ import it.unibs.core.unit.Quantity;
 import it.unibs.ui.BaseMenu;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
+import it.unibs.ui.manager.ManagerView;
 
 import java.util.Map;
 
 public class DrinksCommand implements Command {
     public static final String DRINKS_MANAGEMENT = "Gestione bevande";
     public static final String VIEW_DRINKS = "Visualizza bevande";
-    public static final String MSG_EMPTY_LIST = "La lista è vuota.";
-    public static final String MSG_DRINKS_AVAILABLE_NOW = "Le bevande attualmente disponibili sono:";
     public static final String ADD_BEVERAGE = "Aggiungi bevanda";
-    public static final String BEVERAGE_ALREADY_PRESENT = "La bevanda è già presente nell'elenco.";
     private final Restaurant restaurant = Restaurant.getInstance();
+    private final ManagerView view;
+
+    public DrinksCommand(ManagerView view) {
+        this.view = view;
+    }
 
     @Override
     public void execute() {
@@ -25,9 +28,9 @@ public class DrinksCommand implements Command {
 
         menu.addEntry(VIEW_DRINKS, () -> {
             if (averageDrinkConsumption.isEmpty()) {
-                System.out.println(MSG_EMPTY_LIST);
+                view.printEmptyList();
             } else {
-                System.out.println(MSG_DRINKS_AVAILABLE_NOW);
+                view.printDrinksAvailable();
                 averageDrinkConsumption.keySet().forEach(System.out::println);
             }
         });
@@ -35,7 +38,7 @@ public class DrinksCommand implements Command {
             var name = InputManager.readString("Nome: ").toLowerCase();
 
             if (averageDrinkConsumption.containsKey(name)) {
-                System.out.println(BEVERAGE_ALREADY_PRESENT);
+                view.printDrinkPresent();
             } else {
                 restaurant.addDrink(name);
             }
