@@ -44,10 +44,10 @@ public class ReservationCommand implements Command {
 
         final Reservation reservation = new Reservation(date, seats);
 
-        final List<? extends Consumable> orderables = Stream.concat(availableMenus.stream(), availableDishes.stream()).toList();
+        final List<? extends Consumable> consumables = Stream.concat(availableMenus.stream(), availableDishes.stream()).toList();
 
-        if (!orderables.isEmpty()) {
-            addOrderablesToReservation(reservation, orderables);
+        if (!consumables.isEmpty()) {
+            addConsumablesToReservation(reservation, consumables);
         } else {
             System.out.println("Non sono disponibili né piatti né menu per il giorno selezionato, impossibile continuare.");
             return;
@@ -60,13 +60,13 @@ public class ReservationCommand implements Command {
         }
     }
 
-    private void addOrderablesToReservation(Reservation reservation, List<? extends Orderable> orderables) {
-        for (int i = 0; i < orderables.size(); i++) {
-            System.out.println("\t- " + i + " " + orderables.get(i));
+    private void addConsumablesToReservation(Reservation reservation, List<? extends Consumable> consumables) {
+        for (int i = 0; i < consumables.size(); i++) {
+            System.out.println("\t- " + i + " " + consumables.get(i));
         }
-        final int choice = InputManager.readInt("Ordine: ", 0, orderables.size());
+        final int choice = InputManager.readInt("Ordine: ", 0, consumables.size());
 
-        reservation.add(orderables.get(choice));
+        reservation.add(consumables.get(choice));
     }
 
     private int getAvailableSeatsAtDate(LocalDate date) {

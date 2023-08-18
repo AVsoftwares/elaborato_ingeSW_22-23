@@ -95,8 +95,8 @@ public class ShoppingList {
         final Map<Consumable, Integer> orders = reservation.getOrders();
 
 
-        orders.forEach((orderable, count) -> {
-            final Map<? extends Product, Quantity> productsQuantity = orderable.getProductsQuantity();
+        orders.forEach((consumable, count) -> {
+            final Map<? extends Product, Quantity> productsQuantity = consumable.getProductsQuantity();
 
             productsQuantity.forEach((product, quantity) -> {
                 final String name = product.getName();
