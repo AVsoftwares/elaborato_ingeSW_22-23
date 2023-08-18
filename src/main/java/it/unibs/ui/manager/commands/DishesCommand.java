@@ -62,7 +62,7 @@ public class DishesCommand implements Command {
             if (dishes.isEmpty()) {
                 view.printNoDishesSaved();
             } else {
-                view.showDishes(dishes);
+                view.printDishes(dishes);
             }
         });
         menu.run();

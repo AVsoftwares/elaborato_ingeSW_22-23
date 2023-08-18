@@ -29,10 +29,6 @@ public final class ManagerView extends BaseMenu {
 
     public ManagerView() {
         super(MENU_NAME);
-        initMenuEntries();
-    }
-
-    private void initMenuEntries() {
         addEntry(MSG_WORKLOAD, new IndividualWorkloadCommand());
         addEntry(MSG_SEATS, new SeatsCommand());
         addEntry(MSG_DRINKS, new DrinksCommand());
@@ -45,22 +41,19 @@ public final class ManagerView extends BaseMenu {
         addEntry(MSG_THEMATIC_MENU, new ThematicMenuCommand());
     }
 
-    private void print(String msg){
-        System.out.println(msg);
-    }
     public void printDishListInitialized() {
-        print(DISH_LIST_INITIALIZED);
+        System.out.println(DISH_LIST_INITIALIZED);
     }
     public void printDishPresent() {
-        print(DISH_ALREADY_PRESENT);
+        System.out.println(DISH_ALREADY_PRESENT);
     }
     public void printPeriodNotValid() {
-        print(PERIOD_NOT_VALID);
+        System.out.println(PERIOD_NOT_VALID);
     }
     public void printNoDishesSaved() {
-        print(NO_DISHES_SAVED);
+        System.out.println(NO_DISHES_SAVED);
     }
-    public void showDishes(Set<Dish> d){
-        d.forEach(System.out::println);
+    public void printDishes(Set<Dish> dishes){
+        dishes.forEach(System.out::println);
     }
 }
