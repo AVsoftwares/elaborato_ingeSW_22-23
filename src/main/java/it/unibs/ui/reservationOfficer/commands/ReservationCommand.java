@@ -8,6 +8,7 @@ import it.unibs.core.reservation.Reservation;
 import it.unibs.core.reservation.ReservationService;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
+import it.unibs.ui.reservationOfficer.ReservationOfficerView;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,20 +17,19 @@ import java.util.stream.Stream;
 public class ReservationCommand implements Command {
     private final Restaurant restaurant;
     private final ReservationService reservationService;
+    private final ReservationOfficerView view;
 
-    public ReservationCommand(ReservationService reservationService) {
+    public ReservationCommand(ReservationOfficerView view, ReservationService reservationService) {
         this.restaurant = Restaurant.getInstance();
         this.reservationService = reservationService;
+        this.view = view;
     }
 
     public void execute() {
         final LocalDate date = InputManager.readDate("Data della prenotazione: ", InputManager.DEFAULT_DATE_FORMATTER_PATTERN);
 
         if (!reservationService.isValid(date)) {
-            System.out.println("""
-                    La data inserita non è valida.
-                    Il ristorante lavora unicamente nei giorni feriali.
-                    La prenotazione deve essere effettuata con almeno un giorno feriale di anticipo.""");
+            view.printInvalidQuantity();
             return;
         }
 
@@ -38,7 +38,7 @@ public class ReservationCommand implements Command {
 
         final int seats = InputManager.readInt("Numero di coperti da prenotare: ", 1, Integer.MAX_VALUE);
         if (getAvailableSeatsAtDate(date) - seats < 0) {
-            System.out.println("Non ci sono sufficienti posti disponibili per la data selezionata.");
+            view.printNoAvailableSeats();
             return;
         }
 
@@ -49,14 +49,14 @@ public class ReservationCommand implements Command {
         if (!consumables.isEmpty()) {
             addConsumablesToReservation(reservation, consumables);
         } else {
-            System.out.println("Non sono disponibili né piatti né menu per il giorno selezionato, impossibile continuare.");
+            view.printNothingAvailable();
             return;
         }
 
         if (canSustainWorkload()) {
             reservationService.add(reservation);
         } else {
-            System.out.println("Il ristorante non è in grado di gestire il carico di lavoro.");
+            view.printOverWorkload();
         }
     }
 

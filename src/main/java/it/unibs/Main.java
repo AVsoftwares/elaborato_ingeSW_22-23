@@ -5,8 +5,8 @@ import it.unibs.core.StoreRegister;
 import it.unibs.core.reservation.ConcreteDateValidationStrategy;
 import it.unibs.core.reservation.ReservationService;
 import it.unibs.ui.BaseMenu;
-import it.unibs.ui.manager.ManagerMenu;
-import it.unibs.ui.reservationOfficer.ReservationOfficerMenu;
+import it.unibs.ui.manager.ManagerView;
+import it.unibs.ui.reservationOfficer.ReservationOfficerView;
 import it.unibs.ui.storekeeper.StorekeeperView;
 
 import java.time.Clock;
@@ -26,8 +26,8 @@ public class Main {
         ShoppingList shoppingList = new ShoppingList(storeRegister, reservationService);
 
         final BaseMenu mainMenu = new BaseMenu(MENU_TITLE, true);
-        mainMenu.addEntry(MSG_MANAGER_LOGIN, () -> new ManagerMenu().run());
-        mainMenu.addEntry(MSG_BOOKING_OFFICER_LOGIN, () -> new ReservationOfficerMenu(reservationService).run());
+        mainMenu.addEntry(MSG_MANAGER_LOGIN, () -> new ManagerView().run());
+        mainMenu.addEntry(MSG_BOOKING_OFFICER_LOGIN, () -> new ReservationOfficerView(reservationService).run());
         mainMenu.addEntry(MSG_WAREHOUSE_MAN_LOGIN, () -> new StorekeeperView(storeRegister, shoppingList).run());
         mainMenu.run();
     }

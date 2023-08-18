@@ -1,12 +1,15 @@
 package it.unibs.ui.manager;
 
+import it.unibs.core.Dish;
 import it.unibs.ui.BaseMenu;
 import it.unibs.ui.manager.commands.*;
+
+import java.util.Set;
 
 /**
  * Classe che rappresenta il menu relativo all'utente Gestore.
  */
-public final class ManagerMenu extends BaseMenu {
+public final class ManagerView extends BaseMenu {
 
     private static final String MENU_NAME = "Manager Menu";
     private static final String MSG_WORKLOAD = "Gestisci carico di lavoro per persona.";
@@ -19,8 +22,12 @@ public final class ManagerMenu extends BaseMenu {
     private static final String MSG_DISH = "Gestisci denominazione e periodo di validità di ciascun piatto.";
     private static final String MSG_RECIPES = "Gestisci le ricette disponibili.";
     private static final String MSG_THEMATIC_MENU = "Gestisci i menu tematici disponibili.";
+    public static final String DISH_LIST_INITIALIZED = "La lista di piatti è già stata inizializzata.";
+    public static final String DISH_ALREADY_PRESENT = "Un piatto omonimo è già presente.";
+    public static final String PERIOD_NOT_VALID = "Il periodo inserito non è valido.";
+    public static final String NO_DISHES_SAVED = "Non sono memorizzati piatti.";
 
-    public ManagerMenu() {
+    public ManagerView() {
         super(MENU_NAME);
         initMenuEntries();
     }
@@ -33,8 +40,27 @@ public final class ManagerMenu extends BaseMenu {
         addEntry(MSG_DRINK_AMOUNT, new DrinkAmountCommand());
         addEntry(MSG_EXTRA_AMOUNT, new ExtraAmountCommand());
         addEntry(MSG_COUPLE_DISH_RECIPE, new PairDishWithRecipeCommand());
-        addEntry(MSG_DISH, new DishesCommand());
+        addEntry(MSG_DISH, new DishesCommand(this));
         addEntry(MSG_RECIPES, new RecipesCommand());
         addEntry(MSG_THEMATIC_MENU, new ThematicMenuCommand());
+    }
+
+    private void print(String msg){
+        System.out.println(msg);
+    }
+    public void printDishListInitialized() {
+        print(DISH_LIST_INITIALIZED);
+    }
+    public void printDishPresent() {
+        print(DISH_ALREADY_PRESENT);
+    }
+    public void printPeriodNotValid() {
+        print(PERIOD_NOT_VALID);
+    }
+    public void printNoDishesSaved() {
+        print(NO_DISHES_SAVED);
+    }
+    public void showDishes(Set<Dish> d){
+        d.forEach(System.out::println);
     }
 }
