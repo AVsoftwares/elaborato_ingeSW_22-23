@@ -3,14 +3,17 @@ package it.unibs.ui.storekeeper.commands;
 import it.unibs.core.ShoppingList;
 import it.unibs.core.unit.Quantity;
 import it.unibs.ui.Command;
+import it.unibs.ui.storekeeper.StorekeeperView;
 
 import java.util.Map;
 
 public class ViewShoppingList implements Command {
 
+    private final StorekeeperView view;
     private final ShoppingList shoppingList;
 
-    public ViewShoppingList(ShoppingList shoppingList) {
+    public ViewShoppingList(StorekeeperView view, ShoppingList shoppingList) {
+        this.view = view;
         this.shoppingList = shoppingList;
     }
 
@@ -19,7 +22,7 @@ public class ViewShoppingList implements Command {
         final Map<String, Quantity> products = shoppingList.getProducts();
 
         if (products.isEmpty()) {
-            System.out.println("La lista è vuota.");
+            view.printEmptyList();
         } else {
             products.entrySet().forEach(System.out::println);
         }

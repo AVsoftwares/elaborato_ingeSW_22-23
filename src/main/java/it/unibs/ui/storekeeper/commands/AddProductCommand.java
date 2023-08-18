@@ -5,15 +5,17 @@ import it.unibs.core.StoreRegister;
 import it.unibs.core.unit.Quantity;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
+import it.unibs.ui.storekeeper.StorekeeperView;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
 public class AddProductCommand implements Command {
-
+    private final StorekeeperView view;
     private final StoreRegister storeRegister;
 
-    public AddProductCommand(StoreRegister storeRegister) {
+    public AddProductCommand(StorekeeperView view, StoreRegister storeRegister) {
+        this.view = view;
         this.storeRegister = storeRegister;
     }
 
@@ -28,10 +30,7 @@ public class AddProductCommand implements Command {
         if (quantity.isPresent()) {
             storeRegister.add(new Product(productName, expirationDate, quantity.get()));
         } else {
-            System.out.println("""
-                    La quantità inserita non è valida.
-                    Deve essere nel formato: quantity [prefix unit]
-                    Le unità di misura accettate sono (l)itri e (g)rammi, se omessa si considerano le unità""");
+            view.printInvalidQuantity();
         }
     }
 }

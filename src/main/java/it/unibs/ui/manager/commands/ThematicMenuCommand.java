@@ -4,9 +4,9 @@ import it.unibs.core.Dish;
 import it.unibs.core.Period;
 import it.unibs.core.Restaurant;
 import it.unibs.core.ThematicMenu;
+import it.unibs.ui.BaseMenu;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
-import it.unibs.ui.Menu;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -39,7 +39,7 @@ public class ThematicMenuCommand implements Command {
      */
     @Override
     public void execute() {
-        final Menu menu = new Menu(THEMATIC_MENU_MANAGEMENT);
+        final BaseMenu menu = new BaseMenu(THEMATIC_MENU_MANAGEMENT);
 
         menu.addEntry(VIEW_THEMATICS_MENU, () -> {
             final Set<ThematicMenu> thematicMenus = restaurant.getThematicMenus();

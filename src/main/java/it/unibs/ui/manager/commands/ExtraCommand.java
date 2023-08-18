@@ -2,9 +2,9 @@ package it.unibs.ui.manager.commands;
 
 import it.unibs.core.Restaurant;
 import it.unibs.core.unit.Quantity;
+import it.unibs.ui.BaseMenu;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
-import it.unibs.ui.Menu;
 
 import java.util.Map;
 
@@ -20,7 +20,7 @@ public class ExtraCommand implements Command {
 
     @Override
     public void execute() {
-        Menu menu = new Menu(MSG_EXTRA_FOOD_MANAGEMENT);
+        BaseMenu menu = new BaseMenu(MSG_EXTRA_FOOD_MANAGEMENT);
         final Map<String, Quantity> averageExtraConsumption = restaurant.getImmutableAverageExtraConsumption();
 
         menu.addEntry(VIEW_EXTRA_FOOD, () -> {

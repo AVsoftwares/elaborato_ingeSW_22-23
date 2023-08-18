@@ -1,7 +1,7 @@
 package it.unibs.ui.reservationOfficer;
 
 import it.unibs.core.reservation.ReservationService;
-import it.unibs.ui.Menu;
+import it.unibs.ui.BaseMenu;
 import it.unibs.ui.reservationOfficer.commands.ReservationCommand;
 
 /**
@@ -25,7 +25,7 @@ import it.unibs.ui.reservationOfficer.commands.ReservationCommand;
  * ordinato ciascun piatto) non deve eccedere il carico di lavoro sostenibile
  * dal ristorante.
  **/
-public class ReservationOfficerMenu extends Menu {
+public class ReservationOfficerMenu extends BaseMenu {
 
     private static final String MENU_NAME = "Menu gestore delle prenotazioni";
     private static final String MSG_BOOKING = "Raccogli una prenotazione";

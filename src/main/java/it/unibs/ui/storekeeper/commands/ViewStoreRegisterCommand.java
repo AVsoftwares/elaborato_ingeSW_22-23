@@ -2,22 +2,24 @@ package it.unibs.ui.storekeeper.commands;
 
 import it.unibs.core.StoreRegister;
 import it.unibs.ui.Command;
+import it.unibs.ui.storekeeper.StorekeeperView;
 
 public class ViewStoreRegisterCommand implements Command {
 
+    private final StorekeeperView view;
     private final StoreRegister storeRegister;
 
-    public ViewStoreRegisterCommand(StoreRegister storeRegister) {
+    public ViewStoreRegisterCommand(StorekeeperView view, StoreRegister storeRegister) {
+        this.view = view;
         this.storeRegister = storeRegister;
     }
 
     @Override
     public void execute() {
         if (storeRegister.getProducts().isEmpty()) {
-            System.out.println("La lista è vuota.");
+            view.printEmptyList();
         } else {
-            System.out.println("Nel registro di magazzino sono presenti:");
-            storeRegister.getProducts().forEach(System.out::println);
+            view.printProducts(storeRegister.getProducts());
         }
     }
 }

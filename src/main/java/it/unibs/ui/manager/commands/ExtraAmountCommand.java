@@ -4,9 +4,9 @@ import it.unibs.core.Restaurant;
 import it.unibs.core.unit.MeasureUnit;
 import it.unibs.core.unit.MetricPrefix;
 import it.unibs.core.unit.Quantity;
+import it.unibs.ui.BaseMenu;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
-import it.unibs.ui.Menu;
 
 import java.util.Map;
 
@@ -24,7 +24,7 @@ public class ExtraAmountCommand implements Command {
 
     @Override
     public void execute() {
-        final Menu menu = new Menu(EXTRA_FOOD_MANAGEMENT_PER_CAPITA);
+        final BaseMenu menu = new BaseMenu(EXTRA_FOOD_MANAGEMENT_PER_CAPITA);
 
         final Map<String, Quantity> averageExtraConsumption = restaurant.getImmutableAverageExtraConsumption();
 

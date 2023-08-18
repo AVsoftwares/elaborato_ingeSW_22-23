@@ -4,9 +4,9 @@ import it.unibs.core.Restaurant;
 import it.unibs.core.unit.MeasureUnit;
 import it.unibs.core.unit.MetricPrefix;
 import it.unibs.core.unit.Quantity;
+import it.unibs.ui.BaseMenu;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
-import it.unibs.ui.Menu;
 
 import java.util.Map;
 
@@ -25,7 +25,7 @@ public class DrinkAmountCommand implements Command {
 
     @Override
     public void execute() {
-        Menu menu = new Menu(PER_CAPITA_DRINK_MANAGEMENT);
+        BaseMenu menu = new BaseMenu(PER_CAPITA_DRINK_MANAGEMENT);
 
         final Map<String, Quantity> averageDrinkConsumption = restaurant.getImmutableAverageDrinkConsumption();
 

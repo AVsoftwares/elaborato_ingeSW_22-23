@@ -3,30 +3,30 @@ package it.unibs.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Menu {
+public class BaseMenu {
     private static final String SEPARATOR = "=";
     private final boolean isMainMenu;
-    private final List<MenuEntry> entries = new ArrayList<>();
+    private final List<BaseMenuEntry> entries = new ArrayList<>();
     private String title;
 
-    public Menu(String title, boolean isMainMenu) {
+    public BaseMenu(String title, boolean isMainMenu) {
         this.title = title;
         this.isMainMenu = isMainMenu;
     }
 
-    public Menu() {
+    public BaseMenu() {
         this("", false);
     }
 
-    public Menu(String title) {
+    public BaseMenu(String title) {
         this(title, false);
     }
 
     public void addEntry(String desc, Command command) {
-        addEntry(new MenuEntry(desc, command));
+        addEntry(new BaseMenuEntry(desc, command));
     }
 
-    public void addEntry(MenuEntry entry) {
+    public void addEntry(BaseMenuEntry entry) {
         entries.add(entry);
     }
 
@@ -56,6 +56,10 @@ public class Menu {
         }
 
         System.out.println(footer);
+    }
+
+    public void print(String message) {
+        System.out.print(message);
     }
 
     private int selectEntry() {

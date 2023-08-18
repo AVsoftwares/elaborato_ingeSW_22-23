@@ -4,9 +4,9 @@ import it.unibs.core.Ingredient;
 import it.unibs.core.Recipe;
 import it.unibs.core.Restaurant;
 import it.unibs.core.unit.Quantity;
+import it.unibs.ui.BaseMenu;
 import it.unibs.ui.Command;
 import it.unibs.ui.InputManager;
-import it.unibs.ui.Menu;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +30,7 @@ public class RecipesCommand implements Command {
 
     @Override
     public void execute() {
-        Menu menu = new Menu("Gestione ricette");
+        BaseMenu menu = new BaseMenu("Gestione ricette");
 
         final List<Recipe> recipes = restaurant.getRecipes();
 

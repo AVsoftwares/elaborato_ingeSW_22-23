@@ -1,12 +1,12 @@
 package it.unibs.ui.manager;
 
-import it.unibs.ui.Menu;
+import it.unibs.ui.BaseMenu;
 import it.unibs.ui.manager.commands.*;
 
 /**
  * Classe che rappresenta il menu relativo all'utente Gestore.
  */
-public final class ManagerMenu extends Menu {
+public final class ManagerMenu extends BaseMenu {
 
     private static final String MENU_NAME = "Manager Menu";
     private static final String MSG_WORKLOAD = "Gestisci carico di lavoro per persona.";

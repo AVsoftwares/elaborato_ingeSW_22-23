@@ -4,10 +4,10 @@ import it.unibs.core.ShoppingList;
 import it.unibs.core.StoreRegister;
 import it.unibs.core.reservation.ConcreteDateValidationStrategy;
 import it.unibs.core.reservation.ReservationService;
-import it.unibs.ui.Menu;
+import it.unibs.ui.BaseMenu;
 import it.unibs.ui.manager.ManagerMenu;
 import it.unibs.ui.reservationOfficer.ReservationOfficerMenu;
-import it.unibs.ui.storekeeper.StorekeeperMenu;
+import it.unibs.ui.storekeeper.StorekeeperView;
 
 import java.time.Clock;
 import java.util.ArrayList;
@@ -25,10 +25,10 @@ public class Main {
         StoreRegister storeRegister = new StoreRegister(new ArrayList<>(), clock);
         ShoppingList shoppingList = new ShoppingList(storeRegister, reservationService);
 
-        final Menu mainMenu = new Menu(MENU_TITLE, true);
+        final BaseMenu mainMenu = new BaseMenu(MENU_TITLE, true);
         mainMenu.addEntry(MSG_MANAGER_LOGIN, () -> new ManagerMenu().run());
         mainMenu.addEntry(MSG_BOOKING_OFFICER_LOGIN, () -> new ReservationOfficerMenu(reservationService).run());
-        mainMenu.addEntry(MSG_WAREHOUSE_MAN_LOGIN, () -> new StorekeeperMenu(storeRegister, shoppingList).run());
+        mainMenu.addEntry(MSG_WAREHOUSE_MAN_LOGIN, () -> new StorekeeperView(storeRegister, shoppingList).run());
         mainMenu.run();
     }
 }
