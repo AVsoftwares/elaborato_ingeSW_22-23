@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class BaseMenuTest {
+class MenuTest {
 
     @Test
     void shouldNotAddEqualDishes() {
