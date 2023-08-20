@@ -11,7 +11,7 @@ import java.util.Objects;
 /**
  * Lista della spesa che il gestore del magazzino può consultare per gli acquisti
  */
-public class ShoppingList {
+public class ShoppingList implements Subscriber {
     /**
      * Map di coppie prodotto-quantità che bisogna acquistare per soddisfare la domanda
      */
@@ -147,5 +147,10 @@ public class ShoppingList {
                 products.put(extra, totalQuantity);
             }
         });
+    }
+
+    @Override
+    public <T extends Publisher> void update(T context) {
+        computeShoppingList();
     }
 }

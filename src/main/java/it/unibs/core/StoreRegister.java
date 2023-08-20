@@ -1,13 +1,17 @@
 package it.unibs.core;
 
+import it.unibs.core.unit.Quantity;
+
 import java.time.Clock;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  * Tiene traccia dei prodotti in magazzino, vi interagisce il magazziniere
  */
-public class StoreRegister {
+public class StoreRegister extends Publisher {
 
     /**
      * Lista di prodotti presenti in magazzino
@@ -16,6 +20,7 @@ public class StoreRegister {
     private final Clock clock;
 
     public StoreRegister(List<Product> products, Clock clock) {
+        super(new ArrayList<>());
         this.products = products;
         this.clock = clock;
     }
@@ -51,9 +56,10 @@ public class StoreRegister {
         final int index = products.indexOf(product);
         if (index >= 0) {
             products.get(index).getQuantity().add(product.getQuantity());
-            return;
+        } else {
+            products.add(product);
         }
-        products.add(product);
+        notifySubscribers(this);
     }
 
     /**
@@ -62,7 +68,13 @@ public class StoreRegister {
      * @param product prodotto da rimuovere
      */
     public void remove(Product product) {
-        products.remove(product);
+        final int index = products.indexOf(product);
+        if (index >= 0) {
+            products.get(index).getQuantity().add(product.getQuantity());
+        } else {
+            products.remove(product);
+        }
+        notifySubscribers(this);
     }
 
     /**
@@ -70,6 +82,7 @@ public class StoreRegister {
      */
     public void removeExpiredProducts() {
         products.removeIf(product -> product.isExpired(clock));
+        notifySubscribers(this);
     }
 
     public List<Product> getProducts() {
