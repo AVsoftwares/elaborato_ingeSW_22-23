@@ -1,4 +1,4 @@
-package it.unibs.ui.storekeeper.commands;
+package it.unibs.controller.storekeeper;
 
 import it.unibs.core.ShoppingList;
 import it.unibs.core.unit.Quantity;

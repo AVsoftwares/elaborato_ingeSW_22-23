@@ -1,10 +1,10 @@
 package it.unibs.ui.storekeeper;
 
+import it.unibs.controller.storekeeper.*;
 import it.unibs.core.Product;
 import it.unibs.core.ShoppingList;
 import it.unibs.core.StoreRegister;
 import it.unibs.ui.BaseMenu;
-import it.unibs.ui.storekeeper.commands.*;
 
 import java.util.List;
 

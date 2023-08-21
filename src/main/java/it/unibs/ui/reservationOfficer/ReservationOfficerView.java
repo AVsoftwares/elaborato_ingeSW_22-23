@@ -2,7 +2,7 @@ package it.unibs.ui.reservationOfficer;
 
 import it.unibs.core.reservation.ReservationService;
 import it.unibs.ui.BaseMenu;
-import it.unibs.ui.reservationOfficer.commands.ReservationCommand;
+import it.unibs.controller.reservationOfficer.ReservationCommand;
 
 /**
  * Addetto alle prenotazioni

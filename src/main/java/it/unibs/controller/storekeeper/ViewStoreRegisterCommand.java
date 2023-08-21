@@ -1,4 +1,4 @@
-package it.unibs.ui.storekeeper.commands;
+package it.unibs.controller.storekeeper;
 
 import it.unibs.core.StoreRegister;
 import it.unibs.ui.Command;

@@ -1,4 +1,4 @@
-package it.unibs.ui.manager.commands;
+package it.unibs.controller.manager;
 
 import it.unibs.core.Ingredient;
 import it.unibs.core.Recipe;

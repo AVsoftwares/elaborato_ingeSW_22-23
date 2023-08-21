@@ -1,4 +1,4 @@
-package it.unibs.ui.reservationOfficer.commands;
+package it.unibs.controller.reservationOfficer;
 
 import it.unibs.core.Consumable;
 import it.unibs.core.Dish;

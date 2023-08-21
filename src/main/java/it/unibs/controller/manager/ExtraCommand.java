@@ -1,4 +1,4 @@
-package it.unibs.ui.manager.commands;
+package it.unibs.controller.manager;
 
 import it.unibs.core.Restaurant;
 import it.unibs.core.unit.Quantity;

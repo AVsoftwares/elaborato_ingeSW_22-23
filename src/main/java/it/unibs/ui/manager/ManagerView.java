@@ -1,9 +1,9 @@
 package it.unibs.ui.manager;
 
+import it.unibs.controller.manager.*;
 import it.unibs.core.Dish;
 import it.unibs.core.Recipe;
 import it.unibs.ui.BaseMenu;
-import it.unibs.ui.manager.commands.*;
 
 import java.util.List;
 import java.util.Set;
