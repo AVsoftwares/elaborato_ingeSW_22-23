@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Restaurant {
+public class Restaurant implements Subscriber{
 
     /**
      * Costante moltiplicativa del carico di lavoro sostenibile dal ristorante
@@ -235,5 +235,38 @@ public class Restaurant {
      */
     public void addExtra(String name) {
         averageExtraConsumption.putIfAbsent(name.toLowerCase(), null);
+    }
+
+
+    @Override
+    public <T extends Publisher> void update(T context) {
+        StoreRegister register = (StoreRegister) context;
+
+        List<Product> products = register.getProducts();
+
+        for (Product p: products){
+
+            for (Dish d: dishes) {
+                for (Ingredient i : d.getRecipe().getIngredients().keySet()) {
+                    if (!p.equals(i)) {
+                        d.setAvailable(false);
+                    }
+                }
+               d.setAvailable(true);
+            }
+
+            for (Menu m : thematicMenus) {
+                for (Dish d: m.getDishes()){
+                    for (Ingredient i: d.getRecipe().getIngredients().keySet()) {
+                        if(!p.equals(i)){
+                            d.setAvailable(false);
+                        }
+                    }
+                    d.setAvailable(true);
+                }
+                m.setAvailable(true);
+            }
+        }
+
     }
 }

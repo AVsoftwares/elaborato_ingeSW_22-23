@@ -30,8 +30,7 @@ public class DrinksCommand implements Command {
             if (averageDrinkConsumption.isEmpty()) {
                 view.printEmptyList();
             } else {
-                view.printDrinksAvailable();
-                averageDrinkConsumption.keySet().forEach(System.out::println);
+                view.printDrinksAvailable(averageDrinkConsumption.keySet().stream().toList());
             }
         });
         menu.addEntry(ADD_BEVERAGE, () -> {

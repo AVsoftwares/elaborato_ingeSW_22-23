@@ -23,7 +23,8 @@ public class Dish implements Consumable, Perishable {
     /**
      * Periodo di validità del piatto
      */
-    private Period period;
+    private final Period period;
+    private boolean isAvailable = false;
 
     public Dish(String name, Period period) {
         this.name = Objects.requireNonNull(name);
@@ -47,6 +48,14 @@ public class Dish implements Consumable, Perishable {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+
+    public void setAvailable(boolean value){
+        isAvailable = value;
+    }
+
+    public boolean isAvailable(){
+        return isAvailable;
     }
 
     @Override

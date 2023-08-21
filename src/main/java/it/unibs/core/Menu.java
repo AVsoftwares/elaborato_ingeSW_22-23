@@ -16,6 +16,7 @@ public class Menu {
      * Lista di piatti che fanno parte del menu
      */
     private final List<Dish> dishes;
+    private boolean isAvailable = false;
 
     public Menu(String name, List<Dish> dishes) {
         this.name = Objects.requireNonNull(name);
@@ -44,11 +45,22 @@ public class Menu {
         return Collections.unmodifiableList(dishes);
     }
 
+    public void setAvailable(boolean value){
+        isAvailable = value;
+    }
+
+    public boolean isAvailable(){ return isAvailable; }
+
     @Override
     public String toString() {
         return name;
     }
 
+
+
+    public List<Dish> getDishes(){
+        return dishes;
+    }
     /**
      * Metodo per verificare se due Menu sono equivalenti
      *

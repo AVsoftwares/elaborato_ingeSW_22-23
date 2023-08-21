@@ -106,8 +106,9 @@ public final class ManagerView extends BaseMenu {
         System.out.println(MSG_EMPTY_LIST);
     }
 
-    public void printDrinksAvailable() {
+    public void printDrinksAvailable(List<String> products) {
         System.out.println(MSG_DRINKS_AVAILABLE_NOW);
+        products.forEach(System.out::println);
     }
 
     public void printDrinkPresent() {
