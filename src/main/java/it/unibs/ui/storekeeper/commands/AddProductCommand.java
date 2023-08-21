@@ -11,10 +11,10 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 public class AddProductCommand implements Command {
-    private final StorekeeperView view;
-    private final StoreRegister storeRegister;
     private final static String NAME = "Nome: ";
     private final static String EXPIRE_DATE = "Data di scadenza: ";
+    private final StorekeeperView view;
+    private final StoreRegister storeRegister;
 
     public AddProductCommand(StorekeeperView view, StoreRegister storeRegister) {
         this.view = view;

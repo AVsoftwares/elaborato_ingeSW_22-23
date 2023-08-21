@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Restaurant implements Subscriber{
+public class Restaurant implements Subscriber {
 
     /**
      * Costante moltiplicativa del carico di lavoro sostenibile dal ristorante
@@ -89,7 +89,7 @@ public class Restaurant implements Subscriber{
      * @return lista di piatti disponibili alla data in input
      */
     public List<Dish> getAvailableDishes(LocalDate date) {
-        return dishes.stream().filter(d -> d.isExpiredAtDate(date)&& d.isAvailable()).toList();
+        return dishes.stream().filter(d -> d.isExpiredAtDate(date) && d.isAvailable()).toList();
     }
 
     /**
@@ -244,21 +244,21 @@ public class Restaurant implements Subscriber{
 
         List<Product> products = register.getProducts();
 
-        for (Product p: products){
+        for (Product p : products) {
 
-            for (Dish d: dishes) {
+            for (Dish d : dishes) {
                 for (Ingredient i : d.getRecipe().getIngredients().keySet()) {
                     if (!p.equals(i)) {
                         d.setAvailable(false);
                     }
                 }
-               d.setAvailable(true);
+                d.setAvailable(true);
             }
 
             for (Menu m : thematicMenus) {
-                for (Dish d: m.getDishes()){
-                    for (Ingredient i: d.getRecipe().getIngredients().keySet()) {
-                        if(!p.equals(i)){
+                for (Dish d : m.getDishes()) {
+                    for (Ingredient i : d.getRecipe().getIngredients().keySet()) {
+                        if (!p.equals(i)) {
                             d.setAvailable(false);
                         }
                     }

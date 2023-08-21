@@ -8,6 +8,16 @@ import static java.time.temporal.ChronoUnit.DAYS;
 
 public class ConcreteDateValidationStrategy implements DateValidationStrategy {
 
+    private final Clock clock;
+
+    public ConcreteDateValidationStrategy() {
+        this(Clock.systemDefaultZone());
+    }
+
+    public ConcreteDateValidationStrategy(Clock clock) {
+        this.clock = clock;
+    }
+
     /**
      * Valida la prenotazione.
      * Una prenotazione è valida se la sua data è feriale, antecedente
@@ -17,7 +27,7 @@ public class ConcreteDateValidationStrategy implements DateValidationStrategy {
      */
     @Override
     public boolean isValid(LocalDate date) {
-        final var today = LocalDate.now(Clock.systemDefaultZone());
+        final var today = LocalDate.now(clock);
 
         DayOfWeek dayOfWeek = date.getDayOfWeek();
         return (dayOfWeek != DayOfWeek.SATURDAY && dayOfWeek != DayOfWeek.SUNDAY && DAYS.between(today, date) >= 1);

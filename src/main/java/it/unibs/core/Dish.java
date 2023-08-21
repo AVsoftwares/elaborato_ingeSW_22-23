@@ -17,13 +17,13 @@ public class Dish implements Consumable, Perishable {
      */
     private final String name;
     /**
-     * Ricetta associata al piatto
-     */
-    private Recipe recipe;
-    /**
      * Periodo di validità del piatto
      */
     private final Period period;
+    /**
+     * Ricetta associata al piatto
+     */
+    private Recipe recipe;
     private boolean isAvailable = false;
 
     public Dish(String name, Period period) {
@@ -50,12 +50,12 @@ public class Dish implements Consumable, Perishable {
         this.recipe = recipe;
     }
 
-    public void setAvailable(boolean value){
-        isAvailable = value;
+    public boolean isAvailable() {
+        return isAvailable;
     }
 
-    public boolean isAvailable(){
-        return isAvailable;
+    public void setAvailable(boolean value) {
+        isAvailable = value;
     }
 
     @Override

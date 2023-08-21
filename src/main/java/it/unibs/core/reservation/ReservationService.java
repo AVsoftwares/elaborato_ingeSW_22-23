@@ -67,7 +67,7 @@ public class ReservationService {
      * Rimuove le prenotazioni scadute
      */
     private void removeExpiredReservations() {
-        reservations.removeIf(reservation -> reservation.isExpired(LocalDate.now()));
+        reservations.removeIf(reservation -> reservation.isExpired(LocalDate.now(clock)));
     }
 
     /**

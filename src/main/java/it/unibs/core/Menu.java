@@ -45,11 +45,13 @@ public class Menu {
         return Collections.unmodifiableList(dishes);
     }
 
-    public void setAvailable(boolean value){
-        isAvailable = value;
+    public boolean isAvailable() {
+        return isAvailable;
     }
 
-    public boolean isAvailable(){ return isAvailable; }
+    public void setAvailable(boolean value) {
+        isAvailable = value;
+    }
 
     @Override
     public String toString() {
@@ -57,10 +59,10 @@ public class Menu {
     }
 
 
-
-    public List<Dish> getDishes(){
+    public List<Dish> getDishes() {
         return dishes;
     }
+
     /**
      * Metodo per verificare se due Menu sono equivalenti
      *

@@ -45,7 +45,6 @@ public class ShoppingList implements Subscriber {
      * @return la Map prodotto-quantità da acquistare per soddisfare la domanda
      */
     public Map<String, Quantity> getProducts() {
-        computeShoppingList();
         return products;
     }
 
@@ -54,21 +53,7 @@ public class ShoppingList implements Subscriber {
      * @return true se la lista della spesa contiene il prodotto specificato
      */
     public boolean contains(String productName) {
-        return getProducts().containsKey(productName);
-    }
-
-    /**
-     * Computa la lista {@link #products} della spesa tenendo conto per ciascuna prenotazione dei piatti e dei menu prenotati,
-     * delle bevande, dei generi alimentari extra e del relativo consumo pro-capite
-     * Rimuove infine i prodotti che hanno in magazzino quantità sufficiente
-     */
-    private void computeShoppingList() {
-        for (Reservation reservation : reservationService.getReservations()) {
-            computeOrders(reservation);
-            computeDrinks(reservation.getSeats());
-            computeExtraGroceries(reservation.getSeats());
-        }
-        removeProductsWithEnoughSupply();
+        return products.containsKey(productName);
     }
 
     /**
@@ -83,7 +68,11 @@ public class ShoppingList implements Subscriber {
             }
         }
 
-        products.entrySet().removeIf(e -> e.getValue().getAmount() <= 0);
+        for (var entry : products.entrySet()) {
+            if (entry.getValue().getAmount() <= 0) {
+                products.remove(entry.getKey());
+            }
+        }
     }
 
     /**
@@ -93,7 +82,6 @@ public class ShoppingList implements Subscriber {
      */
     private void computeOrders(Reservation reservation) {
         final Map<Consumable, Integer> orders = reservation.getOrders();
-
 
         orders.forEach((consumable, count) -> {
             final Map<? extends Product, Quantity> productsQuantity = consumable.getProductsQuantity();
@@ -149,8 +137,18 @@ public class ShoppingList implements Subscriber {
         });
     }
 
+    /**
+     * Computa la lista {@link #products} della spesa tenendo conto per ciascuna prenotazione dei piatti e dei menu prenotati,
+     * delle bevande, dei generi alimentari extra e del relativo consumo pro-capite
+     * Rimuove infine i prodotti che hanno in magazzino quantità sufficiente
+     */
     @Override
     public <T extends Publisher> void update(T context) {
-        computeShoppingList();
+        for (Reservation reservation : reservationService.getReservations()) {
+            computeOrders(reservation);
+            computeDrinks(reservation.getSeats());
+            computeExtraGroceries(reservation.getSeats());
+        }
+        removeProductsWithEnoughSupply();
     }
 }
