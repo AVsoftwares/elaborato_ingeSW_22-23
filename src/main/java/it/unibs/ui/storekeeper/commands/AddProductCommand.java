@@ -13,6 +13,8 @@ import java.util.Optional;
 public class AddProductCommand implements Command {
     private final StorekeeperView view;
     private final StoreRegister storeRegister;
+    private final static String NAME = "Nome: ";
+    private final static String EXPIRE_DATE = "Data di scadenza: ";
 
     public AddProductCommand(StorekeeperView view, StoreRegister storeRegister) {
         this.view = view;
@@ -21,8 +23,8 @@ public class AddProductCommand implements Command {
 
     @Override
     public void execute() {
-        final String productName = InputManager.readString("Nome: ");
-        final LocalDate expirationDate = InputManager.readDate("Data di scadenza: ",
+        final String productName = InputManager.readString(NAME);
+        final LocalDate expirationDate = InputManager.readDate(EXPIRE_DATE,
                 InputManager.DEFAULT_DATE_FORMATTER_PATTERN);
 
         final Optional<Quantity> quantity = Quantity.fromString(InputManager.readString("Quantità (es. 10 kg): "));
