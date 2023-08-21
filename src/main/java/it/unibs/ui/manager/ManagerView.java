@@ -97,9 +97,10 @@ public final class ManagerView extends BaseMenu {
         System.out.println(NO_DISHES_SAVED);
     }
 
-    //TODO: SISTEMARE toString di Dish
-    public void printDishes(Set<Dish> d) {
-        d.forEach(System.out::println);
+    public void printDishes(Set<Dish> dishes) {
+        for (Dish d: dishes){
+           System.out.println(d.dishDescription());
+        }
     }
 
     public void printEmptyList() {

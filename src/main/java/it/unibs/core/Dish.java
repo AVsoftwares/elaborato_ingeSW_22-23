@@ -105,8 +105,7 @@ public class Dish implements Consumable, Perishable {
         return Objects.hash(name);
     }
 
-    @Override
-    public String toString() {
-        return name;
+    public String dishDescription(){
+        return "Piatto: " + name +" valido da "+ period.getStartDate() + " a " + period.getEndDate();
     }
 }
