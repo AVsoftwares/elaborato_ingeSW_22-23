@@ -266,3 +266,4 @@ nbdist/
 # Escludi documentazione
 *.pdf
 *.odt
+*.odp
