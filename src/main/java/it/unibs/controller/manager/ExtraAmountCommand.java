@@ -37,7 +37,7 @@ public class ExtraAmountCommand implements Command {
             if (extraWithConsumption.isEmpty()) {
                 view.printNoExtraFood();
             } else {
-                extraWithConsumption.entrySet().forEach(System.out::println);
+                view.printExtrasWithConsumption(extraWithConsumption);
             }
         });
         menu.addEntry(INITIALIZE_CONSUMPTION_EXTRA_FOOD_PER_PERSON, () -> {

@@ -189,9 +189,4 @@ public class Quantity {
     public int hashCode() {
         return Objects.hash(unit, amount, prefix);
     }
-
-    @Override
-    public String toString() {
-        return amount + " " + prefix.getSymbol() + unit.getSymbol();
-    }
 }

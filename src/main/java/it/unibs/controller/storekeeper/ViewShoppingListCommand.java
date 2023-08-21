@@ -7,12 +7,12 @@ import it.unibs.ui.storekeeper.StorekeeperView;
 
 import java.util.Map;
 
-public class ViewShoppingList implements Command {
+public class ViewShoppingListCommand implements Command {
 
     private final StorekeeperView view;
     private final ShoppingList shoppingList;
 
-    public ViewShoppingList(StorekeeperView view, ShoppingList shoppingList) {
+    public ViewShoppingListCommand(StorekeeperView view, ShoppingList shoppingList) {
         this.view = view;
         this.shoppingList = shoppingList;
     }
@@ -24,7 +24,7 @@ public class ViewShoppingList implements Command {
         if (products.isEmpty()) {
             view.printEmptyList();
         } else {
-            products.entrySet().forEach(System.out::println);
+            view.printShoppingList(products);
         }
     }
 }

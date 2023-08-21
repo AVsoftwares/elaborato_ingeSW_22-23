@@ -26,7 +26,7 @@ public class RemoveProductCommand implements Command {
             final List<Product> matchingProducts = storeRegister.getProductsByName(productName);
 
             for (int i = 0; i < matchingProducts.size(); i++) {
-                System.out.println("\t- " + i + "\t" + matchingProducts.get(i));
+                view.printMatchingProduct(i, matchingProducts.get(i));
             }
 
             final int choice = InputManager.readInt("Prodotto da rimuovere: ", 0, matchingProducts.size());

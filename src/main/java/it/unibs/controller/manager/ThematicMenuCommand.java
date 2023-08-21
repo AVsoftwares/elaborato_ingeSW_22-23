@@ -45,8 +45,7 @@ public class ThematicMenuCommand implements Command {
             if (thematicMenus.isEmpty()) {
                 view.printEmptyList();
             } else {
-                view.printThematicSaved();
-                thematicMenus.forEach(System.out::println);
+                view.printThematicSaved(thematicMenus);
             }
         });
         menu.addEntry(MAKE_NEW_THEMATIC_MENU, () -> {

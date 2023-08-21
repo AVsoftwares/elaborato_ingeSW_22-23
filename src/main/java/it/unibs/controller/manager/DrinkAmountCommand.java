@@ -37,7 +37,7 @@ public class DrinkAmountCommand implements Command {
             if (drinkWithConsumption.isEmpty()) {
                 view.printNoDrinkAssociated();
             } else {
-                drinkWithConsumption.entrySet().forEach(System.out::println);
+                view.printDrinksWithConsumption(drinkWithConsumption);
             }
         });
         menu.addEntry(INITIALIZE_CONSUMPTION_PER_CAPITA_BEVERAGE, () -> {

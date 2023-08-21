@@ -30,8 +30,7 @@ public class ExtraCommand implements Command {
             if (averageExtraConsumption.isEmpty()) {
                 view.printEmptyList();
             } else {
-                view.printExtraAvailable();
-                averageExtraConsumption.keySet().forEach(System.out::println);
+                view.printExtraAvailable(averageExtraConsumption.keySet());
             }
         });
         menu.addEntry(ADD_EXTRA_FOOD, () -> {

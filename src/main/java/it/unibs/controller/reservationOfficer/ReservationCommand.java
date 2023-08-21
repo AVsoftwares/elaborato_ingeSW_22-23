@@ -62,7 +62,7 @@ public class ReservationCommand implements Command {
 
     private void addConsumablesToReservation(Reservation reservation, List<? extends Consumable> consumables) {
         for (int i = 0; i < consumables.size(); i++) {
-            System.out.println("\t- " + i + " " + consumables.get(i));
+            view.printConsumables(i, consumables.get(i));
         }
         final int choice = InputManager.readInt("Ordine: ", 0, consumables.size());
 

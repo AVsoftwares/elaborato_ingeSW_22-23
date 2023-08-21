@@ -53,14 +53,12 @@ public class Menu {
         isAvailable = value;
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
-
-
     public List<Dish> getDishes() {
         return dishes;
+    }
+
+    public String getName() {
+        return name;
     }
 
     /**

@@ -4,9 +4,12 @@ import it.unibs.controller.storekeeper.*;
 import it.unibs.core.Product;
 import it.unibs.core.ShoppingList;
 import it.unibs.core.StoreRegister;
+import it.unibs.core.unit.Quantity;
 import it.unibs.ui.BaseMenu;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 public class StorekeeperView extends BaseMenu {
 
@@ -31,7 +34,7 @@ public class StorekeeperView extends BaseMenu {
         addEntry(MSG_REMOVE_PRODUCT, new RemoveProductCommand(this, storeRegister));
         addEntry(MSG_REMOVE_EXPIRED_PRODUCTS, new RemoveExpiredProductsCommand(this, storeRegister));
         addEntry(MSG_VIEW_STORE_REGISTER, new ViewStoreRegisterCommand(this, storeRegister));
-        addEntry(MSG_VIEW_SHOPPING_LIST, new ViewShoppingList(this, shoppingList));
+        addEntry(MSG_VIEW_SHOPPING_LIST, new ViewShoppingListCommand(this, shoppingList));
         addEntry(MSG_PRODUCT_SUPPLY, new ProductSupplyCommand(this, storeRegister, shoppingList));
     }
 
@@ -47,8 +50,25 @@ public class StorekeeperView extends BaseMenu {
         System.out.println(ERR_EMPTY_LIST);
     }
 
-    public void printProducts(List<Product> products) {
+    public void printShoppingList(Map<String, Quantity> products) {
+        products.forEach((key, value) -> System.out.println(key + " " + value.getAmount() + " " + value.getPrefix() + value.getUnit()));
+    }
+
+    public void printMatchingProduct(int i, Product product) {
+        System.out.println("\t- " + i + formatProduct(product));
+    }
+
+    public void printStoreRegisterProducts(List<Product> products) {
         System.out.println(MSG_AVAILABLE_PRODUCTS);
-        products.forEach(System.out::println);
+        products.forEach(p -> System.out.println(formatProduct(p)));
+    }
+
+    private String formatProduct(Product product) {
+        return String.join(
+                " ",
+                product.getName(),
+                String.valueOf(product.getQuantity().getAmount()),
+                String.join("", product.getQuantity().getPrefix().getSymbol(), product.getQuantity().getUnit().getSymbol()),
+                product.getExpiration().format(DateTimeFormatter.ofPattern("dd/MM/yy")));
     }
 }

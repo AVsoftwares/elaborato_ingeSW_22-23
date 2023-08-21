@@ -2,11 +2,16 @@ package it.unibs.ui.manager;
 
 import it.unibs.controller.manager.*;
 import it.unibs.core.Dish;
+import it.unibs.core.Period;
 import it.unibs.core.Recipe;
+import it.unibs.core.ThematicMenu;
+import it.unibs.core.unit.Quantity;
 import it.unibs.ui.BaseMenu;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Classe che rappresenta il menu relativo all'utente Gestore.
@@ -97,19 +102,18 @@ public final class ManagerView extends BaseMenu {
         System.out.println(NO_DISHES_SAVED);
 
     }
+
     public void printDishes(Set<Dish> dishes) {
-        for (Dish d: dishes){
-           System.out.println(d.dishDescription());
-        }
+        dishes.forEach(d -> System.out.println(formatDish(d)));
     }
 
     public void printEmptyList() {
         System.out.println(MSG_EMPTY_LIST);
     }
 
-    public void printDrinksAvailable(List<String> products) {
+    public void printDrinksAvailable(List<String> drinks) {
         System.out.println(MSG_DRINKS_AVAILABLE_NOW);
-        products.forEach(System.out::println);
+        drinks.forEach(System.out::println);
     }
 
     public void printDrinkPresent() {
@@ -140,8 +144,9 @@ public final class ManagerView extends BaseMenu {
         System.out.println(EXTRA_MSG + extraName + NOT_PRESENT_RESTAURANT);
     }
 
-    public void printExtraAvailable() {
+    public void printExtraAvailable(Set<String> extras) {
         System.out.println(CURRENTLY_AVAILABLE);
+        extras.forEach(System.out::println);
     }
 
     public void printExtraPresent() {
@@ -164,8 +169,9 @@ public final class ManagerView extends BaseMenu {
         System.out.println(NO_PRESENT_RECIPES_IMPOSSIBLE_PROCEED);
     }
 
-    public void printNoPairedDishesh() {
+    public void printNoPairedDishes(List<Dish> dishesWithoutRecipe) {
         System.out.println(DISHES_NOT_PAIRED);
+        dishesWithoutRecipe.forEach(d -> System.out.println(formatDish(d)));
     }
 
     public void printDishNotPresent() {
@@ -182,7 +188,7 @@ public final class ManagerView extends BaseMenu {
 
     public void printRecipes(List<Recipe> recipes) {
         for (int i = 0; i < recipes.size(); i++) {
-            System.out.println("\t- " + i + recipes.get(i));
+            System.out.println("\t- " + i + formatRecipe(recipes.get(i)));
         }
     }
 
@@ -194,8 +200,9 @@ public final class ManagerView extends BaseMenu {
         System.out.println(AMOUNT_NOT_VALID);
     }
 
-    public void printThematicSaved() {
+    public void printThematicSaved(Set<ThematicMenu> thematicMenus) {
         System.out.println(THEMATIC_MENU_SAVED);
+        thematicMenus.forEach(m -> System.out.println(formatMenu(m)));
     }
 
     public void printNoDishesAvailable() {
@@ -220,5 +227,45 @@ public final class ManagerView extends BaseMenu {
 
     public void printWorkloadExceeded() {
         System.out.println(DISH_WORKLOAD_EXCEDED);
+    }
+
+    public void printExtrasWithConsumption(Map<String, Quantity> extraWithConsumption) {
+        extraWithConsumption.forEach((key, value) -> System.out.println(key + " " + formatQuantity(value)));
+    }
+
+    public void printDrinksWithConsumption(Map<String, Quantity> drinkWithConsumption) {
+        drinkWithConsumption.forEach((key, value) -> System.out.println(key + " " + formatQuantity(value)));
+    }
+
+    private String formatDish(Dish dish) {
+        return String.join(
+                " ",
+                dish.getName(),
+                formatPeriod(dish.getPeriod()));
+    }
+
+    private String formatQuantity(Quantity quantity) {
+        return quantity.getAmount() + " " + quantity.getPrefix().getSymbol() + quantity.getUnit().getSymbol();
+    }
+
+    private String formatMenu(ThematicMenu menu) {
+        return String.join(
+                "",
+                menu.getName(),
+                formatPeriod(menu.getPeriod()));
+    }
+
+    private String formatRecipe(Recipe recipe) {
+        var ingredientsString = recipe.getIngredients().keySet().stream().map(Object::toString).collect(Collectors.joining(", "));
+
+        return "Ingredienti: " + ingredientsString + "\n\t\tPorzioni: " + recipe.getPortions()
+                + "\n\t\tCarico di lavoro per porzione: " + recipe.getPortionWorkload();
+
+    }
+
+    private String formatPeriod(Period period) {
+        return String.join("-",
+                period.getStartDate().format(Period.DEFAULT_FORMATTER),
+                period.getEndDate().format(Period.DEFAULT_FORMATTER));
     }
 }

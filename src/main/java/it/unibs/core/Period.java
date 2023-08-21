@@ -10,11 +10,8 @@ import java.util.Objects;
 public class Period {
     /**
      * Formatter di default usato per il parsing e la rappresentazione in stringa
-     *
-     * @see #format(DateTimeFormatter)
-     * @see #toString()
      */
-    private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yy");
+    public static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yy");
     /**
      * Data di inizio periodo, inclusivo
      */
@@ -74,20 +71,5 @@ public class Period {
 
     public LocalDate getEndDate() {
         return endDate;
-    }
-
-    /**
-     * Formatta il periodo in una stringa leggibile per rappresentazione testuale
-     *
-     * @param formatter specifica come deve essere formattata la stringa
-     * @return una stringa formattata di semplice lettura
-     */
-    public String format(DateTimeFormatter formatter) {
-        return startDate.format(formatter) + "-" + endDate.format(formatter);
-    }
-
-    @Override
-    public String toString() {
-        return format(DEFAULT_FORMATTER);
     }
 }

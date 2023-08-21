@@ -51,8 +51,7 @@ public class ThematicMenu extends Menu implements Consumable, Perishable {
         return super.add(dish);
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + " " + period;
+    public Period getPeriod() {
+        return period;
     }
 }

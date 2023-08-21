@@ -48,8 +48,7 @@ public class PairDishWithRecipeCommand implements Command {
         do {
             final List<Dish> dishesWithoutRecipe = dishes.stream().filter(d -> d.getRecipe() == null).toList();
 
-            view.printNoPairedDishesh();
-            dishesWithoutRecipe.forEach(System.out::println);
+            view.printNoPairedDishes(dishesWithoutRecipe);
 
             final String dishName = InputManager.readString(DISH_TO_PAIR);
             final Optional<Dish> optionalDish = restaurant.getDish(dishName);

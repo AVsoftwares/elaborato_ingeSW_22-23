@@ -1,8 +1,9 @@
 package it.unibs.ui.reservationOfficer;
 
+import it.unibs.controller.reservationOfficer.ReservationCommand;
+import it.unibs.core.Consumable;
 import it.unibs.core.reservation.ReservationService;
 import it.unibs.ui.BaseMenu;
-import it.unibs.controller.reservationOfficer.ReservationCommand;
 
 /**
  * Addetto alle prenotazioni
@@ -55,5 +56,9 @@ public class ReservationOfficerView extends BaseMenu {
 
     public void printOverWorkload() {
         System.out.println(OVER_WORKLOAD);
+    }
+
+    public <T extends Consumable> void printConsumables(int i, T consumable) {
+        System.out.println("\t- " + i + " " + consumable);
     }
 }

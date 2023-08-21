@@ -78,6 +78,10 @@ public class Recipe {
         return portionWorkload;
     }
 
+    public int getPortions() {
+        return portions;
+    }
+
     @Override
     public String toString() {
         var ingredientsString = ingredients.keySet().stream().map(Object::toString).collect(Collectors.joining(", "));

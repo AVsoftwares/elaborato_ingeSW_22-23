@@ -42,6 +42,10 @@ public class Dish implements Consumable, Perishable {
         return name;
     }
 
+    public Period getPeriod() {
+        return period;
+    }
+
     public Recipe getRecipe() {
         return recipe;
     }
@@ -103,9 +107,5 @@ public class Dish implements Consumable, Perishable {
     @Override
     public int hashCode() {
         return Objects.hash(name);
-    }
-
-    public String dishDescription(){
-        return "Piatto: " + name +" valido da "+ period.getStartDate() + " a " + period.getEndDate();
     }
 }

@@ -19,7 +19,7 @@ public class ViewStoreRegisterCommand implements Command {
         if (storeRegister.getProducts().isEmpty()) {
             view.printEmptyList();
         } else {
-            view.printProducts(storeRegister.getProducts());
+            view.printStoreRegisterProducts(storeRegister.getProducts());
         }
     }
 }

@@ -5,7 +5,6 @@ import it.unibs.core.unit.Quantity;
 import java.time.Clock;
 import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
@@ -95,10 +94,5 @@ public class Product implements Perishable {
     @Override
     public boolean isExpiredAtDate(LocalDate date) {
         return date.isAfter(expiration);
-    }
-
-    @Override
-    public String toString() {
-        return name + " " + quantity + " " + expiration.format(DateTimeFormatter.ofPattern("dd/MM/yy"));
     }
 }
