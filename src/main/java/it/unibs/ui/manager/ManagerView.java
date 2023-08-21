@@ -13,43 +13,43 @@ import java.util.Set;
  */
 public final class ManagerView extends BaseMenu {
 
-    public static final String DISH_LIST_INITIALIZED = "La lista di piatti è già stata inizializzata.";
-    public static final String DISH_ALREADY_PRESENT = "Un piatto omonimo è già presente.";
-    public static final String PERIOD_NOT_VALID = "Il periodo inserito non è valido.";
-    public static final String NO_DISHES_SAVED = "Non sono memorizzati piatti.";
-    public static final String NO_DRINKS_WITH_CONSUMPTION_PER_CAPITA_ASSOCIATED = "Non è presente nessuna bevanda con consumo pro-capite associato.";
-    public static final String DRINK_MSG = "La bevanda ";
-    public static final String ASSOCIATED_CONSUMPTION_PER_CAPITA = " ha un consumo pro-capite associato.";
-    public static final String NOT_PRESENT_MSG = " non è presente nel ristorante.";
-    public static final String MSG_DRINKS_AVAILABLE_NOW = "Le bevande attualmente disponibili sono:";
-    public static final String BEVERAGE_ALREADY_PRESENT = "La bevanda è già presente nell'elenco.";
-    public static final String MSG_EMPTY_LIST = "La lista è vuota.";
-    public static final String NO_EXTRA_FOOD_CONSUMPTION_PER_CAPITA = "Non è presente nessun alimento extra con consumo pro-capite associato.";
-    public static final String EXTRA_MSG = "L'alimento extra ";
-    public static final String EXTRA_FOOD_CONSUMPTION_PER_CAPITA = " ha un consumo pro-capite associato.";
-    public static final String NOT_PRESENT_RESTAURANT = " non è presente nel ristorante.";
-    public static final String CURRENTLY_AVAILABLE = "I generi alimentari extra attualmente disponibili sono:";
-    public static final String ALREADY_PRESENT = "Il genere alimentare è già presente nell'elenco.";
-    public static final String VALUE_NOT_INITIALIZED = "Il valore non è ancora stato inizializzato.";
-    public static final String CURRENT_VALUE = "Il valore attuale è: ";
-    public static final String ALL_DISHES_PAIRED = "Tutti i piatti sono associati ad una ricetta.";
-    public static final String NO_PRESENT_RECIPES_IMPOSSIBLE_PROCEED = "Non sono presenti ricette, impossibile procedere.";
-    public static final String DISHES_NOT_PAIRED = "I seguenti piatti non hanno una ricetta associata: ";
-    public static final String DISH_NOT_IN_LIST = "Il piatto non è presente nella lista.";
-    public static final String DISH_ALREADY_PAIRED = "Il piatto ha già una ricetta associata";
-    public static final String MSG_SAVED_RECIPES = "Sono memorizzate le seguenti ricette: ";
-    public static final String NO_RECIPES_SAVED = "Non sono memorizzate ricette.";
-    public static final String AMOUNT_NOT_VALID = """
+    private static final String DISH_LIST_INITIALIZED = "La lista di piatti è già stata inizializzata.";
+    private static final String DISH_ALREADY_PRESENT = "Un piatto omonimo è già presente.";
+    private static final String PERIOD_NOT_VALID = "Il periodo inserito non è valido.";
+    private static final String NO_DISHES_SAVED = "Non sono memorizzati piatti.";
+    private static final String NO_DRINKS_WITH_CONSUMPTION_PER_CAPITA_ASSOCIATED = "Non è presente nessuna bevanda con consumo pro-capite associato.";
+    private static final String DRINK_MSG = "La bevanda ";
+    private static final String ASSOCIATED_CONSUMPTION_PER_CAPITA = " ha un consumo pro-capite associato.";
+    private static final String NOT_PRESENT_MSG = " non è presente nel ristorante.";
+    private static final String MSG_DRINKS_AVAILABLE_NOW = "Le bevande attualmente disponibili sono:";
+    private static final String BEVERAGE_ALREADY_PRESENT = "La bevanda è già presente nell'elenco.";
+    private static final String MSG_EMPTY_LIST = "La lista è vuota.";
+    private static final String NO_EXTRA_FOOD_CONSUMPTION_PER_CAPITA = "Non è presente nessun alimento extra con consumo pro-capite associato.";
+    private static final String EXTRA_MSG = "L'alimento extra ";
+    private static final String EXTRA_FOOD_CONSUMPTION_PER_CAPITA = " ha un consumo pro-capite associato.";
+    private static final String NOT_PRESENT_RESTAURANT = " non è presente nel ristorante.";
+    private static final String CURRENTLY_AVAILABLE = "I generi alimentari extra attualmente disponibili sono:";
+    private static final String ALREADY_PRESENT = "Il genere alimentare è già presente nell'elenco.";
+    private static final String VALUE_NOT_INITIALIZED = "Il valore non è ancora stato inizializzato.";
+    private static final String CURRENT_VALUE = "Il valore attuale è: ";
+    private static final String ALL_DISHES_PAIRED = "Tutti i piatti sono associati ad una ricetta.";
+    private static final String NO_PRESENT_RECIPES_IMPOSSIBLE_PROCEED = "Non sono presenti ricette, impossibile procedere.";
+    private static final String DISHES_NOT_PAIRED = "I seguenti piatti non hanno una ricetta associata: ";
+    private static final String DISH_NOT_IN_LIST = "Il piatto non è presente nella lista.";
+    private static final String DISH_ALREADY_PAIRED = "Il piatto ha già una ricetta associata";
+    private static final String MSG_SAVED_RECIPES = "Sono memorizzate le seguenti ricette: ";
+    private static final String NO_RECIPES_SAVED = "Non sono memorizzate ricette.";
+    private static final String AMOUNT_NOT_VALID = """
             La quantità inserita non è valida.
             Deve essere nel formato: quantity [prefix unit]
             Le unità di misura accettate sono (l)itri e (g)rammi, se omessa si considerano le unità""";
-    public static final String THEMATIC_MENU_SAVED = "I menu tematici memorizzati sono:";
-    public static final String NO_DISH_AVAILABLE = "Nessun piatto disponibile, impossibile continuare.";
-    public static final String EXPIRATION_DATE_BEFORE_START_DATE_VALIDITY = "La data di scadenza inserita è precedente alla data di inizio validità, impossibile continuare.";
-    public static final String NO_DISH = "Nessun piatto ";
-    public static final String NO_PAIRED_RECIPE_DISH = "Il piatto non ha una ricetta associata, non è possibile inserirlo nel menu.";
-    public static final String DISH_ADDED = "Piatto aggiunto al menu.";
-    public static final String DISH_WORKLOAD_EXCEDED = "Il piatto scelto ha un carico di lavoro incompatibile con il menu.";
+    private static final String THEMATIC_MENU_SAVED = "I menu tematici memorizzati sono:";
+    private static final String NO_DISH_AVAILABLE = "Nessun piatto disponibile, impossibile continuare.";
+    private static final String EXPIRATION_DATE_BEFORE_START_DATE_VALIDITY = "La data di scadenza inserita è precedente alla data di inizio validità, impossibile continuare.";
+    private static final String NO_DISH = "Nessun piatto ";
+    private static final String NO_PAIRED_RECIPE_DISH = "Il piatto non ha una ricetta associata, non è possibile inserirlo nel menu.";
+    private static final String DISH_ADDED = "Piatto aggiunto al menu.";
+    private static final String DISH_WORKLOAD_EXCEDED = "Il piatto scelto ha un carico di lavoro incompatibile con il menu.";
     private static final String MENU_NAME = "Manager Menu";
     private static final String MSG_WORKLOAD = "Gestisci carico di lavoro per persona.";
     private static final String MSG_SEATS = "Gestisci numero dei posti a sedere.";
@@ -95,8 +95,8 @@ public final class ManagerView extends BaseMenu {
 
     public void printNoDishesSaved() {
         System.out.println(NO_DISHES_SAVED);
-    }
 
+    }
     public void printDishes(Set<Dish> dishes) {
         for (Dish d: dishes){
            System.out.println(d.dishDescription());
