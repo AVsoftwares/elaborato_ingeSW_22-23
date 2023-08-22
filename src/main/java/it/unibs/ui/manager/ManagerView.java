@@ -188,7 +188,7 @@ public final class ManagerView extends BaseMenu {
 
     public void printRecipes(List<Recipe> recipes) {
         for (int i = 0; i < recipes.size(); i++) {
-            System.out.println("\t- " + i + formatRecipe(recipes.get(i)));
+            System.out.println("\t- " + i + " " + formatRecipe(recipes.get(i)));
         }
     }
 

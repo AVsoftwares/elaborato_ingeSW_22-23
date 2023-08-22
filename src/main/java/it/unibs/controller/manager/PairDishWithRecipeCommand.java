@@ -18,7 +18,7 @@ public class PairDishWithRecipeCommand implements Command {
 
     public static final String DISH_TO_PAIR = "Nome del piatto da associare: ";
     public static final String RECIPE_INDEX_TO_PAIR = "Indice della ricetta da assegnare: ";
-    public static final String ANOTHER_DISH_Y_OR_NO = "Vuoi modificare un altro piatto? (y)es/(n)o: ";
+    public static final String ANOTHER_DISH_Y_OR_NO = "Vuoi modificare un altro piatto? ";
     private final Restaurant restaurant = Restaurant.getInstance();
     private final ManagerView view;
 

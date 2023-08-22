@@ -79,7 +79,7 @@ public class Restaurant implements Subscriber {
      * @return lista di menu disponibili alla data in input
      */
     public List<ThematicMenu> getAvailableMenus(LocalDate date) {
-        return thematicMenus.stream().filter(m -> m.isExpiredAtDate(date) && m.isAvailable()).toList();
+        return thematicMenus.stream().filter(m -> m.isExpiredAtDate(date)).toList();
     }
 
     /**
@@ -89,7 +89,7 @@ public class Restaurant implements Subscriber {
      * @return lista di piatti disponibili alla data in input
      */
     public List<Dish> getAvailableDishes(LocalDate date) {
-        return dishes.stream().filter(d -> d.isExpiredAtDate(date) && d.isAvailable()).toList();
+        return dishes.stream().filter(d -> d.isExpiredAtDate(date)).toList();
     }
 
     /**
@@ -250,6 +250,7 @@ public class Restaurant implements Subscriber {
                 for (Ingredient i : d.getRecipe().getIngredients().keySet()) {
                     if (!p.equals(i)) {
                         d.setAvailable(false);
+                        break;
                     }
                 }
                 d.setAvailable(true);
@@ -260,6 +261,8 @@ public class Restaurant implements Subscriber {
                     for (Ingredient i : d.getRecipe().getIngredients().keySet()) {
                         if (!p.equals(i)) {
                             d.setAvailable(false);
+                            m.setAvailable(false);
+                            break;
                         }
                     }
                     d.setAvailable(true);
@@ -267,6 +270,5 @@ public class Restaurant implements Subscriber {
                 m.setAvailable(true);
             }
         }
-
     }
 }
