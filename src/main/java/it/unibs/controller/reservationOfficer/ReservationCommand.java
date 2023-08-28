@@ -47,7 +47,10 @@ public class ReservationCommand implements Command {
         final List<? extends Consumable> consumables = Stream.concat(availableMenus.stream(), availableDishes.stream()).toList();
 
         if (!consumables.isEmpty()) {
-            addConsumablesToReservation(reservation, consumables);
+            for (int i = 0; i< seats; i++){
+                addConsumablesToReservation(reservation, consumables);
+            }
+
         } else {
             view.printNothingAvailable();
             return;
