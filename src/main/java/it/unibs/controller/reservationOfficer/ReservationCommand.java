@@ -48,6 +48,8 @@ public class ReservationCommand implements Command {
 
         if (!consumables.isEmpty()) {
             for (int i = 0; i< seats; i++){
+                int index = i+1;
+                System.out.println("\t Coperto " + index);
                 addConsumablesToReservation(reservation, consumables);
             }
 
