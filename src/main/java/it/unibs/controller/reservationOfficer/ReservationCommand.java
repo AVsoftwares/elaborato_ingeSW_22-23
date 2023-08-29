@@ -29,7 +29,7 @@ public class ReservationCommand implements Command {
         final LocalDate date = InputManager.readDate("Data della prenotazione: ", InputManager.DEFAULT_DATE_FORMATTER_PATTERN);
 
         if (!reservationService.isValid(date)) {
-            view.printInvalidQuantity();
+            view.printNoPossibleBooking();
             return;
         }
 
