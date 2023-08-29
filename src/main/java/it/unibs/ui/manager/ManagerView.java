@@ -1,10 +1,7 @@
 package it.unibs.ui.manager;
 
 import it.unibs.controller.manager.*;
-import it.unibs.core.Dish;
-import it.unibs.core.Period;
-import it.unibs.core.Recipe;
-import it.unibs.core.ThematicMenu;
+import it.unibs.core.*;
 import it.unibs.core.unit.Quantity;
 import it.unibs.ui.BaseMenu;
 
@@ -256,7 +253,7 @@ public final class ManagerView extends BaseMenu {
     }
 
     private String formatRecipe(Recipe recipe) {
-        var ingredientsString = recipe.getIngredients().keySet().stream().map(Object::toString).collect(Collectors.joining(", "));
+        var ingredientsString = recipe.getIngredients().keySet().stream().map(i -> i.getName()).collect(Collectors.joining(", "));
 
         return "Ingredienti: " + ingredientsString + "\n\t\tPorzioni: " + recipe.getPortions()
                 + "\n\t\tCarico di lavoro per porzione: " + recipe.getPortionWorkload();

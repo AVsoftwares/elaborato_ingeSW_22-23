@@ -2,6 +2,8 @@ package it.unibs.ui.reservationOfficer;
 
 import it.unibs.controller.reservationOfficer.ReservationCommand;
 import it.unibs.core.Consumable;
+import it.unibs.core.Dish;
+import it.unibs.core.ThematicMenu;
 import it.unibs.core.reservation.ReservationService;
 import it.unibs.ui.BaseMenu;
 
@@ -59,6 +61,14 @@ public class ReservationOfficerView extends BaseMenu {
     }
 
     public <T extends Consumable> void printConsumables(int i, T consumable) {
-        System.out.println("\t- " + i + " " + consumable);
+        if(consumable instanceof Dish){
+            Dish d = (Dish) consumable;
+            System.out.println("\t- "+ i + " " + d.getName());
+        }
+
+        if(consumable instanceof ThematicMenu){
+            ThematicMenu t = (ThematicMenu) consumable;
+            System.out.println("\t- "+ i + " " + t.getName());
+        }
     }
 }
