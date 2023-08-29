@@ -47,8 +47,8 @@ public class ReservationCommand implements Command {
         final List<? extends Consumable> consumables = Stream.concat(availableMenus.stream(), availableDishes.stream()).toList();
 
         if (!consumables.isEmpty()) {
-            for (int i = 0; i< seats; i++){
-                int index = i+1;
+            for (int i = 0; i < seats; i++) {
+                int index = i + 1;
                 System.out.println("\t Coperto " + index);
                 addConsumablesToReservation(reservation, consumables);
             }

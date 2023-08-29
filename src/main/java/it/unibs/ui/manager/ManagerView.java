@@ -1,7 +1,10 @@
 package it.unibs.ui.manager;
 
 import it.unibs.controller.manager.*;
-import it.unibs.core.*;
+import it.unibs.core.Dish;
+import it.unibs.core.Period;
+import it.unibs.core.Recipe;
+import it.unibs.core.ThematicMenu;
 import it.unibs.core.unit.Quantity;
 import it.unibs.ui.BaseMenu;
 

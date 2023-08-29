@@ -38,7 +38,7 @@ public class ReservationOfficerView extends BaseMenu {
     private static final String NO_AVAILABLE_SEATS = "Non ci sono sufficienti posti disponibili per la data selezionata.";
     private static final String NOTHING_AVAILABLE = "Non sono disponibili né piatti né menu per il giorno selezionato, impossibile continuare.";
     private static final String OVER_WORKLOAD = "Il ristorante non è in grado di gestire il carico di lavoro.";
-    private static final String MSG_NO_BOOKING ="Il ristorante lavora nei feriali e la prenotazione deve avvenire con un giorno di anticipo";
+    private static final String MSG_NO_BOOKING = "Il ristorante lavora nei feriali e la prenotazione deve avvenire con un giorno di anticipo";
 
     public ReservationOfficerView(ReservationService reservationService) {
         super(MENU_NAME);
@@ -61,17 +61,17 @@ public class ReservationOfficerView extends BaseMenu {
         System.out.println(OVER_WORKLOAD);
     }
 
-    public void printNoPossibleBooking() { System.out.println(MSG_NO_BOOKING);}
+    public void printNoPossibleBooking() {
+        System.out.println(MSG_NO_BOOKING);
+    }
 
     public <T extends Consumable> void printConsumables(int i, T consumable) {
-        if(consumable instanceof Dish){
-            Dish d = (Dish) consumable;
-            System.out.println("\t- "+ i + " " + d.getName());
+        if (consumable instanceof Dish d) {
+            System.out.println("\t- " + i + " " + d.getName());
         }
 
-        if(consumable instanceof ThematicMenu){
-            ThematicMenu t = (ThematicMenu) consumable;
-            System.out.println("\t- "+ i + " " + t.getName());
+        if (consumable instanceof ThematicMenu t) {
+            System.out.println("\t- " + i + " " + t.getName());
         }
     }
 }
